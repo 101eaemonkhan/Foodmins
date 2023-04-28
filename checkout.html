@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>checkout</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+   
+<header class="header">
+<!--Navbar-->
+   <section class="flex">
+
+      <a href="home.html" class="logo">Food Mins 🍽</a>
+
+      <nav class="navbar">
+         <a href="home.html">Home</a>
+         <a href="about.html">About</a>
+         <a href="menu.html">Menu</a>
+         <a href="orders.html">Orders</a>
+         <a href="contact.html">Contact</a>
+      </nav>
+<!--search and cart options-->
+      <div class="icons">
+         <a href="search.html"><i class="fas fa-search"></i></a>
+         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+<!--Registration and login button and i am using a custom profile-->
+      <div class="profile">
+         <p class="name">Emon Ahmed</p>
+         <div class="flex">
+            <a href="profile.html" class="btn">profile</a>
+            <a href="login.html" class="delete-btn">logout</a>
+         </div>
+         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+      </div>
+
+   </section>
+
+</header>
+
+<div class="heading">
+   <h3>checkout</h3>
+   <p><a href="home.html">home </a> <span> / checkout</span></p>
+</div>
+<!--Check out page where i customize some manual food order and user details informations-->
+<section class="checkout">
+
+   <h1 class="title">order summary</h1>
+
+   <form action="" method="post">
+      <div class="cart-items">
+         <h3>cart items</h3>
+         <p><span class="name">pizza 0.1</span><span class="price">$5</span></p>
+         <p><span class="name">main dish 0.2</span><span class="price">$6</span></p>
+         <p><span class="name">Dessert 0.3</span><span class="price">$3</span></p>
+         <p class="grand-total"><span class="name">grand total :</span> <span class="price">$14</span></p>
+         <a href="cart.html" class="btn">view cart</a>
+      </div>
+      <div class="user-info">
+         <h3>your info</h3>
+         <p><i class="fas fa-user"></i> <span>Emon Ahmed</span></p>
+         <p><i class="fas fa-phone"></i> <span>01746462491</span></p>
+         <p><i class="fas fa-envelope"></i> <span>eaemonkhan720@gmail.com</span></p>
+         <!--upadate profile info-->
+         <a href="update_profile.html" class="btn">Update info</a>
+         <h3>delivery address</h3>
+         <p class="address"><i class="fas fa-map-marker-alt"></i> <span>Sylhet, Bangladesh, 3100</span></p>
+         <!--update address-->
+         <a href="update_address.html" class="btn">update address</a>
+         <select name="method" class="box" required>
+            <option value="" disabled selected>select payment method</option>
+            <option value="cash on delivery">cash on delivery</option>
+            <option value="credit card">Credit card / Debit cart</option>
+            <option value="paytm">paytm</option>
+            <option value="paypal">paypal</option>
+         </select>
+      </div>
+      <button class="btn order-btn"> Place an order</button>
+   </form>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--footer area addressed -->
+
+
+<footer class="footer">
+
+   <section class="box-container">
+
+      <div class="box">
+         <img src="images/email-icon.png" alt="">
+         <h3 > Email</h3>
+         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
+ 
+      </div>
+
+      <div class="box">
+         <img src="images/clock-icon.png" alt="">
+         <h3 >Opening Hours Time</h3>
+         <p>00:010am to 00:12pm </p>
+      </div>
+
+      <div class="box">
+         <img src="images/map-icon.png" alt="">
+         <h3 >Address</h3>
+         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      </div>
+
+      <div class="box">
+         <img src="images/phone-icon.png" alt="Mobile Number">
+         <h3 >Number</h3>
+         <a href="tel:+8801746462491">+880174646-2491</a>
+      </div>
+
+   </section>
+
+   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+
+</footer>
+<!--Js connection for site loader gif image-->
+<div class="loader">
+   <img src="images/siteloading.gif" alt="siteloading">
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
