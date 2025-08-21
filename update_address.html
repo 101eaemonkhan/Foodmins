@@ -1,132 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Update Address | Food Mins 🍽</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            soft: '0 10px 25px -10px rgba(0,0,0,.12)',
+            ring: '0 0 0 6px rgb(244 114 182 / .12)',
+          },
+          colors: {
+            brand: { from: '#f43f5e', to: '#fb923c' }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts & Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
 </head>
-<body>
-   
-<header class="header">
 
-   <section class="flex">
+<body class="bg-white text-slate-800 font-display">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="home.html" class="inline-flex items-center gap-2 font-extrabold tracking-tight text-xl">
+          <span class="bg-gradient-to-r from-brand-from to-brand-to bg-clip-text text-transparent">Food Mins</span> 🍽
+        </a>
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-<!--Navbar -->
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
+         <a href="profile.html">Profile</a>
+        </div>
 
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--profile login and register button-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
-      </div>
-
-   </section>
-
-</header>
-
-<section class="form-container">
-<!--input value-->
-   <form action="" method="post">
-      <h3>your address</h3>
-      <input type="text" maxlength="50" placeholder="flat no. and building name" required class="box" name="flat">
-      <input type="text" maxlength="50" placeholder="area name" required class="box" name="street">
-      <input type="text" maxlength="50" placeholder="city name" required class="box" name="city">
-      <input type="text" maxlength="50" placeholder="state name" required class="box" name="state">
-      <input type="text" maxlength="50" placeholder="country name" required class="box" name="country">
-      <input type="number" min="0" max="999999" placeholder="pin code" required class="box" name="pin_code" onkeypress="if(this.value.length == 6) return false;">
-      <input type="submit" value="save address" name="submit" class="btn">
-   </form>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+        <div class="flex items-center gap-3">
+          <a href="search.html" class="p-2 rounded-lg hover:bg-slate-100" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a href="cart.html" class="relative p-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 grid place-items-center rounded-full bg-rose-500 text-white text-[10px] font-semibold">3</span>
+          </a>
+          <a href="profile.html" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-1.5 hover:border-slate-300">
+            <i class="fa-solid fa-user text-slate-500"></i>
+            <span class="text-sm">Profile</span>
+          </a>
+          <button class="md:hidden p-2 rounded-lg hover:bg-slate-100" id="mobileMenuBtn" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-3">
+        <div class="grid gap-2 text-sm">
+             <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
+         <a href="about.html">About</a>
+         <a href="menu.html">Menu</a>
+         <a href="orders.html">Orders</a>
+         <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="container mx-auto px-4 pt-10 pb-6">
+    <nav class="text-sm text-slate-500">
+      <a href="home.html" class="hover:text-slate-700">Home</a>
+      <span class="mx-2">/</span>
+      <a href="profile.html" class="hover:text-slate-700">Profile</a>
+      <span class="mx-2">/</span>
+      <span class="text-slate-700 font-semibold">Update address</span>
+    </nav>
+
+    <div class="mt-2 flex flex-col lg:flex-row items-start gap-6">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+          Update <span class="bg-gradient-to-r from-brand-from to-brand-to bg-clip-text text-transparent">Delivery Address</span>
+        </h1>
+        <p class="mt-2 text-slate-500">Save a precise location for faster checkout and smoother deliveries.</p>
       </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      <div class="rounded-2xl bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-100/60 px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl grid place-items-center bg-white shadow-soft">
+            <i class="fa-solid fa-bolt text-amber-500"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Tip</p>
+            <p class="text-xs text-slate-500 -mt-0.5">Use “Set as default” to auto-apply this address next time.</p>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+  <!-- FORM + PREVIEW -->
+  <main class="container mx-auto px-4 pb-16 grid lg:grid-cols-3 gap-8">
+    <!-- Form -->
+    <section class="lg:col-span-2">
+      <form id="addressForm" class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6 shadow-soft">
+        <!-- Contact -->
+        <h2 class="text-lg font-bold mb-3">Contact</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium text-slate-700">Full name</label>
+            <div class="mt-1 relative">
+              <input id="fullName" type="text" required placeholder="e.g., Emon Ahmed"
+                     class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+              <i class="fa-regular fa-user absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            </div>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Phone</label>
+            <div class="mt-1 relative">
+              <input id="phone" type="tel" inputmode="numeric" pattern="[0-9\s+-]{7,}" required placeholder="+880 1746 462491"
+                     class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 pr-10 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+              <i class="fa-solid fa-phone absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <h2 class="text-lg font-bold mt-6 mb-3">Address</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="text-sm font-medium text-slate-700">Flat / Building</label>
+            <input id="flat" type="text" maxlength="50" required placeholder="Flat 3B, Sunrise Tower"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Street / Area</label>
+            <input id="street" type="text" maxlength="50" required placeholder="Zinda Bazar"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">City</label>
+            <input id="city" type="text" maxlength="50" required placeholder="Sylhet"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">State / Division</label>
+            <input id="state" type="text" maxlength="50" placeholder="Sylhet Division"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Country</label>
+            <input id="country" type="text" maxlength="50" required placeholder="Bangladesh"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Postal code</label>
+            <input id="zip" type="text" inputmode="numeric" pattern="[0-9]{4,6}" placeholder="3100"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <label class="text-sm font-medium text-slate-700">Delivery instructions (optional)</label>
+          <textarea id="notes" rows="3" maxlength="200" placeholder="Landmark, gate code, drop-off notes…"
+                    class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4"></textarea>
+        </div>
+
+        <!-- Options -->
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl border border-slate-200 p-3">
+            <p class="text-sm font-semibold mb-2">Address type</p>
+            <div class="flex flex-wrap gap-2">
+              <label class="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 cursor-pointer hover:border-rose-300">
+                <input type="radio" name="atype" value="Home" class="accent-rose-500" checked />
+                <span class="text-sm">Home</span>
+              </label>
+              <label class="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 cursor-pointer hover:border-rose-300">
+                <input type="radio" name="atype" value="Work" class="accent-rose-500" />
+                <span class="text-sm">Work</span>
+              </label>
+              <label class="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 cursor-pointer hover:border-rose-300">
+                <input type="radio" name="atype" value="Other" class="accent-rose-500" />
+                <span class="text-sm">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 p-3">
+            <p class="text-sm font-semibold mb-2">Preferences</p>
+            <label class="flex items-center justify-between gap-3">
+              <span class="text-sm">Set as default address</span>
+              <input id="isDefault" type="checkbox" class="peer sr-only" />
+              <span class="w-12 h-7 rounded-full bg-slate-200 relative transition peer-checked:bg-rose-500 after:content-[''] after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:bg-white after:rounded-full after:transition peer-checked:after:translate-x-5"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" id="useProfile"
+                  class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm hover:border-rose-300">
+            <i class="fa-solid fa-user-check text-rose-500"></i> Use profile address
+          </button>
+          <button type="button" id="useGeo"
+                  class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm hover:border-rose-300">
+            <i class="fa-solid fa-location-crosshairs text-rose-500"></i> Use my location (beta)
+          </button>
+        </div>
+
+        <!-- Submit -->
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-from to-brand-to px-6 py-3 text-white font-semibold shadow hover:shadow-md">
+            <i class="fa-solid fa-floppy-disk"></i> Save address
+          </button>
+          <a href="profile.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm hover:bg-slate-50">
+            <i class="fa-solid fa-arrow-left-long"></i> Cancel
+          </a>
+          <span id="saveHint" class="text-sm text-slate-500 hidden">Address saved ✓</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- Live Preview -->
+    <aside class="lg:col-span-1">
+      <div class="sticky top-24 space-y-4">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold">Preview</h3>
+            <span id="tagChip" class="text-[11px] px-2 py-1 rounded-full bg-rose-50 text-rose-700">Home</span>
+          </div>
+          <div class="mt-3 text-sm leading-relaxed">
+            <p id="pName" class="font-semibold">—</p>
+            <p id="pPhone" class="text-slate-600">—</p>
+            <hr class="my-3 border-slate-100" />
+            <p id="pLine1">—</p>
+            <p id="pLine2" class="text-slate-600">—</p>
+            <p id="pLine3" class="text-slate-600">—</p>
+            <p id="pZip" class="text-slate-600">—</p>
+            <p id="pNotes" class="mt-2 italic text-slate-500">No instructions</p>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-xs text-slate-500">
+            <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+            Your address is private & used only for deliveries.
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-4">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 grid place-items-center rounded-xl bg-slate-50">
+              <i class="fa-solid fa-truck text-rose-500"></i>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Estimated delivery</p>
+              <p id="etaText" class="text-xs text-slate-500">~30–45 mins for Sylhet</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </aside>
+  </main>
 
-   </section>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-100">
+    <div class="container mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-bold text-slate-900">Food Mins 🍽</h4>
+        <p class="mt-2 text-sm text-slate-500">Fresh, fast, and full of flavor.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Contact</h5>
+        <a href="mailto:eaemonkhan720@gmail.com" class="block text-sm text-slate-600 hover:text-rose-600">eaemonkhan720@gmail.com</a>
+        <a href="tel:+8801746462491" class="block text-sm text-slate-600 hover:text-rose-600 mt-1">+880 1746-462491</a>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Pages</h5>
+        <div class="grid gap-1 text-sm">
+          <a href="menu.html" class="text-slate-600 hover:text-rose-600">Menu</a>
+          <a href="orders.html" class="text-slate-600 hover:text-rose-600">Orders</a>
+          <a href="login.html" class="text-slate-600 hover:text-rose-600">Login</a>
+          <a href="register.html" class="text-slate-600 hover:text-rose-600">Register</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Location</h5>
+        <p class="text-sm text-slate-600">Sylhet, Bangladesh</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-100 py-4 text-center text-sm text-slate-500">
+      © 2025 Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu')?.classList.toggle('hidden')
+    });
 
-</footer>
+    // Elements
+    const f = {
+      name: document.getElementById('fullName'),
+      phone: document.getElementById('phone'),
+      flat: document.getElementById('flat'),
+      street: document.getElementById('street'),
+      city: document.getElementById('city'),
+      state: document.getElementById('state'),
+      country: document.getElementById('country'),
+      zip: document.getElementById('zip'),
+      notes: document.getElementById('notes'),
+      isDefault: document.getElementById('isDefault')
+    };
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
-</div>
+    const preview = {
+      tag: document.getElementById('tagChip'),
+      name: document.getElementById('pName'),
+      phone: document.getElementById('pPhone'),
+      line1: document.getElementById('pLine1'),
+      line2: document.getElementById('pLine2'),
+      line3: document.getElementById('pLine3'),
+      zip: document.getElementById('pZip'),
+      notes: document.getElementById('pNotes'),
+      eta: document.getElementById('etaText')
+    };
 
-<script src="js/script.js"></script>
+    // Set tag by radio
+    document.querySelectorAll('input[name="atype"]').forEach(r => {
+      r.addEventListener('change', () => {
+        preview.tag.textContent = r.value;
+      });
+    });
 
+    // Live preview bindings
+    const bind = () => {
+      preview.name.textContent = f.name.value || '—';
+      preview.phone.textContent = f.phone.value || '—';
+      preview.line1.textContent = f.flat.value || '—';
+      preview.line2.textContent = f.street.value || '—';
+      preview.line3.textContent = [f.city.value, f.state.value, f.country.value].filter(Boolean).join(', ') || '—';
+      preview.zip.textContent = f.zip.value ? 'Postal code: ' + f.zip.value : '—';
+      preview.notes.textContent = f.notes.value ? f.notes.value : 'No instructions';
+      // Super simple ETA tweak
+      preview.eta.textContent = (f.city.value.toLowerCase().includes('sylhet'))
+        ? '~30–45 mins for Sylhet'
+        : 'ETA varies by area';
+    };
+    Object.values(f).forEach(el => el && el.addEventListener('input', bind));
+
+    // Use profile autofill (sample from your earlier pages)
+    document.getElementById('useProfile')?.addEventListener('click', () => {
+      f.name.value = f.name.value || 'Emon Ahmed';
+      f.phone.value = f.phone.value || '+8801746462491';
+      f.city.value = f.city.value || 'Sylhet';
+      f.country.value = f.country.value || 'Bangladesh';
+      f.zip.value = f.zip.value || '3100';
+      bind();
+      flash('Profile details applied');
+    });
+
+    // Geolocation (no reverse geocode; stores coords into notes)
+    document.getElementById('useGeo')?.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        return flash('Geolocation not supported on this device', true);
+      }
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          const { latitude, longitude } = pos.coords;
+          f.notes.value = (f.notes.value ? f.notes.value + ' • ' : '') + `Approx. coords: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+          bind();
+          flash('Location captured (coords added to notes)');
+        },
+        () => flash('Unable to get your location', true),
+        { enableHighAccuracy: true, timeout: 8000 }
+      );
+    });
+
+    // Persist to localStorage (simulate save)
+    const form = document.getElementById('addressForm');
+    const hint = document.getElementById('saveHint');
+    const KEY = 'foodmins.address';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const atype = document.querySelector('input[name="atype"]:checked')?.value || 'Home';
+      const data = {
+        name: f.name.value, phone: f.phone.value, flat: f.flat.value, street: f.street.value,
+        city: f.city.value, state: f.state.value, country: f.country.value, zip: f.zip.value,
+        notes: f.notes.value, isDefault: f.isDefault.checked, atype
+      };
+      localStorage.setItem(KEY, JSON.stringify(data));
+      flash('Address saved');
+      hint.classList.remove('hidden');
+      setTimeout(() => hint.classList.add('hidden'), 2500);
+    });
+
+    // Load if exists
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (saved) {
+          f.name.value = saved.name || '';
+          f.phone.value = saved.phone || '';
+          f.flat.value = saved.flat || '';
+          f.street.value = saved.street || '';
+          f.city.value = saved.city || '';
+          f.state.value = saved.state || '';
+          f.country.value = saved.country || '';
+          f.zip.value = saved.zip || '';
+          f.notes.value = saved.notes || '';
+          f.isDefault.checked = !!saved.isDefault;
+          const radio = [...document.querySelectorAll('input[name="atype"]')].find(r => r.value === saved.atype);
+          if (radio) { radio.checked = true; preview.tag.textContent = saved.atype; }
+          bind();
+        }
+      } catch {}
+    })();
+
+    // Toast
+    function flash(msg, warn) {
+      const node = document.createElement('div');
+      node.className = `fixed left-1/2 -translate-x-1/2 top-4 z-50 rounded-xl px-4 py-2 shadow-ring ${warn ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-emerald-50 text-emerald-800 border border-emerald-200'}`;
+      node.textContent = msg;
+      document.body.appendChild(node);
+      setTimeout(() => node.remove(), 2200);
+    }
+
+    // Initial preview
+    bind();
+  </script>
 </body>
 </html>

@@ -1,132 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>update profile</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Update Profile | Food Mins 🍽</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            soft: '0 10px 25px -10px rgba(0,0,0,.12)',
+            ring: '0 0 0 6px rgb(244 114 182 / .12)',
+          },
+          colors: {
+            brand: { from: '#f43f5e', to: '#fb923c' }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 </head>
-<body>
-   
-<header class="header">
-<!--Navbaar-->
-   <section class="flex">
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+<body class="bg-white text-slate-800 font-display">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="home.html" class="inline-flex items-center gap-2 font-extrabold tracking-tight text-xl">
+          <span class="bg-gradient-to-r from-brand-from to-brand-to bg-clip-text text-transparent">Food Mins</span> 🍽
+        </a>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
+         <a href="profile.html">Profile</a>
+        </div>
 
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+        <div class="flex items-center gap-3">
+          <a href="search.html" class="p-2 rounded-lg hover:bg-slate-100" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a href="cart.html" class="relative p-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 grid place-items-center rounded-full bg-rose-500 text-white text-[10px] font-semibold">3</span>
+          </a>
+          <a href="profile.html" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-1.5 hover:border-slate-300">
+            <i class="fa-solid fa-user text-slate-500"></i>
+            <span class="text-sm">Profile</span>
+          </a>
+          <button class="md:hidden p-2 rounded-lg hover:bg-slate-100" id="mobileMenuBtn" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">Profile</a>
-            <a href="login.html" class="delete-btn">Logout</a>
-         </div>
-         <p class="account"><a href="login.html">Login</a> or <a href="register.html">Register</a></p>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-3">
+        <div class="grid gap-2 text-sm">
+              <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
+         <a href="about.html">About</a>
+         <a href="menu.html">Menu</a>
+         <a href="orders.html">Orders</a>
+         <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
+        </div>
       </div>
+    </nav>
+  </header>
 
-   </section>
+  <!-- BREADCRUMB + HEADER -->
+  <section class="container mx-auto px-4 pt-10 pb-6">
+    <nav class="text-sm text-slate-500">
+      <a href="home.html" class="hover:text-slate-700">Home</a>
+      <span class="mx-2">/</span>
+      <a href="profile.html" class="hover:text-slate-700">Profile</a>
+      <span class="mx-2">/</span>
+      <span class="text-slate-700 font-semibold">Update profile</span>
+    </nav>
 
-</header>
-
-<section class="form-container">
-<!--input value-->
-   <form action="" method="POST">
-      <h3>Update Profile</h3>
-      <input type="text" required maxlength="20" name="name" placeholder="enter your name" class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="Emon Ahmed">
-      <input type="email" required maxlength="50" name="email" placeholder="enter your email" class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="eaemonkhan720@gmai.com">
-      <input type="numner" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" placeholder="enter your number" required class="box" name="number" value="01746462491">
-      <input type="password" maxlength="20" name="old_pass" placeholder="enter your old password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" maxlength="20" name="new_pass" placeholder="enter your new password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" maxlength="20" name="password" placeholder="confirm your new password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="update now" class="btn" name="submit">
-   </form>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+    <div class="mt-2 flex flex-col lg:flex-row items-start gap-6">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+          Update <span class="bg-gradient-to-r from-brand-from to-brand-to bg-clip-text text-transparent">Profile</span>
+        </h1>
+        <p class="mt-2 text-slate-500">Keep your details fresh for quicker checkout and order updates.</p>
       </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <div class="rounded-2xl bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-100/60 px-4 py-3">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl grid place-items-center bg-white shadow-soft">
+            <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold">Privacy-first</p>
+            <p class="text-xs text-slate-500 -mt-0.5">We only use your info to serve your orders.</p>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+  <!-- MAIN -->
+  <main class="container mx-auto px-4 pb-16 grid lg:grid-cols-3 gap-8">
+    <!-- FORM -->
+    <section class="lg:col-span-2">
+      <form id="profileForm" class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6 shadow-soft">
+        <!-- Avatar -->
+        <div class="flex items-start gap-5">
+          <div class="relative">
+            <img id="avatarPreview" src="images/emonahmed.png" alt="avatar"
+                 class="h-20 w-20 md:h-24 md:w-24 rounded-2xl object-cover ring-2 ring-white shadow-soft" />
+            <span class="absolute -bottom-2 -right-2 h-8 w-8 grid place-items-center rounded-xl bg-gradient-to-r from-brand-from to-brand-to text-white shadow">
+              <i class="fa-solid fa-camera"></i>
+            </span>
+          </div>
+          <div class="flex-1 grid gap-2">
+            <label class="text-sm font-medium text-slate-700">Profile photo</label>
+            <div class="flex flex-wrap items-center gap-3">
+              <label class="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-slate-200 px-3 py-2 hover:border-rose-300">
+                <i class="fa-solid fa-upload text-rose-500"></i>
+                <span class="text-sm">Upload</span>
+                <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+              </label>
+              <button type="button" id="removeAvatar"
+                class="text-sm rounded-xl border border-slate-200 px-3 py-2 hover:bg-slate-50">
+                Remove
+              </button>
+              <p class="text-xs text-slate-500">PNG/JPG up to 2MB</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic info -->
+        <h2 class="text-lg font-bold mt-6 mb-3">Basic details</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium text-slate-700">Full name</label>
+            <input id="fullName" type="text" required maxlength="40" placeholder="e.g., Emon Ahmed"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Username</label>
+            <input id="username" type="text" maxlength="24" placeholder="emon_ahmed"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Email</label>
+            <input id="email" type="email" required maxlength="60" placeholder="you@example.com"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Phone</label>
+            <input id="phone" type="tel" inputmode="numeric" pattern="[0-9\s+-]{7,}" placeholder="+880 1746-462491"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+        </div>
+
+        <!-- Preferences -->
+        <h2 class="text-lg font-bold mt-6 mb-3">Preferences</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3">
+            <div>
+              <p class="text-sm font-semibold">Order updates</p>
+              <p class="text-xs text-slate-500 -mt-0.5">Get SMS about your delivery.</p>
+            </div>
+            <input id="prefUpdates" type="checkbox" class="peer sr-only" />
+            <span class="w-12 h-7 rounded-full bg-slate-200 relative transition peer-checked:bg-rose-500 after:content-[''] after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:bg-white after:rounded-full after:transition peer-checked:after:translate-x-5"></span>
+          </label>
+
+          <label class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3">
+            <div>
+              <p class="text-sm font-semibold">Deals & offers</p>
+              <p class="text-xs text-slate-500 -mt-0.5">Occasional email promos.</p>
+            </div>
+            <input id="prefOffers" type="checkbox" class="peer sr-only" />
+            <span class="w-12 h-7 rounded-full bg-slate-200 relative transition peer-checked:bg-rose-500 after:content-[''] after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:bg-white after:rounded-full after:transition peer-checked:after:translate-x-5"></span>
+          </label>
+        </div>
+
+        <!-- Password -->
+        <h2 class="text-lg font-bold mt-6 mb-3">Change password</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="md:col-span-1">
+            <label class="text-sm font-medium text-slate-700">Current password</label>
+            <input id="currentPass" type="password" placeholder="••••••••"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">New password</label>
+            <input id="newPass" type="password" placeholder="Minimum 8 characters"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+            <div class="mt-2 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+              <div id="strengthBar" class="h-full w-0 bg-rose-400 transition-all"></div>
+            </div>
+            <p id="strengthText" class="mt-1 text-xs text-slate-500">Strength: —</p>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Confirm new password</label>
+            <input id="confirmPass" type="password" placeholder="Repeat new password"
+                   class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-rose-300 focus:ring-rose-100 focus:ring-4" />
+            <p id="matchText" class="mt-1 text-xs text-slate-500">—</p>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-from to-brand-to px-6 py-3 text-white font-semibold shadow hover:shadow-md">
+            <i class="fa-solid fa-floppy-disk"></i> Save changes
+          </button>
+          <a href="profile.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm hover:bg-slate-50">
+            <i class="fa-solid fa-arrow-left-long"></i> Cancel
+          </a>
+          <span id="saveHint" class="text-sm text-slate-500 hidden">Profile saved ✓</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- PREVIEW / SIDE -->
+    <aside class="lg:col-span-1">
+      <div class="sticky top-24 space-y-4">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center gap-3">
+            <img id="pvAvatar" src="images/emonahmed.png" class="h-12 w-12 rounded-xl object-cover" alt="" />
+            <div>
+              <p id="pvName" class="font-bold">Emon Ahmed</p>
+              <p id="pvEmail" class="text-sm text-slate-500">you@example.com</p>
+            </div>
+          </div>
+          <hr class="my-4 border-slate-100" />
+          <div class="grid gap-2 text-sm">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-slate-400"></i><span id="pvPhone">—</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-user text-slate-400"></i><span id="pvUser">—</span>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span id="chipUpdates" class="text-[11px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 hidden">Order updates</span>
+            <span id="chipOffers" class="text-[11px] px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 hidden">Deals</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-4">
+          <div class="flex items-start gap-3">
+            <div class="h-10 w-10 grid place-items-center rounded-xl bg-slate-50">
+              <i class="fa-solid fa-lightbulb text-amber-500"></i>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Pro tip</p>
+              <p class="text-xs text-slate-500">Use a recognizable avatar so riders can identify you at handoff.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </aside>
+  </main>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-100">
+    <div class="container mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-bold text-slate-900">Food Mins 🍽</h4>
+        <p class="mt-2 text-sm text-slate-500">Fresh, fast, and full of flavor.</p>
       </div>
+      <div>
+        <h5 class="font-semibold mb-2">Contact</h5>
+        <a href="mailto:eaemonkhan720@gmail.com" class="block text-sm text-slate-600 hover:text-rose-600">eaemonkhan720@gmail.com</a>
+        <a href="tel:+8801746462491" class="block text-sm text-slate-600 hover:text-rose-600 mt-1">+880 1746-462491</a>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Pages</h5>
+        <div class="grid gap-1 text-sm">
+          <a href="menu.html" class="text-slate-600 hover:text-rose-600">Menu</a>
+          <a href="orders.html" class="text-slate-600 hover:text-rose-600">Orders</a>
+          <a href="login.html" class="text-slate-600 hover:text-rose-600">Login</a>
+          <a href="register.html" class="text-slate-600 hover:text-rose-600">Register</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Location</h5>
+        <p class="text-sm text-slate-600">Sylhet, Bangladesh</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-100 py-4 text-center text-sm text-slate-500">
+      © 2025 Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-   </section>
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu')?.classList.toggle('hidden')
+    });
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+    // Elements
+    const avatarInput = document.getElementById('avatarInput');
+    const avatarPreview = document.getElementById('avatarPreview');
+    const pvAvatar = document.getElementById('pvAvatar');
+    const removeAvatar = document.getElementById('removeAvatar');
 
-</footer>
+    const f = {
+      fullName: document.getElementById('fullName'),
+      username: document.getElementById('username'),
+      email: document.getElementById('email'),
+      phone: document.getElementById('phone'),
+      updates: document.getElementById('prefUpdates'),
+      offers: document.getElementById('prefOffers'),
+      currentPass: document.getElementById('currentPass'),
+      newPass: document.getElementById('newPass'),
+      confirmPass: document.getElementById('confirmPass'),
+    };
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
-</div>
+    const pv = {
+      name: document.getElementById('pvName'),
+      email: document.getElementById('pvEmail'),
+      phone: document.getElementById('pvPhone'),
+      user: document.getElementById('pvUser'),
+      chipUpdates: document.getElementById('chipUpdates'),
+      chipOffers: document.getElementById('chipOffers'),
+    };
 
-<script src="js/script.js"></script>
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthText = document.getElementById('strengthText');
+    const matchText = document.getElementById('matchText');
 
+    // Avatar preview
+    avatarInput?.addEventListener('change', e => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        flash('Image too large (max 2MB)', true);
+        avatarInput.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        avatarPreview.src = reader.result;
+        pvAvatar.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    removeAvatar?.addEventListener('click', () => {
+      avatarInput.value = '';
+      avatarPreview.src = 'images/emonahmed.png';
+      pvAvatar.src = 'images/emonahmed.png';
+    });
+
+    // Live bindings
+    function bindPreview() {
+      pv.name.textContent = f.fullName.value || '—';
+      pv.email.textContent = f.email.value || '—';
+      pv.phone.textContent = f.phone.value || '—';
+      pv.user.textContent = f.username.value ? '@' + f.username.value : '—';
+      pv.chipUpdates.classList.toggle('hidden', !f.updates.checked);
+      pv.chipOffers.classList.toggle('hidden', !f.offers.checked);
+    }
+    Object.values(f).forEach(el => el.addEventListener('input', bindPreview));
+
+    // Password strength + match
+    function scorePassword(pw = '') {
+      let score = 0;
+      if (pw.length >= 8) score += 1;
+      if (/[A-Z]/.test(pw)) score += 1;
+      if (/[a-z]/.test(pw)) score += 1;
+      if (/[0-9]/.test(pw)) score += 1;
+      if (/[^A-Za-z0-9]/.test(pw)) score += 1;
+      return Math.min(score, 5);
+    }
+
+    function updateStrength() {
+      const s = scorePassword(f.newPass.value);
+      const widths = ['0%', '20%', '40%', '60%', '80%', '100%'];
+      strengthBar.style.width = widths[s];
+      const labels = ['—', 'Very weak', 'Weak', 'Okay', 'Good', 'Strong'];
+      strengthText.textContent = 'Strength: ' + labels[s];
+
+      const ok = f.newPass.value && f.newPass.value === f.confirmPass.value;
+      matchText.textContent = ok ? 'Passwords match ✓' : (f.confirmPass.value ? 'Passwords do not match' : '—');
+      matchText.className = 'mt-1 text-xs ' + (ok ? 'text-emerald-600' : 'text-slate-500');
+    }
+    f.newPass.addEventListener('input', updateStrength);
+    f.confirmPass.addEventListener('input', updateStrength);
+
+    // Save (localStorage simulation)
+    const KEY = 'foodmins.profile';
+    const saveHint = document.getElementById('saveHint');
+    document.getElementById('profileForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = {
+        fullName: f.fullName.value,
+        username: f.username.value,
+        email: f.email.value,
+        phone: f.phone.value,
+        updates: f.updates.checked,
+        offers: f.offers.checked,
+        avatar: pvAvatar.src.startsWith('data:') ? pvAvatar.src : null, // store base64 if uploaded
+        // NOTE: For demo only; never store raw passwords in real apps
+        newPassSet: !!f.newPass.value && f.newPass.value === f.confirmPass.value
+      };
+      localStorage.setItem(KEY, JSON.stringify(data));
+      flash('Profile saved');
+      saveHint.classList.remove('hidden');
+      setTimeout(() => saveHint.classList.add('hidden'), 2200);
+    });
+
+    // Load existing
+    (function loadProfile() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (!saved) return;
+        f.fullName.value = saved.fullName || '';
+        f.username.value = saved.username || '';
+        f.email.value = saved.email || '';
+        f.phone.value = saved.phone || '';
+        f.updates.checked = !!saved.updates;
+        f.offers.checked = !!saved.offers;
+        if (saved.avatar) {
+          avatarPreview.src = saved.avatar;
+          pvAvatar.src = saved.avatar;
+        }
+        bindPreview();
+      } catch {}
+    })();
+
+    // Toast
+    function flash(msg, warn) {
+      const node = document.createElement('div');
+      node.className = `fixed left-1/2 -translate-x-1/2 top-4 z-50 rounded-xl px-4 py-2 shadow-ring ${warn ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-emerald-50 text-emerald-800 border border-emerald-200'}`;
+      node.textContent = msg;
+      document.body.appendChild(node);
+      setTimeout(() => node.remove(), 2200);
+    }
+
+    // Init
+    bindPreview();
+    updateStrength();
+  </script>
 </body>
 </html>

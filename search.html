@@ -1,126 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Search page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search | Food Mins 🍽</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 10px 25px -10px rgba(0,0,0,.1)',
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-   
-<header class="header">
 
-   <section class="flex">
-<!--Navbar-->
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+<body class="bg-white text-slate-800 font-display">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="home.html" class="inline-flex items-center gap-2 font-extrabold tracking-tight text-xl">
+          <span class="bg-gradient-to-r from-rose-500 via-orange-500 to-amber-400 bg-clip-text text-transparent">Food Mins</span> 🍽
+        </a>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="home.html" class="hover:text-rose-600">Home</a>
+          <a href="about.html" class="hover:text-rose-600">About</a>
+          <a href="menu.html" class="hover:text-rose-600">Menu</a>
+          <a href="orders.html" class="hover:text-rose-600">Orders</a>
+          <a href="contact.html" class="hover:text-rose-600">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="search.html" aria-label="Search" class="p-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a href="cart.html" class="relative p-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 grid place-items-center rounded-full bg-rose-500 text-white text-[10px] font-semibold">3</span>
+          </a>
+          <a href="profile.html" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-1.5 hover:border-slate-300">
+            <i class="fa-solid fa-user text-slate-500"></i>
+            <span class="text-sm">Profile</span>
+          </a>
+          <button class="md:hidden p-2 rounded-lg hover:bg-slate-100" id="mobileMenuBtn" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-3">
+        <div class="grid gap-2 text-sm">
+             <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--cart and search options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+         <a href="profile.html">Profile</a>
       </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+    </nav>
+  </header>
+
+  <!-- HERO SEARCH -->
+  <section class="container mx-auto px-4 pt-10 pb-6">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <nav class="text-sm text-slate-500">
+          <a href="home.html" class="hover:text-slate-700">Home</a> <span class="mx-2">/</span> <span class="text-slate-700 font-semibold">Search</span>
+        </nav>
+        <h1 class="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">Search the <span class="bg-gradient-to-r from-rose-500 to-orange-500 bg-clip-text text-transparent">Menu</span></h1>
+        <p class="mt-2 text-slate-500">Find dishes, categories, or ingredients. Try: <span class="italic">pizza</span>, <span class="italic">biryani</span>, <span class="italic">chocolate</span>.</p>
       </div>
 
-   </section>
-
-</header>
-<!--adding search box and max input char 100 text type -->
-<section class="search-form">
-   <form action="" method="post">
-      <input type="text" class="box" name="search_box" placeholder="search here..." maxlength="90">
-      <button type="submit" class="fas fa-search" name="search_btn"></button>
-   </form>
-</section>
-
-<section class="products" style="padding-top: 0; min-height: 100vh;"></section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div class="w-full md:w-[520px]">
+        <form onsubmit="event.preventDefault()" class="relative">
+          <input id="searchInput" type="text" placeholder="Search dishes, categories, ingredients..."
+                 class="w-full rounded-2xl border border-slate-200 bg-white px-5 py-3.5 pr-28 shadow-soft focus:outline-none focus:ring-4 focus:ring-rose-100 focus:border-rose-300 transition" />
+          <button id="clearBtn" class="absolute right-28 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 hidden" aria-label="Clear">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+          <button class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-orange-500 px-4 py-2 text-white font-semibold shadow hover:shadow-md">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
       </div>
+    </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+    <!-- FILTERS -->
+    <div class="mt-6 flex flex-wrap items-center gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-500 mr-1">Filters:</span>
+
+      <button data-filter="all" class="filter-chip active">All</button>
+      <button data-filter="fast" class="filter-chip">Fast Foods</button>
+      <button data-filter="main" class="filter-chip">Main Dishes</button>
+      <button data-filter="drinks" class="filter-chip">Drinks</button>
+      <button data-filter="desserts" class="filter-chip">Desserts</button>
+
+      <div class="ml-auto flex items-center gap-2">
+        <label for="sortSelect" class="text-sm text-slate-500">Sort</label>
+        <select id="sortSelect" class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
+          <option value="relevance">Relevance</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+        </select>
       </div>
+    </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+    <!-- RECENT -->
+    <div class="mt-4 flex flex-wrap gap-2 text-sm" id="recentWrap">
+      <span class="text-slate-500">Recent:</span>
+      <button class="recent-chip">pizza</button>
+      <button class="recent-chip">biryani</button>
+      <button class="recent-chip">cake</button>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <main class="container mx-auto px-4 pb-16">
+    <div id="resultsGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      <!-- CARD TEMPLATE EXAMPLES -->
+      <!-- Fast Foods -->
+      <a href="menu.html"
+         class="result-card"
+         data-name="Cheesy Pepperoni Pizza"
+         data-category="fast"
+         data-price="8">
+        <img src="uploaded_img/pizzachess.png" alt="Cheesy Pepperoni Pizza" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Cheesy Pepperoni Pizza</h3>
+            <span class="price">$8</span>
+          </div>
+          <p class="subtitle">Fast Foods • Pizza</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Popular</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="menu.html"
+         class="result-card"
+         data-name="Stick Beef Burger"
+         data-category="fast"
+         data-price="7">
+        <img src="uploaded_img/stickbeefburger.png" alt="Stick Beef Burger" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Stick Beef Burger</h3>
+            <span class="price">$7</span>
+          </div>
+          <p class="subtitle">Fast Foods • Burger</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">New</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Main Dishes -->
+      <a href="maindishes.html"
+         class="result-card"
+         data-name="Islamabad Biryani"
+         data-category="main"
+         data-price="6">
+        <img src="uploaded_img/Islamabadbiryani.PNG" alt="Islamabad Biryani" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Islamabad Biryani</h3>
+            <span class="price">$6</span>
+          </div>
+          <p class="subtitle">Main Dishes • Biryani</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Chef’s pick</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="maindishes.html"
+         class="result-card"
+         data-name="Rib-eye Steak"
+         data-category="main"
+         data-price="12">
+        <img src="uploaded_img/Rib-eyesteak.PNG" alt="Rib-eye Steak" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Rib-eye Steak</h3>
+            <span class="price">$12</span>
+          </div>
+          <p class="subtitle">Main Dishes • Steak</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Premium</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Drinks -->
+      <a href="Drinks.html"
+         class="result-card"
+         data-name="Cool Drink 0.4"
+         data-category="drinks"
+         data-price="2">
+        <img src="uploaded_img/cooldrinks4.png" alt="Cool Drink" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Cool Drink 0.4</h3>
+            <span class="price">$2</span>
+          </div>
+          <p class="subtitle">Drinks</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Summer</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="Drinks.html"
+         class="result-card"
+         data-name="Cool Drink 0.6"
+         data-category="drinks"
+         data-price="3">
+        <img src="uploaded_img/cooldrinks6.png" alt="Cool Drink" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Cool Drink 0.6</h3>
+            <span class="price">$3</span>
+          </div>
+          <p class="subtitle">Drinks</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Icy</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desserts -->
+      <a href="desserts.html"
+         class="result-card"
+         data-name="Chocolate Cake"
+         data-category="desserts"
+         data-price="5">
+        <img src="uploaded_img/cake4.png" alt="Chocolate Cake" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Chocolate Cake</h3>
+            <span class="price">$5</span>
+          </div>
+          <p class="subtitle">Desserts</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Sweet</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="desserts.html"
+         class="result-card"
+         data-name="Self-saucing Chocolate Pudding"
+         data-category="desserts"
+         data-price="4">
+        <img src="uploaded_img/pudding.png" alt="Chocolate Pudding" class="result-img">
+        <div class="p-3">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="result-title">Self-saucing Chocolate Pudding</h3>
+            <span class="price">$4</span>
+          </div>
+          <p class="subtitle">Desserts</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="badge">Classic</span>
+            <button class="add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="emptyState" class="hidden text-center py-20">
+      <div class="mx-auto w-20 h-20 rounded-2xl bg-slate-50 grid place-items-center shadow-soft">
+        <i class="fa-solid fa-magnifying-glass text-2xl text-slate-400"></i>
       </div>
+      <h3 class="mt-6 text-xl font-bold">No results found</h3>
+      <p class="mt-1 text-slate-500">Try a different keyword or remove some filters.</p>
+      <button id="resetBtn" class="mt-4 rounded-xl border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50">Reset filters</button>
+    </div>
+  </main>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-100">
+    <div class="container mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-bold text-slate-900">Food Mins 🍽</h4>
+        <p class="mt-2 text-sm text-slate-500">Fresh, fast, and full of flavor.</p>
       </div>
+      <div>
+        <h5 class="font-semibold mb-2">Contact</h5>
+        <a href="mailto:eaemonkhan720@gmail.com" class="block text-sm text-slate-600 hover:text-rose-600">eaemonkhan720@gmail.com</a>
+        <a href="tel:+8801746462491" class="block text-sm text-slate-600 hover:text-rose-600 mt-1">+880 1746-462491</a>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Pages</h5>
+        <div class="grid gap-1 text-sm">
+          <a href="menu.html" class="text-slate-600 hover:text-rose-600">Menu</a>
+          <a href="orders.html" class="text-slate-600 hover:text-rose-600">Orders</a>
+          <a href="login.html" class="text-slate-600 hover:text-rose-600">Login</a>
+          <a href="register.html" class="text-slate-600 hover:text-rose-600">Register</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2">Location</h5>
+        <p class="text-sm text-slate-600">Sylhet, Bangladesh</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-100 py-4 text-center text-sm text-slate-500">
+      © 2025 Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-   </section>
+  <!-- STYLES for chips & cards -->
+  <style>
+    .filter-chip {
+      border-radius: 9999px;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      border: 1px solid #e6e7eb;
+      background: #ffffff;
+      transition: all .15s ease;
+      cursor: pointer;
+    }
+    .filter-chip:hover {
+      border-color: #fb7185;
+      color: #b91c1c;
+    }
+    .filter-chip.active {
+      border-color: #fb7185;
+      color: #b91c1c;
+      background: #fff1f2;
+    }
+    .recent-chip {
+      border-radius: 9999px;
+      border: 1px solid #e6e7eb;
+      padding: 0.25rem 0.75rem;
+      background: #ffffff;
+      transition: background .15s ease;
+      cursor: pointer;
+    }
+    .recent-chip:hover {
+      background: #f8fafc;
+    }
+    .result-card {
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid #e6e7eb;
+      background: #ffffff;
+      transition: box-shadow .15s ease, transform .15s ease;
+    }
+    .result-card:hover {
+      box-shadow: 0 10px 25px -10px rgba(0,0,0,.1);
+    }
+    .result-img {
+      width: 100%;
+      height: 11rem;
+      object-fit: cover;
+      background: #f1f5f9;
+      transition: transform .25s ease;
+      display: block;
+    }
+    .result-card:hover .result-img {
+      transform: scale(1.02);
+    }
+    .result-title {
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .subtitle {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.125rem;
+    }
+    .price {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 0.5rem;
+      background: #f8fafc;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #334155;
+    }
+    .badge {
+      font-size: 10px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      background: #fff1f2;
+      color: #b91c1c;
+    }
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #e6e7eb;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      transition: color .15s ease, border-color .15s ease, background .15s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+    .add-btn:hover {
+      border-color: #fb7185;
+      color: #b91c1c;
+    }
+  </style>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu')?.classList.toggle('hidden')
+    });
 
-</footer>
-<!--Js Connection-->
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const resultsGrid = document.getElementById('resultsGrid');
+    const emptyState = document.getElementById('emptyState');
+    const sortSelect = document.getElementById('sortSelect');
+    const resetBtn = document.getElementById('resetBtn');
 
-<script src="js/script.js"></script>
+    const chips = [...document.querySelectorAll('.filter-chip')];
+    let activeFilter = 'all';
 
+    const cards = [...document.querySelectorAll('.result-card')];
+
+    function applyFilters() {
+      const q = (searchInput.value || '').trim().toLowerCase();
+
+      let visible = 0;
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const cat = card.dataset.category;
+
+        const matchesText = !q || name.includes(q);
+        const matchesFilter = activeFilter === 'all' || cat === activeFilter;
+
+        if (matchesText && matchesFilter) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Sort visible cards
+      const mode = sortSelect.value;
+      if (mode !== 'relevance') {
+        const visibleCards = cards.filter(c => !c.classList.contains('hidden'));
+        visibleCards.sort((a, b) => {
+          const pa = +a.dataset.price;
+          const pb = +b.dataset.price;
+          return mode === 'price-asc' ? pa - pb : pb - pa;
+        });
+        // Re-append in new order
+        visibleCards.forEach(c => resultsGrid.appendChild(c));
+      }
+
+      emptyState.classList.toggle('hidden', visible !== 0);
+      resultsGrid.classList.toggle('hidden', visible === 0);
+
+      clearBtn.classList.toggle('hidden', q.length === 0);
+    }
+
+    // Filter chips
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Search input
+    searchInput.addEventListener('input', applyFilters);
+
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      applyFilters();
+      searchInput.focus();
+    });
+
+    // Sort
+    sortSelect.addEventListener('change', applyFilters);
+
+    // Reset
+    resetBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      activeFilter = 'all';
+      chips.forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+      sortSelect.value = 'relevance';
+      applyFilters();
+    });
+
+    // Recent chips
+    document.querySelectorAll('.recent-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        searchInput.value = btn.textContent.trim();
+        applyFilters();
+      });
+    });
+
+    // Initial
+    applyFilters();
+  </script>
 </body>
 </html>

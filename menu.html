@@ -1,594 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>food menu</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Menu • Food Mins</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:"#FFF7F2",100:"#FFE9DD",200:"#FFD0B8",300:"#FFB08A",
+              400:"#FF8E5F",500:"#FF6A3D",600:"#E94F25",700:"#C83D1A",800:"#9F3015",900:"#7F2613"
+            }
+          },
+          boxShadow: {
+            glow:"0 10px 30px -5px rgba(255,106,61,.35), 0 6px 16px -8px rgba(255,106,61,.45)"
+          },
+          keyframes: {
+            floaty: {"0%,100%":{transform:"translateY(0)"}, "50%":{transform:"translateY(-7px)"}},
+            shine: {"0%":{transform:"translateX(-100%)"}, "100%":{transform:"translateX(100%)"}}
+          },
+          animation: {
+            floaty:"floaty 6s ease-in-out infinite",
+            shine:"shine 1.2s linear infinite"
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
+  <style>
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8e5f,#ff6a3d);border-radius:999px}
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-amber-50 to-orange-50 text-slate-800">
+  <!-- decorative blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-orange-300/40 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-rose-300/30 blur-3xl"></div>
+    <div class="absolute top-1/2 left-10 h-40 w-40 rounded-full bg-amber-200/50 blur-2xl"></div>
+  </div>
 
-   <section class="flex">
-<!--Navbar-->
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/70 backdrop-blur border-b border-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="inline-flex items-center gap-2">
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-brand-500 to-rose-500 bg-clip-text text-transparent">
+          Food Mins 🍽
+        </span>
+      </a>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+       <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
       </nav>
-<!--search and cart options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+
+      <div class="flex items-center gap-3">
+        <a href="search.html" class="hidden sm:inline-flex p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative inline-flex items-center p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cartCount" class="absolute -top-2 -right-2 text-xs px-1.5 py-0.5 rounded-full bg-brand-600 text-white">0</span>
+        </a>
+        <a href="login.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 bg-white/70 hover:bg-white text-sm font-semibold">Login</a>
       </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-14">
+      <div class="relative overflow-hidden rounded-3xl border border-white/60 bg-white/60 backdrop-blur p-8 lg:p-12 shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"></div>
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <nav class="text-sm text-slate-600 mb-4">
+              <a class="hover:text-brand-600" href="home.html">Home</a>
+              <span class="mx-2 opacity-60">/</span>
+              <span class="font-semibold text-slate-800">Menu</span>
+            </nav>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+              Explore the Menu
+              <span class="block text-2xl sm:text-3xl mt-2 bg-gradient-to-r from-brand-600 to-rose-500 bg-clip-text text-transparent">
+                Fast Foods • Main Dishes • Drinks • Desserts
+              </span>
+            </h1>
+            <p class="mt-4 text-slate-600 max-w-xl">
+              Handpicked favorites, crafted fresh. Filter by category, search quickly, and add to cart in one click.
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">
+                <i class="fa-solid fa-leaf"></i> Fresh
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
+                <i class="fa-solid fa-fire"></i> Spice options
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 px-3 py-1 text-xs font-semibold">
+                <i class="fa-solid fa-truck-fast"></i> 30-min delivery
+              </span>
+            </div>
+          </div>
+
+          <div class="relative">
+            <img src="images/pizza1.png" alt="Pizza" class="w-72 sm:w-80 lg:w-96 mx-auto drop-shadow-2xl animate-floaty"/>
+            <img src="images/foodminscooldrink.png" alt="Drink" class="hidden sm:block absolute -bottom-6 -left-4 w-36 rotate-6 drop-shadow-2xl"/>
+            <img src="uploaded_img/cake.png" alt="Dessert" class="hidden sm:block absolute -top-6 -right-4 w-32 -rotate-6 drop-shadow-2xl"/>
+          </div>
+        </div>
+        <!-- shine sweep -->
+        <div class="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-white/30 skew-x-12 animate-shine"></div>
       </div>
-
-   </section>
-
-
-</header>
-  <!--Foods list and food names with image, add cart options and included price for each food inside container -->
-<div class="heading">
-   <h3>our menu</h3>
-   <p><a href="home.html">home </a> <span> / menu</span></p>
-</div>
-
-<section class="products">
-
-   <marquee direction="Rights"><h2 class="title">ALL DISEHS FOODS MENU</h2></marquee>
-
-   <div class="box-container">
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/Islamabadbiryani.PNG"  class="dishes" alt="Islamabad biryani">
-         <a class="cat">Biryani</a>
-         <div class="name">Islamabad biryani</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/mattonbiryani.jpeg" class="dishes" alt="matton biryani">
-         <a href="" class="cat">Biryani</a>
-         <div class="name">matton biryani</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/biryanikebab.PNG" class="dishes" alt="Biryani Kebab Thali">
-         <a href="category.html" class="cat">Biryani</a>
-         <div class="name">Biryani Kebab Thali</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/grilledbrownsteak.PNG" class="dishes" alt="Grilled Brown Sugar Skirt Steak">
-         <a href="category.html" class="cat">Steak</a>
-         <div class="name">Grilled Brown Sugar Skirt Steak</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/Reversesearsteak.PNG" class="dishes" alt="Reverse Sear Steak">
-         <a href="category.html" class="cat">Steak</a>
-         <div class="name">Reverse Sear Steak</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/Rib-eyesteak.PNG" class="dishes" alt="Rib-eye steak with béarnaise sauce">
-         <a href="category.html" class="cat">steak</a>
-         <div class="name">Rib-eye steak with béarnaise sauce</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/Mexicansubwayrice.PNG" class="dishes" alt="Mexican Subway Fried Rice">
-         <a href="category.html" class="cat">Fried Rice</a>
-         <div class="name">Mexican Subway Fried Rice</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/bbqchickenandvegitablerice.PNG" class="dishes" alt="Curtis Stone's flat-plate fried rice with BBQ chicken and vegetables">
-         <a href="category.html" class="cat">Fried Rice</a>
-         <div class="name">fried rice with BBQ chicken</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/grilledbrownsteak.PNG" class="dishes" alt="Grilled sweet and chilli chicken with curry rice">
-         <a href="category.html" class="cat">Fried Rice</a>
-         <div class="name">Grilled sweet and chilli chicken</div  >
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-   </div>
-
-</section>
-
-<section class="products">
-
-   <h1 class="title"></h1>
-   <marquee direction="Rights"><h2 class="title">ALL FAST FOODS MENU</h2></marquee>
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/c5rz-hero.jpg" class="dishes" alt="Ratanak Pizza">
-         <a class="cat">Pizza</a>
-         <div class="name">Ratanak Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/chickealfredopizza.png" class="dishes" alt="Chicke Alfredo Pizza">
-         <a href="" class="cat">Pizza</a>
-         <div class="name">Chicke Alfredo Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pizzachess.png" class="dishes" alt="Cheesy Pepperoni Pizza ">
-         <a href="category.html" class="cat">Pizza</a>
-         <div class="name">Cheesy Pepperoni Pizza </div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/specialpizza.PNG" class="dishes"  alt="Millet Pizza">
-         <a href="category.html" class="cat">Pizza</a>
-         <div class="name">Millet Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/stickbeefburger.png" class="dishes"  alt="stick beef burger">
-         <a href="category.html" class="cat">Burger</a>
-         <div class="name">stick beef burger</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/frenchfrywithburger.png" class="dishes" alt="french fry with burger">
-         <a href="category.html" class="cat">burger</a>
-         <div class="name">french fry with beef burger</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/NormalChickenBurger.png" class="dishes" alt="Normal Chicken Burger">
-         <a href="category.html" class="cat">Burger</a>
-         <div class="name">Normal Chicken Burger</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/BestBuffaloWings.png" class="dishes" alt="BA's Best Buffalo Wings">
-         <a href="category.html" class="cat">Chicken Wings</a>
-         <div class="name">Best Buffalo Wings</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/chickennuget.png" class="dishes" alt="chicken nuget">
-         <a href="category.html" class="cat">Nuget</a>
-         <div class="name">chicken nuget</div  >
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-   </div>
-
-</section>
-
-
-  <!--Foods list and food names with image, add cart options and included price for each food inside container -->
-  <section class="products">
-
-   <h1 class="title"></h1>
-   <marquee direction="Rights"><h1 class="title">INSTANT DELIVERY SERVICE</h1></marquee>
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert1.png" class="dessert" alt="best potluck desserts">
-         <a class="cat">dessert</a>
-         <div class="name">best potluck desserts</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert2.png" class="dessert" alt="Lemon panna">
-         <a href="" class="cat">dessert</a>
-         <div class="name">Lemon panna</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Cake</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake2.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">delicious dessert 01</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert3.png" class="dessert" alt="Sesame Seed Dessert Balls ">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Sesame Seed Dessert Balls </div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" class="dessert" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake3.png" alt="">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">cake</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pudding.png" class="dessert" alt="Self-saucing chocolate pudding">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Self-saucing chocolate pudding</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert4.png" class="dessert" alt="chocolate">
-         <a href="category.html" class="cat">chocolate</a>
-         <div class="name">chocolate</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake4.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">cake</a>
-         <div class="name">cake</div  >
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-   </div>
-
-</section>
-
-
-
-<section class="products">
-
-   <h1 class="title"></h1>
-   <marquee direction="Rights"><h1 class="title">INSTANT DELIVERY SERVICE</h1></marquee>
-
-   <!--Foods list and food names with image, add cart options and included price for each food inside container -->
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks1.png" class="drinks" alt="Ratanak Pizza">
-         <a class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.1</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks2.png" class="drinks"  alt="Chicke Alfredo Pizza">
-         <a href="" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.2</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrrinks3.png" class="drinks" alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.3</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks4.png" class="drinks"  alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.4</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks5.png" class="drinks" alt="">
-         <a href="category.html" class="cat">drinks</a>
-         <div class="name">Cool Drinks 0.5</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks6.png" class="drinks" alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.6</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks7.jpg" class="drinks" alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.7</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks8.png" class="drinks" alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.8</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cooldrinks9.png" class="drinks" alt="">
-         <a href="category.html" class="cat">Drinks</a>
-         <div class="name">Cool Drinks 0.9</div  >
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-4 lg:p-5 shadow">
+      <div class="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
+        <!-- Search -->
+        <div class="flex-1">
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input id="searchInput" type="search" placeholder="Search all menu items..."
+                   class="w-full rounded-xl border border-slate-200 bg-white/80 pl-10 pr-3 py-2.5 outline-none focus:ring-2 focus:ring-brand-200"/>
+          </div>
+        </div>
+        <!-- Chips -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button data-group="all" class="px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm font-medium hover:bg-white group-chip active">All</button>
+          <button data-group="fast" class="px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm font-medium hover:bg-white group-chip">Fast Foods</button>
+          <button data-group="main" class="px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm font-medium hover:bg-white group-chip">Main Dishes</button>
+          <button data-group="drinks" class="px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm font-medium hover:bg-white group-chip">Drinks</button>
+          <button data-group="desserts" class="px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm font-medium hover:bg-white group-chip">Desserts</button>
+        </div>
+        <!-- Sort -->
+        <div class="flex items-center gap-3">
+          <label for="sort" class="text-sm text-slate-600">Sort:</label>
+          <select id="sort" class="rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-sm focus:ring-2 focus:ring-brand-200">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+          </select>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+  <!-- Menu Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 lg:py-10">
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <!-- ===== FAST FOODS ===== -->
+      <article class="menu-card" data-group="fast" data-name="Ratanak Pizza" data-price="8" data-img="uploaded_img/c5rz-hero.jpg" data-desc="Wood-fired base, classic tomato & fresh mozzarella.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/c5rz-hero.jpg" alt="Ratanak Pizza" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/90 border border-slate-200 text-slate-700 hover:bg-white quick-btn" aria-label="Quick view"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Pizza</span>
+            <span class="text-amber-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Ratanak Pizza</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Wood-fired base, classic tomato & fresh mozzarella.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$8</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Chicken Alfredo Pizza" data-price="10" data-img="uploaded_img/chickealfredopizza.png" data-desc="Creamy alfredo, grilled chicken, parmesan flakes.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/chickealfredopizza.png" alt="Chicken Alfredo Pizza" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Pizza</span>
+            <span class="text-rose-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Medium</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Chicken Alfredo Pizza</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Creamy alfredo, grilled chicken, parmesan flakes.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$10</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Cheesy Pepperoni Pizza" data-price="9" data-img="uploaded_img/pizzachess.png" data-desc="Gooey mozzarella, double pepperoni, oregano.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/pizzachess.png" alt="Cheesy Pepperoni Pizza" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Pizza</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Hot</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Cheesy Pepperoni Pizza</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Gooey mozzarella, double pepperoni, oregano.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$9</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Stick Beef Burger" data-price="6" data-img="uploaded_img/stickbeefburger.png" data-desc="Juicy beef patty, crisp lettuce, house sauce.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/stickbeefburger.png" alt="Stick Beef Burger" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Burger</span>
+            <span class="text-amber-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Stick Beef Burger</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Juicy beef patty, crisp lettuce, house sauce.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$6</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="French Fry with Beef Burger" data-price="7" data-img="uploaded_img/frenchfrywithburger.png" data-desc="Golden fries paired with a classic beef burger.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/frenchfrywithburger.png" alt="French Fry with Beef Burger" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Burger</span>
+            <span class="text-amber-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">French Fry with Beef Burger</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Golden fries paired with a classic beef burger.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$7</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Normal Chicken Burger" data-price="6" data-img="uploaded_img/NormalChickenBurger.png" data-desc="Tender chicken fillet, pickles, creamy mayo.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/NormalChickenBurger.png" alt="Normal Chicken Burger" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Burger</span>
+            <span class="text-rose-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Medium</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Normal Chicken Burger</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Tender chicken fillet, pickles, creamy mayo.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$6</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Best Buffalo Wings" data-price="5" data-img="uploaded_img/BestBuffaloWings.png" data-desc="Crispy wings tossed in tangy buffalo sauce.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/BestBuffaloWings.png" alt="Best Buffalo Wings" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Chicken Wings</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Hot</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Best Buffalo Wings</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Crispy wings tossed in tangy buffalo sauce.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$5</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="fast" data-name="Chicken Nugget" data-price="4" data-img="uploaded_img/chickennuget.png" data-desc="Golden-brown bites, crisp outside, tender inside.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/chickennuget.png" alt="Chicken Nugget" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold">Nugget</span>
+            <span class="text-amber-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Chicken Nugget</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Golden-brown bites, crisp outside, tender inside.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$4</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== MAIN DISHES ===== -->
+      <article class="menu-card" data-group="main" data-name="Islamabad Biryani" data-price="3" data-img="uploaded_img/Islamabadbiryani.PNG" data-desc="Fragrant basmati layered with saffron & spice.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/Islamabadbiryani.PNG" alt="Islamabad Biryani" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">Biryani</span>
+            <span class="text-amber-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Islamabad Biryani</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Fragrant basmati layered with saffron & spice.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Mutton Biryani" data-price="3" data-img="uploaded_img/mattonbiryani.jpeg" data-desc="Juicy mutton, deep spices, slow-cooked perfection.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/mattonbiryani.jpeg" alt="Mutton Biryani" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">Biryani</span>
+            <span class="text-rose-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Medium</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Mutton Biryani</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Juicy mutton, deep spices, slow-cooked perfection.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Biryani Kebab Thali" data-price="3" data-img="uploaded_img/biryanikebab.PNG" data-desc="Biryani with kebabs, raita, salad — full thali.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/biryanikebab.PNG" alt="Biryani Kebab Thali" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">Biryani</span>
+            <span class="text-rose-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Medium</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Biryani Kebab Thali</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Biryani with kebabs, raita, salad — full thali.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Brown Sugar Skirt Steak" data-price="3" data-img="uploaded_img/grilledbrownsteak.PNG" data-desc="Caramelized crust, juicy center, sweet-heat glaze.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/grilledbrownsteak.PNG" alt="Brown Sugar Skirt Steak" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">Steak</span>
+            <span class="text-amber-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Brown Sugar Skirt Steak</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Caramelized crust, juicy center, sweet-heat glaze.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Reverse Sear Steak" data-price="3" data-img="uploaded_img/Reversesearsteak.PNG" data-desc="Edge-to-edge pink, butter-basted finish.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/Reversesearsteak.PNG" alt="Reverse Sear Steak" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">Steak</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Hot</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Reverse Sear Steak</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Edge-to-edge pink, butter-basted finish.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Rib-eye w/ Béarnaise" data-price="3" data-img="uploaded_img/Rib-eyesteak.PNG" data-desc="Marbled rib-eye, silky béarnaise sauce.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/Rib-eyesteak.PNG" alt="Rib-eye w/ Béarnaise" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">Steak</span>
+            <span class="text-amber-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Mild</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Rib-eye w/ Béarnaise</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Marbled rib-eye, silky béarnaise sauce.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="Mexican Subway Fried Rice" data-price="3" data-img="uploaded_img/Mexicansubwayrice.PNG" data-desc="Zesty veggies, smoky stir-fry — hearty bowl.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/Mexicansubwayrice.PNG" alt="Mexican Subway Fried Rice" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">Rice</span>
+            <span class="text-rose-600 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Medium</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Mexican Subway Fried Rice</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Zesty veggies, smoky stir-fry — hearty bowl.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="main" data-name="BBQ Chicken Fried Rice" data-price="3" data-img="uploaded_img/bbqchickenandvegitablerice.PNG" data-desc="Flat-plate fried rice with smoky BBQ chicken.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/bbqchickenandvegitablerice.PNG" alt="BBQ Chicken Fried Rice" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">Rice</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-solid fa-pepper-hot"></i> Hot</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">BBQ Chicken Fried Rice</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Flat-plate fried rice with smoky BBQ chicken.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== DRINKS ===== -->
+      <article class="menu-card" data-group="drinks" data-name="Cool Drinks 0.1" data-price="2" data-img="uploaded_img/cooldrinks1.png" data-desc="Citrus splash, lightly sparkling & chilled.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/cooldrinks1.png" alt="Cool Drinks 0.1" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">Drinks</span>
+            <span class="text-sky-700 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-snowflake"></i> Cold</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Cool Drinks 0.1</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Citrus splash, lightly sparkling & chilled.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$2</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- add a couple more drinks -->
+      <article class="menu-card" data-group="drinks" data-name="Cool Drinks 0.8" data-price="3" data-img="uploaded_img/cooldrinks8.png" data-desc="Zesty lemon, balanced sweetness, super chill.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/cooldrinks8.png" alt="Cool Drinks 0.8" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">Drinks</span>
+            <span class="text-sky-700 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-snowflake"></i> Cold</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Cool Drinks 0.8</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Zesty lemon, balanced sweetness, super chill.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="drinks" data-name="Cool Drinks 0.9" data-price="3" data-img="uploaded_img/cooldrinks9.png" data-desc="Berry blend with crushed ice refreshment.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/cooldrinks9.png" alt="Cool Drinks 0.9" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">Drinks</span>
+            <span class="text-sky-700 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-snowflake"></i> Cold</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Cool Drinks 0.9</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Berry blend with crushed ice refreshment.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== DESSERTS ===== -->
+      <article class="menu-card" data-group="desserts" data-name="Best Potluck Desserts" data-price="3" data-img="uploaded_img/dessert1.png" data-desc="Shareable sweets with a buttery crumble top.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/dessert1.png" alt="Best Potluck Desserts" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 px-3 py-1 text-xs font-semibold">Dessert</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-star"></i> Sweet</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Best Potluck Desserts</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Shareable sweets with a buttery crumble top.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="desserts" data-name="Lemon Panna" data-price="3" data-img="uploaded_img/dessert2.png" data-desc="Silky lemon panna cotta with zest sparkle.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/dessert2.png" alt="Lemon Panna" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 px-3 py-1 text-xs font-semibold">Dessert</span>
+            <span class="text-amber-600 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-star"></i> Zesty</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Lemon Panna</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Silky lemon panna cotta with zest sparkle.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-group="desserts" data-name="Self-saucing Chocolate Pudding" data-price="3" data-img="uploaded_img/pudding.png" data-desc="Molten chocolate base with rich sauce layer.">
+        <div class="relative aspect-[4/3] overflow-hidden">
+          <img src="uploaded_img/pudding.png" alt="Self-saucing Chocolate Pudding" class="w-full h-full object-cover transition duration-300 hover:scale-105">
+          <button class="absolute top-3 right-3 h-9 w-9 rounded-full bg-white/90 border border-slate-200 hover:bg-white quick-btn"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="p-4 border border-white/60 bg-white/70 backdrop-blur rounded-b-2xl shadow">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 px-3 py-1 text-xs font-semibold">Dessert</span>
+            <span class="text-rose-700 text-xs inline-flex items-center gap-1"><i class="fa-regular fa-star"></i> Indulgent</span>
+          </div>
+          <h3 class="mt-2 text-lg font-extrabold">Self-saucing Chocolate Pudding</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">Molten chocolate base with rich sauce layer.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="text-lg font-extrabold">$3</span>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg add-btn"><i class="fa-solid fa-cart-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 flex items-center justify-center">
+      <a href="Fooddetails.html" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-5 py-3 font-semibold shadow-md hover:shadow-lg">
+        Recipe details <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-10 border-t border-white/60 bg-white/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-600 grid sm:grid-cols-2 gap-6">
+      <p>&copy; <span id="yr"></span> Food Mins. All rights reserved.</p>
+      <div class="flex sm:justify-end items-center gap-4">
+        <a href="mailto:eaemonkhan720@gmail.com" class="hover:text-brand-600"><i class="fa-regular fa-envelope"></i> Email</a>
+        <a href="tel:+8801746462491" class="hover:text-brand-600"><i class="fa-solid fa-phone"></i> +880174646-2491</a>
+        <a href="contact.html" class="hover:text-brand-600"><i class="fa-solid fa-location-dot"></i> Sylhet, BD</a>
       </div>
+    </div>
+  </footer>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+  <!-- Quick View Modal -->
+  <div id="modal" class="fixed inset-0 z-40 hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/40" onclick="closeModal()"></div>
+    <div class="relative z-10 mx-4 max-w-xl w-full rounded-3xl bg-white/90 backdrop-blur border border-white/60 shadow-2xl p-6">
+      <button class="absolute top-3 right-3 p-2 rounded-full bg-white/80 border border-slate-200 hover:bg-white" onclick="closeModal()" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <img id="mImg" src="" alt="" class="rounded-2xl w-full object-cover aspect-square border border-slate-100">
+        <div>
+          <span id="mTag" class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 px-3 py-1 text-xs font-semibold mb-3">Menu</span>
+          <h3 id="mName" class="text-2xl font-extrabold"></h3>
+          <p id="mDesc" class="mt-2 text-slate-600"></p>
+          <div class="mt-4 flex items-center gap-4">
+            <span class="text-2xl font-extrabold text-slate-900">$<span id="mPrice">0</span></span>
+            <div class="flex items-center gap-2">
+              <button class="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white hover:bg-slate-50" onclick="changeQty(-1)">−</button>
+              <input id="mQty" value="1" class="w-12 text-center rounded-lg border border-slate-200 py-1.5 outline-none" />
+              <button class="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white hover:bg-slate-50" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <button class="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2.5 font-semibold shadow hover:shadow-lg" onclick="addModalToCart()">
+            <i class="fa-solid fa-cart-plus"></i> Add to cart
+          </button>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden">
+    <div class="rounded-xl bg-slate-900 text-white/95 px-4 py-2 shadow-lg flex items-center gap-2">
+      <i class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
 
-   </section>
-<!--loader gif image for every linked pages -->
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- Scripts -->
+  <script>
+    const cartCountEl = document.getElementById('cartCount');
+    let cartCount = 0;
 
-</footer>
+    // Add to cart
+    document.querySelectorAll('.add-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        cartCount++;
+        cartCountEl.textContent = cartCount;
+        showToast();
+      });
+    });
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
+    // Chips filter
+    const chips = document.querySelectorAll('.group-chip');
+    const cards = [...document.querySelectorAll('.menu-card')];
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      chips.forEach(c=>c.classList.remove('active','bg-gradient-to-r','from-brand-600','to-rose-500','text-white','border-transparent','shadow'));
+      chips.forEach(c=>c.classList.add('border','border-slate-200','bg-white/80'));
+      ch.classList.add('active','bg-gradient-to-r','from-brand-600','to-rose-500','text-white','border-transparent','shadow');
+      applyFilters();
+    }));
 
-<script src="js/script.js"></script>
+    // Search & Sort
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('sort').addEventListener('change', applySort);
 
+    function applyFilters(){
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const activeChip = document.querySelector('.group-chip.active');
+      const group = activeChip ? activeChip.dataset.group : 'all';
+
+      cards.forEach(card=>{
+        const name = card.dataset.name.toLowerCase();
+        const g = card.dataset.group;
+        const matchText = !q || name.includes(q);
+        const matchGroup = group==='all' || g===group;
+        card.style.display = (matchText && matchGroup) ? '' : 'none';
+      });
+
+      applySort(); // keep ordering after filter
+    }
+
+    function applySort(){
+      const grid = document.getElementById('grid');
+      const mode = document.getElementById('sort').value;
+      const visible = cards.filter(c=>c.style.display!=='none');
+      let sorted = [...visible];
+
+      if(mode==='price-asc') sorted.sort((a,b)=>(+a.dataset.price)-(+b.dataset.price));
+      else if(mode==='price-desc') sorted.sort((a,b)=>(+b.dataset.price)-(+a.dataset.price));
+      else if(mode==='name-asc') sorted.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));
+      // featured -> original order
+
+      sorted.forEach(c=>grid.appendChild(c));
+    }
+
+    // Quick view modal
+    const modal = document.getElementById('modal');
+    const mImg = document.getElementById('mImg');
+    const mName = document.getElementById('mName');
+    const mDesc = document.getElementById('mDesc');
+    const mPrice = document.getElementById('mPrice');
+    const mTag = document.getElementById('mTag');
+    const mQty = document.getElementById('mQty');
+    let modalPrice = 0;
+
+    document.querySelectorAll('.quick-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.menu-card');
+        mImg.src = card.dataset.img;
+        mImg.alt = card.dataset.name;
+        mName.textContent = card.dataset.name;
+        mDesc.textContent = card.dataset.desc || '';
+        modalPrice = Number(card.dataset.price || 0);
+        mPrice.textContent = modalPrice;
+        mTag.textContent = (card.dataset.group || 'Menu').toUpperCase();
+        mQty.value = 1;
+        openModal();
+      });
+    });
+
+    function openModal(){ modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    function closeModal(){ modal.classList.add('hidden'); modal.classList.remove('flex'); }
+    function changeQty(delta){ const v = Math.max(1, (Number(mQty.value)||1) + delta); mQty.value = v; }
+    function addModalToCart(){
+      cartCount += Number(mQty.value)||1;
+      cartCountEl.textContent = cartCount;
+      showToast(); closeModal();
+    }
+
+    // Toast
+    function showToast(){
+      const t = document.getElementById('toast');
+      t.classList.remove('hidden');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(()=>t.classList.add('hidden'), 1200);
+    }
+
+    // year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

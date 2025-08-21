@@ -1,293 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>About Us</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — About Us</title>
 
-   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  "#fff7f7",
+              100: "#ffe9e8",
+              200: "#ffd1ce",
+              300: "#ffaaa5",
+              400: "#ff7b72",
+              500: "#f43f5e", /* rose-500 vibe */
+              600: "#e11d48",
+              700: "#be123c",
+              800: "#9f1239",
+              900: "#881337",
+            }
+          },
+          boxShadow: {
+            glow: "0 10px 30px rgba(244,63,94,.35)",
+          },
+          animation: {
+            float: "float 6s ease-in-out infinite",
+            blob: "blob 10s infinite",
+            marquee: "marquee 25s linear infinite",
+          },
+          keyframes: {
+            float: {
+              "0%,100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-10px)" }
+            },
+            blob: {
+              "0%": { transform: "translate(0px, 0px) scale(1)" },
+              "33%": { transform: "translate(30px, -20px) scale(1.05)" },
+              "66%": { transform: "translate(-20px, 20px) scale(0.98)" },
+              "100%": { transform: "translate(0px, 0px) scale(1)" }
+            },
+            marquee: {
+              "0%": { transform: "translateX(0)" },
+              "100%": { transform: "translateX(-50%)" }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Swiper (testimonials) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
+  <script defer src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+  <!-- Page styles -->
+  <style>
+    .heading-kicker { letter-spacing: .15em }
+    .shine {
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
+      background-size: 200% 100%;
+      animation: shine 2.4s linear infinite;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    @keyframes shine { 0%{background-position: 200% 0} 100%{background-position: -200% 0} }
+  </style>
 </head>
-<body>
-   
-<header class="header">
 
-   <section class="flex">
-<!--navabr-->
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+<body class="bg-white text-gray-900 antialiased">
+  <!-- Decorative background -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-brand-200 opacity-50 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-32 h-96 w-96 rounded-full bg-orange-200 opacity-50 blur-3xl animate-blob" style="animation-delay:2s"></div>
+    <div class="absolute bottom-10 left-20 h-72 w-72 rounded-full bg-amber-200 opacity-50 blur-3xl animate-blob" style="animation-delay:4s"></div>
+  </div>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+  <!-- Header -->
+  <header class="relative">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+      <a href="home.html" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow group-hover:scale-105 transition">
+          <i class="fa-solid fa-bowl-food"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Food Mins</span>
+      </a>
+
+      <div class="hidden gap-8 md:flex">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--cart and search options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
-      </div>
-
-   </section>
-
-</header>
-
-<div class="heading">
-   <h3>about us</h3>
-   <p><a href="home.html">Home </a> <span> / About</span></p>
-</div>
-<!--About our restaurant-->
-<section class="about">
-
-   <div class="row">
-
-      <div class="image">
-         <img src="images/about-img.svg" alt="">
-      </div>
-
-      <div class="content">
-         <h3>Why Choose Us?</h3>
-         <p>A restaurant called FoodMins provides customers with both a dine-in setting and meal delivery services. The restaurant, which is in a busy area, offers a cosy and welcoming atmosphere that is ideal for a leisurely dinner with friends and family.
-            As soon as you walk into the restaurant, the welcoming staff and tantalising aroma of newly prepared food welcome you. The restaurant has a large seating area with inviting tables and chairs that are tastefully arranged to create a warm and welcoming ambiance.
-            </p>
-            <p>
-            You can choose from a broad range of delectable dishes at FoodMins that are catered to different tastes and preferences. The eatery offers delicious options for everyone, whether they prefer meat, are vegetarians, or are vegans. FoodMins offers everything from filling sandwiches and burgers to cool soups and bowls.
-
-            </p>
-         <a href="menu.html" class="btn">our menu</a>
-      </div>
-
-   </div>
-
-</section>
-<!-- How to order step by step-->
-<section class="steps">
-
-   <h2 class="title"> Simple steps to go...</h2>
-
-   <div class="box-container">
-
-      <div class="box">
-         <img src="images/step-1.png" alt="">
-         <h3>select food</h3>
-         <p>Check manu and select the preferable food. Add all the selected foods on the cart and take place an order. Don't forget to register or login first. </p>
-      </div>
-
-      <div class="box">
-         <img src="images/step-2.png" alt="">
-         <h3>30-min Delivery</h3>
-         <p>After payment done approximately within 30-min you'll receive your foods hopefully, but in some cases it will depends on your locations. </p>
-      </div>
-
-      <div class="box">
-         <img src="images/step-3.png" alt="">
-         <h3>enjoy food!</h3>
-         <p>Experience and share your openions with us about our foods through reviews.</p>
-      </div>
-
-   </div>
-
-</section>
-<!--Adding some customs Customer's review and feedback-->
-<section class="reviews">
-
-   <h2 class="title">Customer's reviews</h2>
-
-   <div class="swiper reviews-slider">
-
-      <div class="swiper-wrapper">
-<!--Adding slide show reviews where any user can read customer's reviews-->
-         <div class="swiper-slide slide">
-            <img src="images/pic1.jpeg" alt="">
-            <p>I recently had the pleasure of dining at FoodMins, and I have to say that it was an incredibly wonderful experience! I was welcomed by the warm and welcoming employees as soon as I walked in, and they immediately made me feel at home.
-            </p>
-            <div class="stars">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h3>Emon Ahmed</h3>
-         </div>
-
-         <div class="swiper-slide slide">
-            <img src="images/pic2.jpeg" alt="">
-            <p>The restaurant itself is exquisitely furnished and has a welcoming atmosphere that is ideal for a leisurely dinner. Everything I requested from the extensive menu was delicious and catered to my varied tastes and preferences.
-            </p>
-            <div class="stars">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h3>Emon Ahmed</h3>
-         </div>
-
-         <div class="swiper-slide slide">
-            <img src="images/pic3.jpeg" alt="">
-            <p>The cuisine had exceptional quality, and each dish had clearly been prepared with care and attention to detail. I yearned for more because the flavours were precisely balanced and the ingredients were fresh.
-            </p>
-            <div class="stars">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h3>Emon Ahmed</h3>
-         </div>
-
-         <div class="swiper-slide slide">
-            <img src="images/pic4.jpeg" alt="">
-            <p>The exceptional treatment, however, was what really caught my attention. Throughout my meal, the staff made sure I had everything I required and was attentive and friendly. They even went above and beyond to take care of my dietary needs, which was highly appreciated.
-            </p>
-            <div class="stars">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h3>Emon</h3>
-         </div>
-
-         <div class="swiper-slide slide">
-            <img src="images/pic5.jpeg" alt="">
-            <p>My time at FoodMins was absolutely fantastic. Anyone seeking delectable fare, first-rate service, and a welcoming atmosphere should definitely check out this eatery, in my opinion. In every manner, this restaurant is five stars, and I can't wait to return very soon!
-            </p>
-            <div class="stars">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h3>Emon Ahmed</h3>
-         </div>
-
+         <a href="profile.html">Profile</a>
          
- 
+        
       </div>
-<!-- adding swiper pagination class for using some JS code-->
-      <div class="swiper-pagination"></div>
-
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div class="hidden md:flex items-center gap-3">
+        <a href="search.html" class="p-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative p-2 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="absolute -right-1 -top-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-500 px-1.5 text-xs text-white">3</span>
+        </a>
+        <a href="login.html" class="rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
       </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <button class="md:hidden rounded-xl border px-3 py-2" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile nav -->
+    <div id="mnav" class="mx-auto hidden max-w-7xl px-6 pb-4 md:hidden">
+      <div class="grid gap-2 rounded-2xl border bg-white p-4 shadow-sm">
+        <a href="home.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Home</a>
+        <a href="menu.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Menu</a>
+        <a href="orders.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Orders</a>
+        <a href="contact.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Contact</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="search.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</a>
+          <a href="cart.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
+          <a href="login.html" class="ml-auto rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+      <div>
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Who we are</p>
+        <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">
+          Crafted with <span class="text-brand-600 shine">Passion</span>, Delivered with <span class="text-orange-500">Care</span>
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-gray-600">
+          Food Mins is your neighborhood kitchen in the cloud—serving chef-made meals, artisan pizzas,
+          soulful biryanis, fresh salads, and decadent desserts. Dine in, pick up, or enjoy lightning-fast delivery.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="menu.html" class="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-glow hover:bg-brand-600">
+            Explore Menu <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-5 py-3 font-semibold hover:border-brand-300 hover:text-brand-700">
+            Contact Us <i class="fa-regular fa-message"></i>
+          </a>
+        </div>
+
+        <!-- Trust marquee -->
+        <div class="relative mt-10 overflow-hidden rounded-2xl border bg-white/60 backdrop-blur">
+          <div class="flex w-[200%] animate-marquee gap-10 p-4">
+            <div class="flex items-center gap-6">
+              <img src="images/GRUBHUB.png" class="h-6 opacity-70" alt="Uber Eats"/>
+              <img src="images/Ubereat.png" class="h-6 opacity-70" alt="DoorDash"/>
+              <img src="images/postmates.png" class="h-6 opacity-70" alt="Grubhub"/>
+              <img src="images/doordash.png" class="h-6 opacity-70" alt="Postmates"/>
+               <img src="images/Deliveroo.png" class="h-6 opacity-70" alt="Deliveroo"/>
+            </div>
+            <div class="flex items-center gap-6">
+              <img src="images/GRUBHUB.png" class="h-6 opacity-70" alt="Uber Eats duplicate"/>
+              <img src="images/Ubereat.png" class="h-6 opacity-70" alt="DoorDash duplicate"/>
+              <img src="images/postmates.png" class="h-6 opacity-70" alt="Grubhub duplicate"/>
+              <img src="images/doordash.png" class="h-6 opacity-70" alt="Postmates duplicate"/>
+              <img src="images/Deliveroo.png" class="h-6 opacity-70" alt="Deliveroo duplicate"/>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      <div class="relative">
+        <div class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-brand-200 via-amber-100 to-orange-200 blur-2xl"></div>
+        <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] border bg-gradient-to-br from-white to-amber-50 shadow-xl">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop"
+               alt="Chefs plating food" class="h-full w-full object-cover"/>
+          <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold shadow">
+              <i class="fa-solid fa-star text-amber-500"></i> 4.8/5 • 2.4k+ reviews
+            </div>
+          </div>
+        </div>
+        <img src="images/Pizza-slice.png"
+             alt="Pizza slice" class="absolute -right-8 -top-8 w-32 rounded-2xl border shadow-xl animate-float hidden lg:block"/>
+        <img src="images/dessert-plate.png"
+             alt="Dessert plate" class="absolute -bottom-8 -left-8 w-32 rounded-2xl border shadow-xl animate-float hidden lg:block" style="animation-delay:1.2s"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="mx-auto max-w-7xl px-6 pb-8 lg:px-8">
+    <div class="grid gap-6 rounded-3xl border bg-white/70 p-6 backdrop-blur md:grid-cols-4">
+      <div class="text-center">
+        <div class="text-3xl font-extrabold text-gray-900">50k+</div>
+        <p class="mt-1 text-sm text-gray-600">Orders delivered</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-extrabold text-gray-900">120+</div>
+        <p class="mt-1 text-sm text-gray-600">Menu items</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-extrabold text-gray-900">30 min</div>
+        <p class="mt-1 text-sm text-gray-600">Avg. delivery time</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-extrabold text-gray-900">98%</div>
+        <p class="mt-1 text-sm text-gray-600">Happy customers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="relative">
+    <div class="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      <div class="relative order-last lg:order-first">
+        <div class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-orange-200 via-amber-50 to-brand-200 blur-2xl"></div>
+        <div class="relative aspect-[5/3] overflow-hidden rounded-[2rem] border bg-white shadow-xl">
+          <img src="images/kitchen.gif"
+               class="h-full w-full object-cover" alt="Restaurant interior"/>
+        </div>
+      </div>
+      <div>
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Our story</p>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">From a tiny kitchen to a city favorite</h2>
+        <p class="mt-4 text-gray-600">
+          We started in a cozy home kitchen with a stone oven and a handful of family recipes. Word spread,
+          the lines grew, and Food Mins was born. Today, our team of chefs brings flavors from around the world to your table—fast, fresh, and unforgettable.
+        </p>
+        <ul class="mt-6 grid gap-3">
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i><span>Locally sourced ingredients</span></li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i><span>Made-to-order, never frozen</span></li>
+          <li class="flex items-start gap-3"><i class="fa-solid fa-check mt-1 text-brand-600"></i><span>Eco-friendly packaging</span></li>
+        </ul>
+        <div class="mt-6">
+          <a href="orders.html" class="inline-flex items-center gap-2 rounded-xl bg-gray-900 px-5 py-3 font-semibold text-white hover:bg-gray-800">
+            Start Your Order <i class="fa-solid fa-bag-shopping"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What makes us different -->
+  <section class="bg-gradient-to-b from-white to-amber-50/60">
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Why choose us</p>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Built for flavor, speed & joy</h2>
+        <p class="mt-3 text-gray-600">Three pillars drive everything we do.</p>
       </div>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">Chef-Crafted Taste</h3>
+          <p class="mt-2 text-gray-600">Signature sauces, 48-hour dough, and spice blends made in house.</p>
+        </div>
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-600">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">Lightning Delivery</h3>
+          <p class="mt-2 text-gray-600">Smart batching & heat-lock packaging keep food hot and crisp.</p>
+        </div>
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">Sustainably Minded</h3>
+          <p class="mt-2 text-gray-600">Compostable boxes & a waste-reduction program in every kitchen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Our team</p>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">The people behind the plates</h2>
       </div>
 
-   </section>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <!-- Member -->
+        <div class="group overflow-hidden rounded-2xl border bg-white shadow-sm">
+          <img class="h-52 w-full object-cover transition duration-300 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1520986606214-8b456906c813?q=80&w=1200&auto=format&fit=crop" alt="Head Chef"/>
+          <div class="p-5">
+            <h3 class="text-lg font-bold">Arif Hossain</h3>
+            <p class="text-sm text-gray-600">Head Chef • Fire & Flavor</p>
+            <p class="mt-3 text-sm text-gray-600">Leads R&D for our pizzas, steaks & biryani profiles.</p>
+          </div>
+        </div>
+        <!-- Member -->
+        <div class="group overflow-hidden rounded-2xl border bg-white shadow-sm">
+          <img class="h-52 w-full object-cover transition duration-300 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop" alt="Ops Lead"/>
+          <div class="p-5">
+            <h3 class="text-lg font-bold">Maya Rahman</h3>
+            <p class="text-sm text-gray-600">Ops Lead • Speed</p>
+            <p class="mt-3 text-sm text-gray-600">Keeps every kitchen humming & deliveries on time.</p>
+          </div>
+        </div>
+        <!-- Member -->
+        <div class="group overflow-hidden rounded-2xl border bg-white shadow-sm">
+          <img class="h-52 w-full object-cover transition duration-300 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?q=80&w=1200&auto=format&fit=crop" alt="Pastry Chef"/>
+          <div class="p-5">
+            <h3 class="text-lg font-bold">Sadia Karim</h3>
+            <p class="text-sm text-gray-600">Pastry Chef • Sweet Lab</p>
+            <p class="mt-3 text-sm text-gray-600">Responsible for our cult-favorite cakes & puddings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- Testimonials (Swiper) -->
+  <section class="bg-gradient-to-b from-amber-50/60 to-white">
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Reviews</p>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Loved by foodies</h2>
+      </div>
 
-</footer>
+      <div class="mt-10 swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl border bg-white p-6 shadow-sm">
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover"
+                     src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Reviewer"/>
+                <div>
+                  <div class="font-semibold">Emon Ahmed</div>
+                  <div class="text-xs text-gray-500">Sylhet</div>
+                </div>
+                <div class="ml-auto text-amber-500">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star-half-stroke"></i>
+                </div>
+              </div>
+              <p class="mt-4 text-gray-700">“Incredible flavors and fast delivery. The biryani is an instant classic!”</p>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl border bg-white p-6 shadow-sm">
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover"
+                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop" alt="Reviewer"/>
+                <div>
+                  <div class="font-semibold">Nadia Islam</div>
+                  <div class="text-xs text-gray-500">Dhaka</div>
+                </div>
+                <div class="ml-auto text-amber-500">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <p class="mt-4 text-gray-700">“Best pizza crust in town—crispy edges, airy center. Perfection.”</p>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div class="swiper-slide">
+            <div class="rounded-3xl border bg-white p-6 shadow-sm">
+              <div class="flex items-center gap-3">
+                <img class="h-12 w-12 rounded-full object-cover"
+                     src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop" alt="Reviewer"/>
+                <div>
+                  <div class="font-semibold">Ayman Chowdhury</div>
+                  <div class="text-xs text-gray-500">Chittagong</div>
+                </div>
+                <div class="ml-auto text-amber-500">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                </div>
+              </div>
+              <p class="mt-4 text-gray-700">“Desserts are next level. The chocolate pudding? Unreal.”</p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-center gap-2">
+          <div class="swiper-pagination !static"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Gallery -->
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="heading-kicker text-xs font-semibold uppercase tracking-widest text-brand-600">Peek inside</p>
+        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Kitchen & plates</h2>
+      </div>
 
+      <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <img class="h-44 w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="Kitchen"/>
+        <img class="h-44 w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" alt="Salad"/>
+        <img class="h-44 w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=800&auto=format&fit=crop" alt="Pizza"/>
+        <img class="h-44 w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800&auto=format&fit=crop" alt="Dessert"/>
+      </div>
+    </div>
+  </section>
 
+  <!-- CTA -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-tr from-brand-600 to-orange-500 p-10 text-white shadow-xl">
+        <div class="absolute right-10 top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+        <div class="absolute -left-10 -bottom-10 h-56 w-56 rounded-full bg-white/10 blur-2xl"></div>
 
+        <div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h3 class="text-2xl font-extrabold">Hungry now?</h3>
+            <p class="mt-1 text-white/90">Order in seconds. Hot & happy in ~30 minutes.</p>
+          </div>
+          <div class="flex gap-3">
+            <a href="menu.html" class="rounded-xl bg-white px-5 py-3 font-semibold text-gray-900 hover:bg-gray-100">Browse Menu</a>
+            <a href="orders.html" class="rounded-xl border border-white/70 px-5 py-3 font-semibold hover:bg-white/10">Track Orders</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
-</div>
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="home.html" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text-lg font-extrabold">Food Mins</span>
+        </a>
+        <p class="mt-3 text-sm text-gray-600">Sylhet, Bangladesh</p>
+        <p class="mt-1 text-sm"><a class="hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a></p>
+        <p class="text-sm"><a class="hover:text-brand-600" href="tel:+8801746462491">+880 174646-2491</a></p>
+      </div>
 
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a class="hover:text-brand-600" href="about.html">About</a></li>
+          <li><a class="hover:text-brand-600" href="menu.html">Menu</a></li>
+          <li><a class="hover:text-brand-600" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand-600" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
 
-<script src="js/script.js"></script>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Hours</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li>Sun–Thu: 10:00–22:00</li>
+          <li>Fri–Sat: 10:00–23:00</li>
+        </ul>
+      </div>
 
-<!-- declearing some JS code for using swiper customer's reviews section  -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Follow</h4>
+        <div class="mt-3 flex gap-3 text-gray-600">
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-<script>
+  <!-- Scripts -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-var swiper = new Swiper(".reviews-slider", {
-   loop:true,
-   grabCursor:true,
-            spaceBetween: 20,
-   pagination: {
-      el: ".swiper-pagination",
-   },
-   breakpoints: {
-      550: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      1024: {
-        slidesPerView: 3,
-      },
-   },
-});
-
-</script>
-
+    // Swiper
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+    });
+  </script>
 </body>
 </html>

@@ -1,244 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>food menu</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — Desserts</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:"#fff7f7",100:"#ffe9e8",200:"#ffd1ce",300:"#ffaaa5",400:"#ff7b72",
+              500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337"
+            }
+          },
+          boxShadow: { glow: "0 10px 30px rgba(244,63,94,.35)" },
+          animation: {
+            blob: "blob 10s infinite",
+            float: "float 6s ease-in-out infinite",
+            pingsoft: "pingsoft 1.8s cubic-bezier(0,0,.2,1) infinite",
+            pulseSlow: "pulse 3s cubic-bezier(0.4,0,0.6,1) infinite"
+          },
+          keyframes: {
+            blob: {
+              "0%":{transform:"translate(0,0) scale(1)"},
+              "33%":{transform:"translate(20px,-15px) scale(1.04)"},
+              "66%":{transform:"translate(-15px,15px) scale(.98)"},
+              "100%":{transform:"translate(0,0) scale(1)"}
+            },
+            float: {
+              "0%,100%":{transform:"translateY(0)"},
+              "50%":{transform:"translateY(-8px)"}
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .grad { background: linear-gradient(90deg,#fde68a,#fb923c,#f43f5e,#be123c); }
+  </style>
+  <style>
+  .ice-title{
+    background: linear-gradient(92deg,#75c8ff 0%,#6ee1ee 30%,#93c5fd 55%,#60a5fa 75%,#1d4ed8 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7), 0 10px 24px rgba(59,130,246,.35);
+    position:relative; display:inline-block;
+  }
+  /* soft shimmering sweep */
+  .ice-shine::before{
+    content:""; position:absolute; inset:0; left:-120%;
+    width:120px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
+    transform:skewX(-20deg); filter:blur(.5px);
+    animation:sweep 3.2s ease-in-out infinite;
+  }
+  @keyframes sweep{ 0%{left:-120%} 60%{left:120%} 100%{left:120%} }
+</style>
 
 </head>
-<body>
-   
-<header class="header">
+<body class="bg-white text-gray-900 antialiased">
+  <!-- Soft background blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand-200/60 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-32 h-96 w-96 rounded-full bg-orange-200/60 blur-3xl animate-blob" style="animation-delay:2s"></div>
+    <div class="absolute bottom-10 left-20 h-64 w-64 rounded-full bg-amber-200/60 blur-3xl animate-blob" style="animation-delay:4s"></div>
+  </div>
 
-   <section class="flex">
+  <!-- Header -->
+  <header class="relative border-b bg-white/70 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+      <a href="home.html" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow group-hover:scale-105 transition">
+          <i class="fa-solid fa-bowl-food"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Food Mins</span>
+      </a>
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-
-      <!--Navbar for main pages-->
-
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+      <div class="hidden gap-8 md:flex">
+       <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <a href="profile.html">Profile</a>
       </div>
 
-   </section>
-
-</header>
-
-<div class="heading">
-   <h3>FAST FOOD</h3>
-   <p><a href="home.html">HOME </a> <span> / MENU</span></p>
-</div>
-
-  <!--Foods list and food names with image, add cart options and included price for each food inside container -->
-<section class="products">
-
-   <h1 class="title"></h1>
-   <marquee direction="Rights"><h1 class="title">INSTANT DELIVERY SERVICE</h1></marquee>
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert1.png" class="dessert" alt="best potluck desserts">
-         <a class="cat">dessert</a>
-         <div class="name">best potluck desserts</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert2.png" class="dessert" alt="Lemon panna">
-         <a href="" class="cat">dessert</a>
-         <div class="name">Lemon panna</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Cake</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake2.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">delicious dessert 01</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert3.png" class="dessert" alt="Sesame Seed Dessert Balls ">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Sesame Seed Dessert Balls </div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" class="dessert" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake3.png" alt="">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">cake</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pudding.png" class="dessert" alt="Self-saucing chocolate pudding">
-         <a href="category.html" class="cat">dessert</a>
-         <div class="name">Self-saucing chocolate pudding</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/dessert4.png" class="dessert" alt="chocolate">
-         <a href="category.html" class="cat">chocolate</a>
-         <div class="name">chocolate</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/cake4.png" class="dessert" alt="cake">
-         <a href="category.html" class="cat">cake</a>
-         <div class="name">cake</div  >
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div class="hidden md:flex items-center gap-3">
+        <a href="search.html" class="p-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative p-2 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="absolute -right-1 -top-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-500 px-1.5 text-xs text-white" id="hdrBadge">0</span>
+        </a>
+        <a href="login.html" class="rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
       </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <button class="md:hidden rounded-xl border px-3 py-2" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile nav -->
+    <div id="mnav" class="mx-auto hidden max-w-7xl px-6 pb-4 md:hidden">
+      <div class="grid gap-2 rounded-2xl border bg-white p-4 shadow-sm">
+        <a href="home.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Home</a>
+        <a href="about.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">About</a>
+        <a href="menu.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Menu</a>
+        <a href="orders.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Orders</a>
+        <a href="contact.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Contact</a>
+        <a href="desserts.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Desserts</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="search.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</a>
+          <a href="cart.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
+          <a href="login.html" class="ml-auto rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="mx-auto max-w-7xl px-6 pt-10 lg:px-8">
+    <div class="relative overflow-hidden rounded-3xl border bg-white shadow-sm">
+      <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full grad opacity-40 blur-2xl animate-float"></div>
+      <div class="grid gap-6 p-8 sm:p-12 lg:grid-cols-2">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 ring-1 ring-brand-200">
+            <i class="fa-solid fa-cake-candles"></i> Freshly baked, daily
+          </span>
+<h1 class="mt-4 text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+  <span class="ice-title ice-shine">Desserts that make you smile</span>
+  <span class="relative inline-flex ml-2 align-super">
+    <i class="fa-regular fa-snowflake text-sky-300/80 text-2xl animate-float"></i>
+    <i class="fa-regular fa-snowflake text-sky-200/70 text-xl absolute -right-4 top-3 animate-float" style="animation-delay:.8s"></i>
+  </span>
+</h1>
+          <p class="mt-2 text-gray-600">From decadent cakes to creamy puddings and artisan chocolates — pick your favorite sweet treat.</p>
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <a href="#grid" class="rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-glow hover:bg-brand-600">Shop Desserts</a>
+            <div class="inline-flex items-center gap-2 rounded-xl border bg-white px-4 py-2 text-sm text-gray-700">
+              <i class="fa-solid fa-truck-fast text-brand-600"></i> 30–45 min delivery
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="relative">
+            <div class="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-amber-200/60 via-orange-200/60 to-rose-200/60 blur-xl"></div>
+            <img src="uploaded_img/cake2.png" alt="Dessert hero" class="h-56 w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/70 shadow-glow" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters / Controls -->
+  <section class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap items-center gap-2">
+        <button data-filter="all" class="filter-btn rounded-xl border bg-white px-4 py-2 text-sm font-semibold hover:border-brand-300 active">All</button>
+        <button data-filter="cake" class="filter-btn rounded-xl border bg-white px-4 py-2 text-sm font-semibold hover:border-brand-300">Cakes</button>
+        <button data-filter="pudding" class="filter-btn rounded-xl border bg-white px-4 py-2 text-sm font-semibold hover:border-brand-300">Puddings</button>
+        <button data-filter="chocolate" class="filter-btn rounded-xl border bg-white px-4 py-2 text-sm font-semibold hover:border-brand-300">Chocolate</button>
       </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      <div class="flex items-center gap-3">
+        <input id="search" type="text" placeholder="Search desserts…" class="w-56 rounded-xl border px-3 py-2 outline-none focus:border-brand-400">
+        <select id="sort" class="rounded-xl border px-3 py-2 outline-none focus:border-brand-400">
+          <option value="featured">Sort: Featured</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dessert of the week -->
+  <section class="mx-auto max-w-7xl px-6 pb-4 lg:px-8">
+    <div class="grad relative overflow-hidden rounded-3xl p-6 sm:p-8">
+      <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl animate-float"></div>
+      <div class="grid items-center gap-6 sm:grid-cols-2">
+        <div class="text-white">
+          <p class="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold ring-1 ring-white/40">
+            <i class="fa-solid fa-star"></i> Dessert of the week
+          </p>
+          <h3 class="mt-3 text-2xl font-extrabold">Self-Saucing Chocolate Pudding</h3>
+          <p class="mt-1 max-w-prose opacity-90">Warm, fudgy center with a silky sauce. Best served with vanilla ice cream.</p>
+          <div class="mt-3 flex items-center gap-2 text-amber-300">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+            <span class="text-white/90 text-sm ml-1">(4.2)</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 sm:justify-end">
+          <img src="uploaded_img/pudding.png" class="h-28 w-28 rounded-2xl bg-white/20 p-2 ring-1 ring-white/50" alt="Pudding">
+          <button data-id="pudding" data-name="Self-saucing Chocolate Pudding" data-price="3" class="add-btn inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 font-semibold text-gray-900 shadow hover:bg-white/95">
+            <i class="fa-solid fa-cart-plus text-brand-600"></i> Add to Cart — $3
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <main id="grid" class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+    <div id="products" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Card template -->
+      <!-- 1 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Best Potluck Desserts">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/dessert1.png" alt="Best potluck desserts" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Best Potluck Desserts</h3>
+          <p class="mt-1 text-sm text-gray-600">Light sponge, whipped cream, fresh berries.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="dessert1" data-name="Best Potluck Desserts" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Lemon Panna">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/dessert2.png" alt="Lemon panna" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Lemon Panna</h3>
+          <p class="mt-1 text-sm text-gray-600">Zesty, creamy and refreshing.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="dessert2" data-name="Lemon Panna" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Classic Cake">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/cake.png" alt="Cake" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Classic Cake</h3>
+          <p class="mt-1 text-sm text-gray-600">Rich cocoa layers & buttercream.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="cake" data-name="Classic Cake" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Delicious Dessert 01">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/cake2.png" alt="Delicious dessert 01" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Delicious Dessert 01</h3>
+          <p class="mt-1 text-sm text-gray-600">Vanilla bean & jam layers.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="cake2" data-name="Delicious Dessert 01" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Sesame Seed Dessert Balls">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/dessert3.png" alt="Sesame seed dessert balls" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Sesame Seed Dessert Balls</h3>
+          <p class="mt-1 text-sm text-gray-600">Nutty, chewy & delightful.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="dessert3" data-name="Sesame Seed Dessert Balls" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Chocolate Drip Cake">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/cake3.png" alt="Chocolate drip cake" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Chocolate Drip Cake</h3>
+          <p class="mt-1 text-sm text-gray-600">Fudgy layers & ganache.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="cake3" data-name="Chocolate Drip Cake" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="pudding" data-price="3" data-name="Self-saucing Chocolate Pudding">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/pudding.png" alt="Self-saucing chocolate pudding" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Pudding</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Self-saucing Chocolate Pudding</h3>
+          <p class="mt-1 text-sm text-gray-600">Warm center & silky sauce.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="pudding2" data-name="Self-saucing Chocolate Pudding" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="chocolate" data-price="3" data-name="Chocolate Squares">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/dessert4.png" alt="Chocolate" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Chocolate</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Chocolate Squares</h3>
+          <p class="mt-1 text-sm text-gray-600">Crunchy, nutty & luxe cocoa.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="choco" data-name="Chocolate Squares" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="product rounded-3xl border bg-white p-4 shadow-sm" data-category="cake" data-price="3" data-name="Vanilla Celebration Cake">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="uploaded_img/cake4.png" alt="Cake 4" class="h-48 w-full object-cover" />
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold">Cake</span>
+        </div>
+        <div class="mt-4">
+          <h3 class="line-clamp-1 text-lg font-extrabold">Vanilla Celebration Cake</h3>
+          <p class="mt-1 text-sm text-gray-600">Fluffy crumb & sprinkles.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xl font-extrabold">$3</span>
+            <div class="flex items-center gap-2">
+              <input type="number" min="1" value="1" class="qty w-14 rounded-xl border px-2 py-1 text-sm outline-none focus:border-brand-400"/>
+              <button class="add-btn rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-600"
+                data-id="cake4" data-name="Vanilla Celebration Cake" data-price="3">Add</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Pagination (static demo) -->
+    <div class="mt-8 flex justify-center gap-2">
+      <button class="rounded-xl border px-3 py-2 text-sm hover:border-brand-300"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="rounded-xl border bg-brand-500 px-3 py-2 text-sm font-semibold text-white shadow-glow">1</button>
+      <button class="rounded-xl border px-3 py-2 text-sm hover:border-brand-300">2</button>
+      <button class="rounded-xl border px-3 py-2 text-sm hover:border-brand-300">3</button>
+      <button class="rounded-xl border px-3 py-2 text-sm hover:border-brand-300"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </main>
+
+  <!-- CTA strip -->
+  <section class="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+    <div class="grad relative overflow-hidden rounded-3xl p-6 sm:p-8">
+      <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl animate-float"></div>
+      <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="text-white">
+          <h3 class="text-xl font-extrabold">Fresh bakes every morning</h3>
+          <p class="opacity-90">Order now and get 10% off your first dessert.</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="menu.html#desserts" class="inline-flex items-center gap-2 rounded-xl bg-white/90 px-5 py-3 font-semibold text-gray-900 shadow hover:bg-white">
+            <i class="fa-solid fa-cookie-bite text-brand-600"></i> Explore all desserts
+          </a>
+          <a href="cart.html" class="inline-flex items-center gap-2 rounded-xl bg-black/20 px-5 py-3 font-semibold text-white ring-1 ring-white/40 hover:bg-black/25">
+            <i class="fa-solid fa-cart-shopping"></i> Go to cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="home.html" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text-lg font-extrabold">Food Mins</span>
+        </a>
+        <p class="mt-3 text-sm text-gray-600">Sylhet, Bangladesh</p>
+        <p class="mt-1 text-sm"><a class="hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a></p>
+        <p class="text-sm"><a class="hover:text-brand-600" href="tel:+8801746462491">+880 174646-2491</a></p>
       </div>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a class="hover:text-brand-600" href="about.html">About</a></li>
+          <li><a class="hover:text-brand-600" href="menu.html">Menu</a></li>
+          <li><a class="hover:text-brand-600" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand-600" href="contact.html">Contact</a></li>
+        </ul>
       </div>
 
-   </section>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Hours</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li>Sun–Thu: 10:00–22:00</li>
+          <li>Fri–Sat: 10:00–23:00</li>
+        </ul>
+      </div>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Follow</h4>
+        <div class="mt-3 flex gap-3 text-gray-600">
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-</footer>
-<!--adding some JS effect for loader image-->
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
+  <!-- Toast -->
+  <div id="toast" class="fixed right-4 top-4 z-50 hidden rounded-xl border bg-white px-4 py-3 shadow-lg">
+    <div class="flex items-start gap-3">
+      <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+      <div>
+        <div class="font-semibold">Added to cart</div>
+        <div class="text-sm text-gray-600"><span id="toastName" class="font-medium"></span> × <span id="toastQty">1</span></div>
+      </div>
+    </div>
+  </div>
 
-<script src="js/script.js"></script>
+  <!-- Scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Simple in-memory cart + header badge
+    const badge = document.getElementById('hdrBadge');
+    let cartCount = 0;
+
+    function showToast(name, qty) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastName').textContent = name;
+      document.getElementById('toastQty').textContent = qty;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+
+    // Add to cart buttons
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.product') || e.target.closest('.grad') || e.target;
+        const qtyInput = card.querySelector?.('.qty');
+        const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value || '1', 10)) : 1;
+
+        const name = btn.dataset.name || 'Dessert';
+        cartCount += qty;
+        badge.textContent = cartCount;
+
+        showToast(name, qty);
+      });
+    });
+
+    // Filters
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const products = Array.from(document.querySelectorAll('.product'));
+    filterBtns.forEach(b => b.addEventListener('click', () => {
+      filterBtns.forEach(x => x.classList.remove('active','border-brand-300'));
+      b.classList.add('active','border-brand-300');
+      const f = b.dataset.filter;
+      products.forEach(p => {
+        p.classList.toggle('hidden', !(f === 'all' || p.dataset.category === f));
+      });
+      // Reset search on filter change
+      document.getElementById('search').value = '';
+    }));
+
+    // Search
+    const search = document.getElementById('search');
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase();
+      products.forEach(p => {
+        const name = (p.dataset.name || '').toLowerCase();
+        const show = name.includes(q);
+        // Respect active filter
+        const active = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+        const matchCat = active === 'all' || p.dataset.category === active;
+        p.classList.toggle('hidden', !(show && matchCat));
+      });
+    });
+
+    // Sort
+    const sort = document.getElementById('sort');
+    sort.addEventListener('change', () => {
+      const container = document.getElementById('products');
+      const mode = sort.value;
+      const items = Array.from(container.children);
+      items.sort((a,b) => {
+        const pa = parseFloat(a.dataset.price), pb = parseFloat(b.dataset.price);
+        if (mode === 'low') return pa - pb;
+        if (mode === 'high') return pb - pa;
+        return 0; // featured = original order
+      });
+      items.forEach(i => container.appendChild(i));
+    });
+  </script>
 </body>
 </html>

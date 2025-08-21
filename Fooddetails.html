@@ -1,371 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>food menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Details • Food Mins 🍽</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            },
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            shine: { '0%': { transform: 'translateX(-120%)' }, '100%': { transform: 'translateX(120%)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(12px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 5s ease-in-out infinite',
+            shine: 'shine 1.2s ease-in-out',
+            fadeUp: 'fadeUp .6s ease-out both',
+          },
+          boxShadow: {
+            glass: '0 10px 30px rgba(249,115,22,0.15)',
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
+  <!-- Extra styles -->
+  <style>
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(140deg, rgba(255,255,255,.75), rgba(255,255,255,.45)); }
+    .text-gradient { background: linear-gradient(92deg,#ffedd5,#fed7aa,#fdba74,#fb923c,#ea580c); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .btn-cta { position: relative; overflow: hidden; }
+    .btn-cta::after { content:""; position:absolute; inset:0; transform:translateX(-120%); background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent); }
+    .btn-cta:hover::after { animation: shine 1.05s; }
+    .pattern {
+      background-image:
+      radial-gradient(30% 20% at 10% 5%, rgba(249,115,22,.12) 0%, transparent 100%),
+      radial-gradient(35% 25% at 90% 0%, rgba(244,114,182,.15) 0%, transparent 100%),
+      radial-gradient(30% 20% at 80% 90%, rgba(34,197,94,.12) 0%, transparent 100%),
+      radial-gradient(20% 25% at 0% 100%, rgba(250,204,21,.12) 0%, transparent 100%);
+    }
+    .thumb-active { outline: 2px solid rgb(234 88 12); outline-offset: 2px; }
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-b from-white via-orange-50 to-white pattern text-slate-800">
 
-   <section class="flex">
-<!--Navbar-->
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 bg-white/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="home.html" class="flex items-center gap-2 font-bold text-lg">
+          <span class="text-brand-700">Food Mins</span> <span aria-hidden>🍽</span>
+        </a>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--search and cart options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+         <a href="profile.html">Profile</a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <a href="search.html" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass text-slate-600 hover:text-brand-700 transition"></i>
+          </a>
+          <a href="cart.html" class="relative" aria-label="Cart">
+            <i class="fa-solid fa-cart-shopping text-slate-600 hover:text-brand-700 transition"></i>
+            <span id="cartBadge" class="absolute -top-2 -right-2 text-xs bg-brand-600 text-white rounded-full px-1.5 py-0.5">3</span>
+          </a>
+          <a href="login.html" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-orange-50/60 text-sm transition">
+            <i class="fa-regular fa-user"></i> <span>Account</span>
+          </a>
+          <button id="mobileMenuBtn" class="md:hidden text-slate-700"><i class="fa-solid fa-bars"></i></button>
+        </div>
       </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <nav class="flex flex-col gap-2 text-sm">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="category.html">Category</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
+         <a href="about.html">About</a>
+         <a href="menu.html">Menu</a>
+         <a href="orders.html">Orders</a>
+         <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
+        </nav>
       </div>
+    </div>
+  </header>
 
-   </section>
+  <!-- Breadcrumb -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-sm text-slate-500">
+    <a href="home.html" class="hover:text-brand-700">Home</a>
+    <span class="mx-2">/</span>
+    <a href="menu.html" class="hover:text-brand-700">Menu</a>
+    <span class="mx-2">/</span>
+    <span class="text-slate-700">Chicken Alfredo Pizza</span>
+  </nav>
 
-
-</header>
-  <!--Foods list and ingredients uses details -->
-<div class="heading">
-   <h3>our menu</h3>
-   <p><a href="home.html">home </a> <span> / menu</span></p>
-</div>
-
-<section class="products">
-
-   <marquee direction="Rights"><h2 class="title">ALL DISEHS FOODS MENU</h2></marquee>
-
-   <div class="box-container">
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/Islamabadbiryani.PNG"  class="dishes" alt="Islamabad biryani">
-         <a class="cat">Details:basmati rice,butter,large onion,finely sliced,bay leaf,cardamom pods,small cinnamon stic,turmeric,skinless chicken breasts,  tbsp garlic paste1 tbsp ginger paste3 tbsp raw papaya,tbsp red chilli powder1 tsp saltOther ingredients:4 onions, sliced2 tomatoes</a>
-         <div class="name">Islamabad biryani</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/mattonbiryani.jpeg" class="dishes" alt="matton biryani">
-         <a href="" class="cat">basmati rice, blanched2 Bay leaves2 Black Cinnamon sticks6 Cloves1 tsp fennel1/4 Jaiphal1 Javitri3 tsp SaltFor mutton marination:1 kg mutton tbsp garam masala1 tbsp garlic paste1 tbsp ginger paste3 tbsp raw papaya paste4 tbsp hung curd1 Lemon (juiced)Coriander powderCumin powder</a>
-         <div class="name">matton biryani</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/biryanikebab.PNG" class="dishes" alt="Biryani Kebab Thali">
-         <a href="category.html" class="cat">1 kg mutton tbsp garam masala1 tbsp garlic paste1 tbsp ginger paste3 hung curd1 Lemon (juiced)Coriander powderCumin powder1 tbsp red chilli powder1 tsp saltOther ingredients:4 onions, sliced2 tomatoes, chopped1/4 cup milk GheeSaffron strandsOilRose waterKewra essence4 green chillies</a>
-         <div class="name">Biryani Kebab Thali</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
- 
-
-   </div>
-
-</section>
-
-<section class="products">
-
-   <h1 class="title"></h1>
-   <marquee direction="Rights"><h2 class="title">ALL FAST FOODS MENU</h2></marquee>
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/c5rz-hero.jpg" class="dishes" alt="Ratanak Pizza">
-         <a class="cat">strong bread flour
-            tsp instant yeast (from a sachet or a tub)
-            salt
-            olive oil, plus extra for drizzling
-            For the tomato sauce
-            passata
-            handful fresh basil or 1 tsp dried
-            garlic clove, crushed
-            For the topping
-            ball mozzarella, sliced</a>
-         <div class="name">Ratanak Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/chickealfredopizza.png" class="dishes" alt="Chicke Alfredo Pizza">
-         <a href="" class="cat">strong bread flour
-            tsp instant yeast (from a sachet or a tub)
-            olive oil, plus extra for drizzling
-            For the tomato sauce
-            For the topping
-            ball mozzarella, sliced
-            handful grated or shaved parmesan (or vegetarian alternative)
-            handful of cherry tomatoes, halved
-            To finish,
-            handful of basil leaves (optional)</a>
-         <div class="name">Chicke Alfredo Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pizzachess.png" class="dishes" alt="Cheesy Pepperoni Pizza ">
-         <a href="category.html" class="cat">2 cup all purpose flour
-            100 ml tomato ketchup
-            1 tomato
-            2 onion
-            1 teaspoon chilli flakes
-            1 teaspoon baking powder
-            1 teaspoon sugar
-            100 gm processed cheese
-            4 mushroom
-            1/2 capsicum (green pepper)
-            1 teaspoon oregano
-            1/2 cup mozzarella
-            1 tablespoon dry yeast</a>
-         <div class="name">Cheesy Pepperoni Pizza </div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/specialpizza.PNG" class="dishes"  alt="Millet Pizza">
-         <a href="category.html" class="cat">Extra virgin olive oil
-            Cornmeal (to help slide the pizza onto the pizza stone)
-            Tomato sauce (smooth or pureed)
-            Firm mozzarella cheese, grated
-            Fresh soft mozzarella cheese, separated into small clumps
-            Fontina cheese, grated
-            Parmesan cheese, grated
-            Feta cheese, crumbled
-            Mushrooms, very thinly sliced if raw, otherwise first sautéed
-            Bell peppers, stems and seeds removed, very thinly sliced
-            Italian pepperoncini, thinly sliced
-            Italian sausage, cooked ahead and crumbled
-            Sliced black olives
-            Chopped fresh basil</a>
-         <div class="name">Millet Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-        <a href="quick_view.html" class="fas fa-eye"></a>
-        <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-        <img src="uploaded_img/cooldrinks8.png" class="drinks" alt="">
-        <a href="category.html" class="cat">2 ounces (4 tablespoons) whiskey
-            1 ounce (2 tablespoons) fresh lemon juice
-            ¾ ounce (1 ½ tablespoons) pure maple syrup (or simple syrup)
-            Garnish: Orange peel and a cocktail cherry
-            Ice, for serving</a>
-        <div class="name">Cool Drinks 0.8</div>
-        <div class="flex">
-           <div class="price"><span>$</span>3<span>/-</span></div>
-           <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
+  <!-- Product -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <!-- Gallery -->
+      <section class="space-y-4">
+        <div class="relative glass rounded-3xl p-3 sm:p-5 shadow-glass">
+          <img id="mainImg" src="uploaded_img/chickealfredopizza.png" alt="Chicken Alfredo Pizza" class="w-full aspect-square object-contain rounded-2xl animate-fadeUp" />
+          <span class="absolute top-4 left-4 text-xs bg-brand-600 text-white px-2 py-1 rounded-full">Popular</span>
+          <button id="wishBtn" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 text-rose-500 hover:text-rose-600 shadow flex items-center justify-center" aria-label="Add to wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
         </div>
-     </form>
-
-     <form accept="" method="post" class="box">
-        <a href="quick_view.html" class="fas fa-eye"></a>
-        <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-        <img src="uploaded_img/cooldrinks9.png" class="drinks" alt="">
-        <a href="category.html" class="cat">2 ounces (4 tablespoons) whiskey
-            1 ounce (2 tablespoons) fresh lemon juice
-            ¾ ounce (1 ½ tablespoons) pure maple syrup (or simple syrup)
-            Garnish: Orange peel and a cocktail cherry
-            Ice, for serving</a>
-        <div class="name">Cool Drinks 0.9</div  >
-        <div class="flex">
-           <div class="price"><span>$</span>3<span>/-</span></div>
-           <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
+        <div class="grid grid-cols-4 gap-3">
+          <button class="thumb thumb-active rounded-xl overflow-hidden border border-slate-200 bg-white p-2">
+            <img src="uploaded_img/chickealfredopizza.png" alt="Main" class="w-full aspect-square object-contain" />
+          </button>
+          <button class="thumb rounded-xl overflow-hidden border border-slate-200 bg-white p-2">
+            <img src="uploaded_img/pizzachess.png" alt="Angle 2" class="w-full aspect-square object-contain" />
+          </button>
+          <button class="thumb rounded-xl overflow-hidden border border-slate-200 bg-white p-2">
+            <img src="uploaded_img/c5rz-hero.jpg" alt="Baked" class="w-full aspect-square object-cover" />
+          </button>
+          <button class="thumb rounded-xl overflow-hidden border border-slate-200 bg-white p-2">
+            <img src="uploaded_img/specialpizza.PNG" alt="Millet base" class="w-full aspect-square object-contain" />
+          </button>
         </div>
-     </form>
-     <form accept="" method="post" class="box">
-        <a href="quick_view.html" class="fas fa-eye"></a>
-        <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-        <img src="uploaded_img/dessert4.png" class="dessert" alt="chocolate">
-        <a href="category.html" class="cat">Flavorings (i.e., mint, orange, etc. Use oil-based, not water, to avoid seizing.)
-            Spices (cinnamon, cardamom, pumpkin pie spice, etc.)
-            Nuts and/or seeds (pistachio, almond, walnut, pepitas, etc.)
-            Puffed quinoa/ rice
-            Raisins, dried cranberries, or other dried fruits
-            Crushed banana chips
-            Freeze-dried fruits (as a topping)
-            Flaky sea salt
-            Crushed biscuits (Oreos, Biscoff, etc.)
-            Coconut flakes/ shreds
-            Candy cane/ crushed peppermints</a>
-        <div class="name">chocolate</div>
-        <div class="flex">
-           <div class="price"><span>$</span>3<span>/-</span></div>
-           <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-        </div>
-     </form>
+      </section>
 
-     <form accept="" method="post" class="box">
-        <a href="quick_view.html" class="fas fa-eye"></a>
-        <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-        <img src="uploaded_img/cake4.png" class="dessert" alt="cake">
-        <a href="category.html" class="cat">1 3/4 cups all purpose flour, or (plain flour), (8 oz | 227 g)
-
-            3/4 cup unsweetened cocoa powder, (2.6 oz | 75 g) or regular Hershey's cocoa powder
-            1 1/2 teaspoon baking powder
-            1 1/2 teaspoon baking soda, (or bi-carb soda)
-            1 teaspoon salt
-            2 cups white granulated sugar, (14 oz | 410 g)
-            2 large eggs
-            1 cup milk, (250 ml)
-            1/2 cup vegetable oil, (125 ml)
-            2 teaspoons pure vanilla extract
-            1 cup boiling water (250 ml)</a>
-        <div class="name">cake</div  >
-        <div class="flex">
-           <div class="price"><span>$</span>3<span>/-</span></div>
-           <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
+      <!-- Details -->
+      <section class="space-y-6">
+        <div class="space-y-2">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+            <span class="text-gradient">Chicken Alfredo</span> Pizza
+          </h1>
+          <div class="flex items-center gap-3 text-sm">
+            <div class="flex items-center text-amber-400">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star text-amber-300"></i>
+            </div>
+            <span class="text-slate-600">4.5 (128 reviews)</span>
+            <span class="text-emerald-600 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> In stock</span>
+          </div>
+          <div class="flex items-end gap-3">
+            <p class="text-3xl font-extrabold text-slate-900">$<span id="unitPrice">3.00</span></p>
+            <p class="text-sm text-slate-500">+ size/extras • total below</p>
+          </div>
         </div>
-     </form>
-     <form accept="" method="post" class="box">
-        <a href="quick_view.html" class="fas fa-eye"></a>
-        <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-        <img src="uploaded_img/pudding.png" class="dessert" alt="Self-saucing chocolate pudding">
-        <a href="category.html" class="cat">4 oz butter, (120 g | 1/2 cup)
-            2/3 cup unsweetened cocoa powder, or regular HERSHEY'S (2.4 oz | 65 g)
-            3 cups powdered sugar, (confectioners or icing sugar)
-            1/3 cup milk
-            1 teaspoon pure vanilla extract
-            2 large eggs
-            1 cup milk, (250 ml)
-            1/2 cup vegetable oil, (125 ml)
-            2 teaspoons pure vanilla extract
-            1 cup boiling water (250 ml)</a>
-        <div class="name">Self-saucing chocolate pudding</div>
-        <div class="flex">
-           <div class="price"><span>$</span>3<span>/-</span></div>
-           <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-        </div>
-     </form>
 
+        <!-- Options -->
+        <div class="glass rounded-2xl p-4 sm:p-5 shadow-glass">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <!-- Size -->
+            <div>
+              <p class="text-sm font-semibold text-slate-700 mb-2">Size</p>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="relative">
+                  <input type="radio" name="size" value="S" data-adj="0" class="peer sr-only" checked />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-brand-500 peer-checked:bg-orange-50 font-semibold">S</div>
+                  <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-xs text-slate-500">+ $0</span>
+                </label>
+                <label class="relative">
+                  <input type="radio" name="size" value="M" data-adj="1" class="peer sr-only" />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-brand-500 peer-checked:bg-orange-50 font-semibold">M</div>
+                  <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-xs text-slate-500">+ $1</span>
+                </label>
+                <label class="relative">
+                  <input type="radio" name="size" value="L" data-adj="2" class="peer sr-only" />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-brand-500 peer-checked:bg-orange-50 font-semibold">L</div>
+                  <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-xs text-slate-500">+ $2</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Spice level -->
+            <div>
+              <p class="text-sm font-semibold text-slate-700 mb-2">Spice</p>
+              <div class="flex gap-2">
+                <label class="flex-1">
+                  <input type="radio" name="spice" value="mild" class="peer sr-only" checked />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 font-semibold">Mild</div>
+                </label>
+                <label class="flex-1">
+                  <input type="radio" name="spice" value="medium" class="peer sr-only" />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-amber-500 peer-checked:bg-amber-50 font-semibold">Medium</div>
+                </label>
+                <label class="flex-1">
+                  <input type="radio" name="spice" value="hot" class="peer sr-only" />
+                  <div class="w-full text-center px-3 py-2 rounded-xl border border-slate-200 peer-checked:border-rose-500 peer-checked:bg-rose-50 font-semibold flex items-center justify-center gap-2">
+                    Hot <i class="fa-solid fa-pepper-hot text-rose-500"></i>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Extras -->
+            <div class="sm:col-span-2">
+              <p class="text-sm font-semibold text-slate-700 mb-2">Extras</p>
+              <div class="flex flex-wrap gap-2">
+                <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-orange-50">
+                  <input type="checkbox" class="extra accent-brand-600" data-adj="0.5" />
+                  <span class="text-sm font-medium">Extra cheese <span class="text-slate-500">(+ $0.5)</span></span>
+                </label>
+                <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-orange-50">
+                  <input type="checkbox" class="extra accent-brand-600" data-adj="0.7" />
+                  <span class="text-sm font-medium">Pepperoni <span class="text-slate-500">(+ $0.7)</span></span>
+                </label>
+                <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-orange-50">
+                  <input type="checkbox" class="extra accent-brand-600" data-adj="0.3" />
+                  <span class="text-sm font-medium">Garlic dip <span class="text-slate-500">(+ $0.3)</span></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div>
+              <p class="text-sm font-semibold text-slate-700 mb-2">Quantity</p>
+              <div class="inline-flex items-center rounded-xl border border-slate-200 bg-white overflow-hidden">
+                <button id="decQty" class="px-3 py-2 hover:bg-slate-50" aria-label="Decrease"><i class="fa-solid fa-minus"></i></button>
+                <input id="qty" type="number" min="1" max="10" value="1" class="w-14 text-center outline-none py-2" />
+                <button id="incQty" class="px-3 py-2 hover:bg-slate-50" aria-label="Increase"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+
+            <!-- Total -->
+            <div class="text-right">
+              <p class="text-sm text-slate-500">Total</p>
+              <p class="text-3xl font-extrabold">$<span id="totalPrice">3.00</span></p>
+              <p class="text-xs text-slate-500">incl. taxes</p>
+            </div>
+          </div>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-3">
+            <button id="addCartBtn" class="btn-cta inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 rounded-xl shadow-glass transition">
+              <i class="fa-solid fa-cart-plus"></i> Add to cart
+            </button>
+            <a href="checkout.html" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-200 hover:bg-white font-semibold text-slate-700 transition">
+              <i class="fa-solid fa-bolt"></i> Buy now
+            </a>
+          </div>
+
+          <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm text-slate-600">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-truck-fast text-brand-600"></i> 30-min delivery</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-burger text-brand-600"></i> Freshly baked</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-leaf text-brand-600"></i> Halal friendly</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Tabs -->
+    <section class="mt-12">
+      <div class="glass rounded-3xl shadow-glass p-4 sm:p-6">
+        <div class="flex flex-wrap gap-2">
+          <button data-tab="desc" class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white font-semibold">Description</button>
+          <button data-tab="ing"  class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white">Ingredients</button>
+          <button data-tab="nut"  class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white">Nutrition</button>
+          <button data-tab="rev"  class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white">Reviews</button>
+        </div>
+
+        <!-- Panels -->
+        <div class="mt-6 space-y-6">
+          <div id="tab-desc" class="tab-panel">
+            <p class="text-slate-700 leading-relaxed">
+              Our Chicken Alfredo Pizza features a velvety alfredo sauce, grilled chicken, mushrooms, and a sprinkle of parsley on a hand-tossed crust. Baked to golden perfection with a mozzarella–parmesan blend for the ultimate creamy bite.
+            </p>
+            <div class="mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+              <div class="p-3 rounded-xl border border-slate-200 bg-white"><strong>Crust:</strong> Hand-tossed</div>
+              <div class="p-3 rounded-xl border border-slate-200 bg-white"><strong>Sauce:</strong> Alfredo (garlic-parmesan)</div>
+              <div class="p-3 rounded-xl border border-slate-200 bg-white"><strong>Cheese:</strong> Mozzarella & parmesan</div>
+            </div>
+          </div>
+
+          <div id="tab-ing" class="tab-panel hidden">
+            <ul class="flex flex-wrap gap-2">
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Wheat flour</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Alfredo sauce</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Grilled chicken</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Mozzarella</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Parmesan</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Mushrooms</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Parsley</li>
+              <li class="px-3 py-1.5 rounded-full bg-orange-100 text-brand-700 text-sm">Olive oil</li>
+            </ul>
+            <p class="mt-3 text-sm text-slate-500">Allergens: gluten, dairy. May contain traces of nuts.</p>
+          </div>
+
+          <div id="tab-nut" class="tab-panel hidden">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <p class="text-sm text-slate-500">Calories</p>
+                <p class="text-2xl font-extrabold">420</p>
+                <div class="mt-2 w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-brand-500" style="width:55%"></div>
+                </div>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <p class="text-sm text-slate-500">Protein</p>
+                <p class="text-2xl font-extrabold">19g</p>
+                <div class="mt-2 w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-500" style="width:60%"></div>
+                </div>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <p class="text-sm text-slate-500">Carbs</p>
+                <p class="text-2xl font-extrabold">48g</p>
+                <div class="mt-2 w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-sky-500" style="width:70%"></div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">Values per slice (S size) • approximate.</p>
+          </div>
+
+          <div id="tab-rev" class="tab-panel hidden">
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Emon Ahmed</div>
+                  <div class="flex text-amber-400"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                </div>
+                <p class="mt-2 text-slate-700">Super creamy and the crust is just right. Recommended with extra cheese!</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Rafi</div>
+                  <div class="flex text-amber-400"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></div>
+                </div>
+                <p class="mt-2 text-slate-700">Loved the sauce, went with medium spice. Delivery was fast.</p>
+              </div>
+              <!-- Write review (mock) -->
+              <form class="mt-4 grid sm:grid-cols-2 gap-3">
+                <input type="text" placeholder="Your name" class="px-3 py-2 rounded-xl border border-slate-200">
+                <select class="px-3 py-2 rounded-xl border border-slate-200">
+                  <option>⭐️⭐️⭐️⭐️⭐️</option>
+                  <option>⭐️⭐️⭐️⭐️</option>
+                  <option>⭐️⭐️⭐️</option>
+                  <option>⭐️⭐️</option>
+                  <option>⭐️</option>
+                </select>
+                <textarea class="sm:col-span-2 px-3 py-2 rounded-xl border border-slate-200" rows="3" placeholder="Share your thoughts…"></textarea>
+                <button type="button" class="sm:col-span-2 btn-cta bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-xl font-semibold">Submit review</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="mt-12">
+      <div class="flex items-end justify-between mb-4">
+        <h2 class="text-2xl font-extrabold text-slate-900">You may also like</h2>
+        <a href="menu.html" class="text-brand-700 hover:text-brand-800 font-semibold text-sm">View menu →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card -->
+        <article class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+          <img src="uploaded_img/pizzachess.png" alt="Cheesy Pepperoni Pizza" class="w-full aspect-[4/3] object-contain" />
+          <div class="p-4">
+            <h3 class="font-bold">Cheesy Pepperoni Pizza</h3>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="font-extrabold">$3</span>
+              <button class="text-sm px-3 py-1.5 rounded-lg bg-brand-600 text-white hover:bg-brand-700 add-related">Add</button>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+          <img src="uploaded_img/stickbeefburger.png" alt="Stick Beef Burger" class="w-full aspect-[4/3] object-contain" />
+          <div class="p-4">
+            <h3 class="font-bold">Stick Beef Burger</h3>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="font-extrabold">$3</span>
+              <button class="text-sm px-3 py-1.5 rounded-lg bg-brand-600 text-white hover:bg-brand-700 add-related">Add</button>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+          <img src="uploaded_img/BestBuffaloWings.png" alt="Buffalo Wings" class="w-full aspect-[4/3] object-contain" />
+          <div class="p-4">
+            <h3 class="font-bold">Buffalo Wings</h3>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="font-extrabold">$3</span>
+              <button class="text-sm px-3 py-1.5 rounded-lg bg-brand-600 text-white hover:bg-brand-700 add-related">Add</button>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+          <img src="uploaded_img/c5rz-hero.jpg" alt="Ratanak Pizza" class="w-full aspect-[4/3] object-cover" />
+          <div class="p-4">
+            <h3 class="font-bold">Ratanak Pizza</h3>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="font-extrabold">$3</span>
+              <button class="text-sm px-3 py-1.5 rounded-lg bg-brand-600 text-white hover:bg-brand-700 add-related">Add</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white/70 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-bold text-slate-900">Email</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Opening Hours</h4>
+          <p class="mt-2 text-slate-600">10:00 AM – 12:00 PM</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Address</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet, Bangladesh</a>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Phone</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="tel:+8801746462491">+880 174646-2491</a>
+        </div>
+      </div>
+      <div class="pt-8 mt-8 border-t border-slate-200 text-sm text-slate-500">
+        © Copyright 2023 by <span class="font-semibold text-slate-700">Emon Ahmed</span> • All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+    <div class="glass rounded-xl shadow-glass px-4 py-3 flex items-center gap-3">
+      <i class="fa-solid fa-circle-check text-emerald-600"></i>
+      <p class="text-sm font-semibold">Added to cart!</p>
+    </div>
   </div>
 
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-   </div>
+    // Gallery thumbs
+    const mainImg = document.getElementById('mainImg');
+    document.querySelectorAll('.thumb').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.thumb').forEach(b => b.classList.remove('thumb-active'));
+        btn.classList.add('thumb-active');
+        const img = btn.querySelector('img');
+        if (img && mainImg) mainImg.src = img.src;
+      });
+    });
 
-</section>
+    // Wishlist toggle
+    const wishBtn = document.getElementById('wishBtn');
+    if (wishBtn) {
+      wishBtn.addEventListener('click', () => {
+        const icon = wishBtn.querySelector('i');
+        icon.classList.toggle('fa-regular');
+        icon.classList.toggle('fa-solid');
+      });
+    }
 
+    // Price calculation
+    const BASE = 3.00;
+    const unitPriceEl = document.getElementById('unitPrice');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const qtyInput = document.getElementById('qty');
+    const decQty = document.getElementById('decQty');
+    const incQty = document.getElementById('incQty');
 
+    function calc() {
+      const sizeAdj = parseFloat(document.querySelector('input[name="size"]:checked')?.dataset.adj || '0');
+      let extrasAdj = 0;
+      document.querySelectorAll('.extra').forEach(ch => { if (ch.checked) extrasAdj += parseFloat(ch.dataset.adj || '0'); });
+      const unit = BASE + sizeAdj + extrasAdj;
+      const qty = Math.min(10, Math.max(1, parseInt(qtyInput.value || '1', 10)));
+      unitPriceEl.textContent = unit.toFixed(2);
+      totalPriceEl.textContent = (unit * qty).toFixed(2);
+    }
 
+    document.querySelectorAll('input[name="size"], .extra, input[name="spice"]').forEach(el => el.addEventListener('change', calc));
+    qtyInput.addEventListener('input', calc);
+    decQty.addEventListener('click', (e)=>{ e.preventDefault(); qtyInput.value = Math.max(1, (parseInt(qtyInput.value)||1) - 1); calc(); });
+    incQty.addEventListener('click', (e)=>{ e.preventDefault(); qtyInput.value = Math.min(10, (parseInt(qtyInput.value)||1) + 1); calc(); });
+    calc();
 
+    // Tabs
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = {
+      desc: document.getElementById('tab-desc'),
+      ing: document.getElementById('tab-ing'),
+      nut: document.getElementById('tab-nut'),
+      rev: document.getElementById('tab-rev')
+    };
+    function activateTab(key){
+      tabs.forEach(t=>t.classList.remove('font-semibold','bg-orange-50','border-brand-300'));
+      panels.desc.classList.add('hidden'); panels.ing.classList.add('hidden'); panels.nut.classList.add('hidden'); panels.rev.classList.add('hidden');
+      document.querySelector(`.tab-btn[data-tab="${key}"]`).classList.add('font-semibold','bg-orange-50','border-brand-300');
+      panels[key].classList.remove('hidden');
+    }
+    tabs.forEach(t=>t.addEventListener('click', ()=>activateTab(t.dataset.tab)));
+    activateTab('desc');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
-      </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
-      </div>
-
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
-      </div>
-
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
-
-   </section>
-<!--loader gif image for every linked pages -->
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
-
-</footer>
-
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
-
-<script src="js/script.js"></script>
-
+    // Add to cart + toast
+    const badge = document.getElementById('cartBadge');
+    const toast = document.getElementById('toast');
+    function showToast(){
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(()=> toast.classList.add('hidden'), 1400);
+    }
+    const addBtn = document.getElementById('addCartBtn');
+    if (addBtn) addBtn.addEventListener('click', ()=> {
+      let c = parseInt(badge?.textContent || '0', 10); c++; if (badge) badge.textContent = c.toString();
+      showToast();
+    });
+    document.querySelectorAll('.add-related').forEach(b=> b.addEventListener('click', ()=> {
+      let c = parseInt(badge?.textContent || '0', 10); c++; if (badge) badge.textContent = c.toString();
+      showToast();
+    }));
+  </script>
 </body>
 </html>

@@ -1,133 +1,369 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — Register</title>
+  <meta name="description" content="Create your Food Mins account to save addresses, track orders, and get delicious deals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'] },
+        extend: {
+          colors: {
+            brand: {
+              50:'#fff1f2',100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185',
+              500:'#f43f5e',600:'#e11d48',700:'#be123c',800:'#9f1239',900:'#881337'
+            }
+          },
+          boxShadow: {
+            glow: '0 0 0 3px rgba(244,63,94,0.25), 0 10px 30px rgba(0,0,0,0.15)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .bg-grid {
+      background-image:
+        radial-gradient(1000px 600px at 10% -10%, rgba(244,63,94,.25), transparent 60%),
+        radial-gradient(800px 500px at 110% 10%, rgba(99,102,241,.25), transparent 60%),
+        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,0.08) 31px, rgba(255,255,255,0.08) 32px),
+        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,0.08) 31px, rgba(255,255,255,0.08) 32px);
+      background-size: auto, auto, 32px 32px, 32px 32px;
+      backdrop-filter: blur(2px);
+    }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.6));
+      backdrop-filter: blur(10px);
+    }
+    @media (prefers-color-scheme: dark) {
+      .glass { background: linear-gradient(180deg, rgba(17,17,23,.7), rgba(17,17,23,.6)); }
+      .bg-grid {
+        background-image:
+          radial-gradient(1000px 600px at 10% -10%, rgba(244,63,94,.18), transparent 60%),
+          radial-gradient(800px 500px at 110% 10%, rgba(99,102,241,.18), transparent 60%),
+          linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,0.06) 31px, rgba(255,255,255,0.06) 32px),
+          linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,0.06) 31px, rgba(255,255,255,0.06) 32px);
+      }
+    }
+    .strength-bar { transition: width .25s ease, background-color .25s ease; }
+  </style>
 </head>
-<body>
-   
-<header class="header">
-
-   <section class="flex">
-
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-<!--Navbar-->
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 bg-grid">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="index.html" class="inline-flex items-center gap-2 group">
+          <span class="text-2xl">🍽</span>
+          <span class="font-extrabold text-lg tracking-tight group-hover:text-brand-600 transition">Food Mins</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+           <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--search and cart sections-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+         <a href="profile.html">Profile</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="login.html" class="hidden sm:inline-flex px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-brand-500 hover:text-brand-600 transition">Log in</a>
+          <a href="register.html" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-brand-500 to-indigo-500 text-white shadow-glow hover:opacity-95 transition">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="-ml-0.5"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm-7 9a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Sign up
+          </a>
+        </div>
       </div>
-<!--set a custom profile -->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">Login</a> or <a href="register.html">Register</a></p>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-gradient-to-br from-brand-500/30 to-indigo-500/30 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-400/20 to-cyan-400/20 blur-3xl"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <!-- Left: Illustration / copy -->
+        <div class="text-center lg:text-left">
+          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1 text-xs uppercase tracking-widest">
+            New here? <span class="text-brand-600 font-semibold">Join Food Mins</span>
+          </span>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight">
+            Create your account <span class="bg-gradient-to-r from-brand-500 to-indigo-500 bg-clip-text text-transparent">in seconds</span>
+          </h1>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-xl">
+            Save favorites, track orders in real-time, and unlock exclusive offers tailored to your cravings.
+          </p>
+
+          <ul class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+            <li class="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/70 px-3 py-2">
+              <span class="h-2 w-2 rounded-full bg-emerald-500"></span> 30-min delivery
+            </li>
+            <li class="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/70 px-3 py-2">
+              <span class="h-2 w-2 rounded-full bg-cyan-500"></span> Save addresses
+            </li>
+            <li class="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/70 px-3 py-2">
+              <span class="h-2 w-2 rounded-full bg-violet-500"></span> Member deals
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Form Card -->
+        <div class="glass rounded-2xl shadow-2xl border border-white/20 dark:border-slate-700/50">
+          <div class="p-6 sm:p-8">
+            <div class="mb-6">
+              <h2 class="text-xl font-bold">Sign up</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-400">It’s quick and easy. Only a few details!</p>
+            </div>
+
+            <form id="registerForm" novalidate class="space-y-5">
+              <!-- Name -->
+              <div>
+                <label for="fullName" class="block text-sm font-medium mb-1">Full name</label>
+                <div class="relative">
+                  <input id="fullName" name="fullName" type="text" maxlength="40" autocomplete="name" required
+                         class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/70 dark:bg-slate-900/40 px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-brand-500"
+                         placeholder="e.g., Emon Ahmed">
+                </div>
+                <p class="mt-1 text-xs text-rose-500 invisible" id="errName">Please enter your name.</p>
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required
+                       class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/70 dark:bg-slate-900/40 px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-brand-500"
+                       placeholder="you@example.com">
+                <p class="mt-1 text-xs text-rose-500 invisible" id="errEmail">Enter a valid email address.</p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="phone" class="block text-sm font-medium mb-1">Phone</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                       pattern="^[0-9+\-\s()]{7,20}$" required
+                       class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/70 dark:bg-slate-900/40 px-4 py-3 shadow-sm outline-none focus:ring-2 focus:ring-brand-500"
+                       placeholder="+880 1746-462-491">
+                <p class="mt-1 text-xs text-rose-500 invisible" id="errPhone">Enter a valid phone number.</p>
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                <div class="relative">
+                  <input id="password" name="password" type="password" minlength="8" required
+                         class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/70 dark:bg-slate-900/40 px-4 py-3 pr-12 shadow-sm outline-none focus:ring-2 focus:ring-brand-500"
+                         placeholder="At least 8 characters">
+                  <button type="button" aria-label="Toggle password visibility"
+                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200"
+                          onclick="toggleVisibility('password', this)">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                  </button>
+                </div>
+                <!-- Strength -->
+                <div class="mt-2 h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                  <div id="strengthBar" class="strength-bar h-full w-0 bg-rose-400"></div>
+                </div>
+                <p id="strengthText" class="mt-1 text-xs text-slate-500">Strength: —</p>
+                <p class="mt-1 text-xs text-rose-500 invisible" id="errPass">Password is too weak.</p>
+              </div>
+
+              <!-- Confirm -->
+              <div>
+                <label for="confirm" class="block text-sm font-medium mb-1">Confirm password</label>
+                <div class="relative">
+                  <input id="confirm" name="confirm" type="password" required
+                         class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 bg-white/70 dark:bg-slate-900/40 px-4 py-3 pr-12 shadow-sm outline-none focus:ring-2 focus:ring-brand-500"
+                         placeholder="Repeat your password">
+                  <button type="button" aria-label="Toggle confirm password visibility"
+                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200"
+                          onclick="toggleVisibility('confirm', this)">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                  </button>
+                </div>
+                <p class="mt-1 text-xs text-rose-500 invisible" id="errConfirm">Passwords do not match.</p>
+              </div>
+
+              <!-- Terms -->
+              <div class="flex items-start gap-3">
+                <input id="terms" name="terms" type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                <label for="terms" class="text-sm leading-tight">
+                  I agree to the <a href="#" class="text-brand-600 hover:underline">Terms</a> and <a href="#" class="text-brand-600 hover:underline">Privacy Policy</a>.
+                </label>
+              </div>
+
+              <!-- Actions -->
+              <div class="space-y-4 pt-2">
+                <button id="submitBtn" type="submit"
+                        class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-indigo-500 px-4 py-3 font-semibold text-white shadow-glow disabled:opacity-50 disabled:cursor-not-allowed transition">
+                  <svg class="h-5 w-5 -ml-1" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Create account
+                </button>
+                <button type="button" onclick="demoFill()" class="w-full rounded-xl border border-slate-300/70 dark:border-slate-700 px-4 py-3 text-sm hover:border-brand-500 hover:text-brand-600 transition">
+                  Use demo data
+                </button>
+                <p class="text-center text-sm">Already have an account?
+                  <a href="login.html" class="text-brand-600 font-semibold hover:underline">Log in</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /Card -->
       </div>
+    </div>
+  </section>
 
-   </section>
-
-</header>
-<!-- registration form for user input their personal details-->
-<section class="form-container">
-
-   <form  id="myForm" onSubmit="submitResistation(event)">
-      <h3>register now</h3>
-      <input type="text" id="name" required maxlength="15" name="name" placeholder="Enter Your name" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="email" id="email"  required maxlength="50" name="email" placeholder="Enter Your Email" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="number" id="number"  min="10" max="9999999999" onkeypress="if(this.value.length == 10) return false;" placeholder="enter your number" required class="box" name="number">
-      <input type="password" id="password"  required maxlength="12" name="password" placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" id="passwords"  required maxlength="12" name="passwords" placeholder="confirm your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-     <input type="submit" value="regisetr now" href="profile.html" class="btn" name="submit" >
-      <p>Already have an account? <a href="login.html">login now</a></p>
-   </form>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-slate-200/70 dark:border-slate-800/80">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+        <div>
+          <h4 class="font-semibold mb-2">Email</h4>
+          <a class="text-slate-600 dark:text-slate-300 hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Opening Hours</h4>
+          <p class="text-slate-600 dark:text-slate-300">10:00am — 12:00pm</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Address</h4>
+          <a class="text-slate-600 dark:text-slate-300 hover:text-brand-600" href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet, Bangladesh</a>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Phone</h4>
+          <a class="text-slate-600 dark:text-slate-300 hover:text-brand-600" href="tel:+8801746462491">+880 1746-462-491</a>
+        </div>
       </div>
+      <p class="mt-8 text-xs text-slate-500">&copy; <span id="year"></span> Food Mins. All rights reserved.</p>
+    </div>
+  </footer>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
-      </div>
+  <!-- Toast -->
+  <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-50 hidden">
+    <div class="rounded-xl bg-slate-900 text-white/90 px-4 py-3 shadow-2xl ring-1 ring-white/10 flex items-center gap-3">
+      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-white">✓</span>
+      <span class="text-sm">Account created! Redirecting to your profile…</span>
+    </div>
+  </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="address">
-         <!--Custom google of my home-->
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
-      </div>
+  <script>
+    const byId = (id) => document.getElementById(id);
+    const nameEl = byId('fullName');
+    const emailEl = byId('email');
+    const phoneEl = byId('phone');
+    const passEl = byId('password');
+    const confirmEl = byId('confirm');
+    const termsEl = byId('terms');
+    const submitBtn = byId('submitBtn');
+    const strengthBar = byId('strengthBar');
+    const strengthText = byId('strengthText');
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
+    const errName = byId('errName');
+    const errEmail = byId('errEmail');
+    const errPhone = byId('errPhone');
+    const errPass = byId('errPass');
+    const errConfirm = byId('errConfirm');
 
-   </section>
+    const validators = {
+      name: () => nameEl.value.trim().length > 1,
+      email: () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim()),
+      phone: () => /^[0-9+\-\s()]{7,20}$/.test(phoneEl.value.trim()),
+      pass: () => {
+        const v = passEl.value;
+        // strength: length + variety
+        let score = 0;
+        if (v.length >= 8) score++;
+        if (/[A-Z]/.test(v)) score++;
+        if (/[a-z]/.test(v)) score++;
+        if (/[0-9]/.test(v)) score++;
+        if (/[^A-Za-z0-9]/.test(v)) score++;
+        updateStrength(Math.min(score, 5));
+        return score >= 3 && v.length >= 8;
+      },
+      match: () => passEl.value && confirmEl.value && passEl.value === confirmEl.value,
+      terms: () => termsEl.checked
+    };
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+    function updateStrength(score) {
+      const pct = [0, 25, 45, 65, 85, 100][score];
+      const colors = ['#fda4af','#fb7185','#f43f5e','#f59e0b','#10b981','#059669'];
+      strengthBar.style.width = pct + '%';
+      strengthBar.style.backgroundColor = colors[Math.min(score, colors.length - 1)];
+      const labels = ['—','Very weak','Weak','Okay','Strong','Very strong'];
+      strengthText.textContent = 'Strength: ' + labels[score];
+    }
 
-</footer>
+    function toggleVisibility(id, btn) {
+      const el = byId(id);
+      const isPw = el.type === 'password';
+      el.type = isPw ? 'text' : 'password';
+      btn.classList.toggle('text-brand-600', isPw);
+    }
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
-<!--connection script and registration form-->
-<script src="js/script.js"></script>
-<script src="js/registation.js"></script>
+    function showError(el, errEl, cond) {
+      if (!cond) {
+        el.classList.add('ring-2','ring-rose-500/60');
+        errEl.classList.remove('invisible');
+      } else {
+        el.classList.remove('ring-2','ring-rose-500/60');
+        errEl.classList.add('invisible');
+      }
+    }
 
+    function validateAll() {
+      const vName = validators.name();
+      const vEmail = validators.email();
+      const vPhone = validators.phone();
+      const vPass = validators.pass();
+      const vMatch = validators.match();
+      const vTerms = validators.terms();
+
+      showError(nameEl, errName, vName);
+      showError(emailEl, errEmail, vEmail);
+      showError(phoneEl, errPhone, vPhone);
+      showError(passEl, errPass, vPass);
+      showError(confirmEl, errConfirm, vMatch);
+
+      submitBtn.disabled = !(vName && vEmail && vPhone && vPass && vMatch && vTerms);
+      return !submitBtn.disabled;
+    }
+
+    ['input','blur'].forEach(evt => {
+      [nameEl, emailEl, phoneEl, passEl, confirmEl, termsEl].forEach(el => {
+        el.addEventListener(evt, validateAll);
+      });
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validateAll()) return;
+      // Simulated success
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => { window.location.href = 'profile.html'; }, 1200);
+    });
+
+    function demoFill() {
+      nameEl.value = 'Emon Ahmed';
+      emailEl.value = 'emon.demo@example.com';
+      phoneEl.value = '+880 1746 462 491';
+      passEl.value = 'FoodMins#2025';
+      confirmEl.value = 'FoodMins#2025';
+      termsEl.checked = true;
+      validateAll();
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

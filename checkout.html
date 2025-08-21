@@ -1,159 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>checkout</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — Checkout</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:"#fff7f7",100:"#ffe9e8",200:"#ffd1ce",300:"#ffaaa5",400:"#ff7b72",
+              500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337"
+            }
+          },
+          boxShadow: {
+            glow: "0 10px 30px rgba(244,63,94,.35)",
+          },
+          animation: {
+            blob: "blob 10s infinite",
+            float: "float 6s ease-in-out infinite",
+            pingsoft: "pingsoft 1.8s cubic-bezier(0,0,.2,1) infinite"
+          },
+          keyframes: {
+            blob: {
+              "0%":{transform:"translate(0,0) scale(1)"},
+              "33%":{transform:"translate(20px,-15px) scale(1.04)"},
+              "66%":{transform:"translate(-15px,15px) scale(.98)"},
+              "100%":{transform:"translate(0,0) scale(1)"}
+            },
+            float: {
+              "0%,100%":{transform:"translateY(0)"},
+              "50%":{transform:"translateY(-8px)"}
+            },
+            pingsoft:{
+              "75%,100%":{transform:"scale(1.2)", opacity:0}
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+  <style>
+    .grad { background: linear-gradient(90deg,#fde68a,#fb923c,#f43f5e,#be123c); }
+    .grad-soft { background: linear-gradient(135deg, rgba(255,243,243,.7), rgba(255,228,230,.6)); }
+  </style>
 </head>
-<body>
-   
-<header class="header">
-<!--Navbar-->
-   <section class="flex">
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+<body class="bg-white text-gray-900 antialiased">
+  <!-- Soft background blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand-200/60 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-32 h-96 w-96 rounded-full bg-orange-200/60 blur-3xl animate-blob" style="animation-delay:2s"></div>
+    <div class="absolute bottom-10 left-20 h-64 w-64 rounded-full bg-amber-200/60 blur-3xl animate-blob" style="animation-delay:4s"></div>
+  </div>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+  <!-- Header -->
+  <header class="relative border-b bg-white/70 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+      <a href="home.html" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow group-hover:scale-105 transition">
+          <i class="fa-solid fa-bowl-food"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Food Mins</span>
+      </a>
+
+      <div class="hidden gap-8 md:flex">
+          <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--search and cart options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <a href="profile.html">Profile</a>
       </div>
 
-   </section>
-
-</header>
-
-<div class="heading">
-   <h3>checkout</h3>
-   <p><a href="home.html">home </a> <span> / checkout</span></p>
-</div>
-<!--Check out page where i customize some manual food order and user details informations-->
-<section class="checkout">
-
-   <h1 class="title">order summary</h1>
-
-   <form action="" method="post">
-      <div class="cart-items">
-         <h3>cart items</h3>
-         <p><span class="name">pizza 0.1</span><span class="price">$5</span></p>
-         <p><span class="name">main dish 0.2</span><span class="price">$6</span></p>
-         <p><span class="name">Dessert 0.3</span><span class="price">$3</span></p>
-         <p class="grand-total"><span class="name">grand total :</span> <span class="price">$14</span></p>
-         <a href="cart.html" class="btn">view cart</a>
-      </div>
-      <div class="user-info">
-         <h3>your info</h3>
-         <p><i class="fas fa-user"></i> <span>Emon Ahmed</span></p>
-         <p><i class="fas fa-phone"></i> <span>01746462491</span></p>
-         <p><i class="fas fa-envelope"></i> <span>eaemonkhan720@gmail.com</span></p>
-         <!--upadate profile info-->
-         <a href="update_profile.html" class="btn">Update info</a>
-         <h3>delivery address</h3>
-         <p class="address"><i class="fas fa-map-marker-alt"></i> <span>Sylhet, Bangladesh, 3100</span></p>
-         <!--update address-->
-         <a href="update_address.html" class="btn">update address</a>
-         <select name="method" class="box" required>
-            <option value="" disabled selected>select payment method</option>
-            <option value="cash on delivery">cash on delivery</option>
-            <option value="credit card">Credit card / Debit cart</option>
-            <option value="paytm">paytm</option>
-            <option value="paypal">paypal</option>
-         </select>
-      </div>
-      <button class="btn order-btn"> Place an order</button>
-   </form>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div class="hidden md:flex items-center gap-3">
+        <a href="search.html" class="p-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative p-2 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="absolute -right-1 -top-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-500 px-1.5 text-xs text-white" id="hdrBadge">3</span>
+        </a>
+        <a href="login.html" class="rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
       </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <button class="md:hidden rounded-xl border px-3 py-2" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile nav -->
+    <div id="mnav" class="mx-auto hidden max-w-7xl px-6 pb-4 md:hidden">
+      <div class="grid gap-2 rounded-2xl border bg-white p-4 shadow-sm">
+        <a href="home.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Home</a>
+        <a href="menu.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Menu</a>
+        <a href="orders.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Orders</a>
+        <a href="contact.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Contact</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="search.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</a>
+          <a href="cart.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
+          <a href="login.html" class="ml-auto rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Steps -->
+  <section class="mx-auto max-w-7xl px-6 pt-6 lg:px-8">
+    <div class="rounded-2xl border bg-white/70 p-4 backdrop-blur">
+      <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-gray-600">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-white">1</span> Cart
+        </div>
+        <div class="flex-1 mx-4 h-1 rounded-full grad"></div>
+        <div class="flex items-center gap-2 text-gray-900">
+          <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-white">2</span> Information
+        </div>
+        <div class="flex-1 mx-4 h-1 rounded-full grad"></div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white">3</span> Payment
+        </div>
+        <div class="flex-1 mx-4 h-1 rounded-full grad-soft"></div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-200 text-gray-500">4</span> Review
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <main class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <!-- Left: Forms -->
+      <section class="space-y-6 lg:col-span-8">
+        <!-- Free shipping bar -->
+        <div class="rounded-2xl border bg-white/70 p-4 backdrop-blur">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-truck-fast text-brand-600 text-xl"></i>
+            <p class="text-sm" id="freeText">Spend <span class="font-semibold">$40.00</span> more for free delivery.</p>
+          </div>
+          <div class="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-gray-100">
+            <div id="freeProgress" class="h-2.5 w-0 rounded-full grad transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-user text-gray-900"></i>
+            <h2 class="text-lg font-extrabold">Contact</h2>
+          </div>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="text-sm font-medium text-gray-700">Full name</label>
+              <input id="name" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="Emon Ahmed" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Phone</label>
+              <input id="phone" type="tel" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="+8801746462491" required>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Email</label>
+              <input id="email" type="email" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="eaemonkhan720@gmail.com" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-gray-900"></i>
+            <h2 class="text-lg font-extrabold">Delivery</h2>
+          </div>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <label class="flex items-center gap-3 rounded-xl border p-3 hover:border-brand-300">
+              <input type="radio" name="method" value="delivery" class="method-radio" checked />
+              <span>Home delivery <span class="text-gray-500">(Base $3.00 · free over $40)</span></span>
+            </label>
+            <label class="flex items-center gap-3 rounded-xl border p-3 hover:border-brand-300">
+              <input type="radio" name="method" value="pickup" class="method-radio"/>
+              <span>Pickup <span class="text-gray-500">(Free)</span></span>
+            </label>
+          </div>
+
+          <div id="addressFields" class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Address line</label>
+              <input id="addr1" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="Sylhet" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">City</label>
+              <input id="city" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="Sylhet" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Post code</label>
+              <input id="zip" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="3100" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Country</label>
+              <input id="country" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" value="Bangladesh" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Delivery time</label>
+              <select id="slot" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400">
+                <option>ASAP (30–45 mins)</option>
+                <option>Today 6:00–6:30 PM</option>
+                <option>Today 6:30–7:00 PM</option>
+                <option>Today 7:00–7:30 PM</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Delivery note (optional)</label>
+              <textarea id="note" rows="3" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="E.g., building name, leave at door, etc."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-credit-card text-gray-900"></i>
+            <h2 class="text-lg font-extrabold">Payment</h2>
+          </div>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-3">
+            <label class="flex items-center gap-3 rounded-xl border p-3 hover:border-brand-300">
+              <input type="radio" name="pay" value="card" class="pay-radio" checked />
+              <span>Card</span>
+            </label>
+            <label class="flex items-center gap-3 rounded-xl border p-3 hover:border-brand-300">
+              <input type="radio" name="pay" value="paypal" class="pay-radio" />
+              <span>PayPal</span>
+            </label>
+            <label class="flex items-center gap-3 rounded-xl border p-3 hover:border-brand-300">
+              <input type="radio" name="pay" value="cod" class="pay-radio" />
+              <span>Cash on delivery</span>
+            </label>
+          </div>
+
+          <!-- Card fields -->
+          <div id="cardFields" class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Card number</label>
+              <div class="mt-1 flex items-center rounded-xl border px-3 py-2">
+                <i class="fa-brands fa-cc-visa text-xl text-blue-600 mr-2"></i>
+                <input id="ccnum" type="text" inputmode="numeric" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" class="w-full outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Name on card</label>
+              <input id="ccname" type="text" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="text-sm font-medium text-gray-700">Expiry</label>
+                <input id="ccexp" type="text" placeholder="MM/YY" maxlength="5" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-700">CVC</label>
+                <input id="cccvc" type="password" maxlength="4" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" />
+              </div>
+            </div>
+          </div>
+
+          <!-- PayPal note -->
+          <div id="paypalNote" class="mt-4 hidden rounded-xl border p-4 text-sm">
+            You’ll be redirected to PayPal to complete your purchase securely.
+          </div>
+
+          <!-- COD note -->
+          <div id="codNote" class="mt-4 hidden rounded-xl border p-4 text-sm">
+            Please prepare exact change. Our rider will call on arrival.
+          </div>
+
+          <!-- Tip -->
+          <div class="mt-6">
+            <h3 class="text-sm font-semibold text-gray-700">Tip your courier (optional)</h3>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <button class="tip-btn rounded-xl border px-3 py-2 text-sm hover:border-brand-300" data-tip="0">No tip</button>
+              <button class="tip-btn rounded-xl border px-3 py-2 text-sm hover:border-brand-300" data-tip="1">+$1</button>
+              <button class="tip-btn rounded-xl border px-3 py-2 text-sm hover:border-brand-300" data-tip="2">+$2</button>
+              <button class="tip-btn rounded-xl border px-3 py-2 text-sm hover:border-brand-300" data-tip="5">+$5</button>
+              <div class="relative">
+                <input id="tipCustom" type="number" min="0" step="0.5" placeholder="Custom" class="w-28 rounded-xl border px-3 py-2 text-sm outline-none focus:border-brand-400">
+                <span class="pointer-events-none absolute right-3 top-2.5 text-sm text-gray-400">$</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms -->
+          <div class="mt-6 flex items-start gap-3">
+            <input id="agree" type="checkbox" class="mt-1">
+            <label for="agree" class="text-sm text-gray-700">I agree to the <a class="text-brand-600 underline">Terms</a> and <a class="text-brand-600 underline">Privacy</a>.</label>
+          </div>
+
+          <!-- Place order -->
+          <button id="placeOrder" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-glow hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed">
+            <span class="relative inline-flex">
+              <span class="absolute inline-flex h-full w-full animate-pingsoft rounded-full bg-white/40 opacity-75"></span>
+              <i class="relative fa-solid fa-lock"></i>
+            </span>
+            Place Secure Order
+          </button>
+          <p class="mt-2 text-center text-xs text-gray-500">Secured payments · 256-bit encryption</p>
+        </div>
+      </section>
+
+      <!-- Right: Summary -->
+      <aside class="lg:col-span-4">
+        <div class="sticky top-6 space-y-4">
+          <!-- Items -->
+          <div class="rounded-2xl border bg-white p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-extrabold">Order Summary</h3>
+              <a href="cart.html" class="text-sm font-semibold text-brand-600 hover:underline">Edit cart</a>
+            </div>
+            <div id="items" class="mt-4 space-y-3">
+              <!-- item row -->
+              <div class="flex items-center gap-3" data-price="9" data-qty="1">
+                <img src="uploaded_img/burger-1.png" class="h-14 w-14 rounded-xl object-cover ring-1 ring-gray-100" alt="Burger">
+                <div class="flex-1">
+                  <div class="text-sm font-semibold">Delicious Burger 01</div>
+                  <div class="text-xs text-gray-500">Qty <span class="i-qty">1</span></div>
+                </div>
+                <div class="text-sm font-bold">$<span class="i-sub">9.00</span></div>
+              </div>
+              <div class="flex items-center gap-3" data-price="12" data-qty="1">
+                <img src="uploaded_img/chickealfredopizza.png" class="h-14 w-14 rounded-xl object-cover ring-1 ring-gray-100" alt="Pizza">
+                <div class="flex-1">
+                  <div class="text-sm font-semibold">Ratanak Pizza</div>
+                  <div class="text-xs text-gray-500">Qty <span class="i-qty">1</span></div>
+                </div>
+                <div class="text-sm font-bold">$<span class="i-sub">12.00</span></div>
+              </div>
+              <div class="flex items-center gap-3" data-price="3" data-qty="1">
+                <img src="uploaded_img/cooldrinks1.png" class="h-14 w-14 rounded-xl object-cover ring-1 ring-gray-100" alt="Drink">
+                <div class="flex-1">
+                  <div class="text-sm font-semibold">Cool Drink 0.4</div>
+                  <div class="text-xs text-gray-500">Qty <span class="i-qty">1</span></div>
+                </div>
+                <div class="text-sm font-bold">$<span class="i-sub">3.00</span></div>
+              </div>
+            </div>
+
+            <div class="mt-5 space-y-2 text-sm">
+              <div class="flex justify-between"><span>Items Subtotal</span><span>$<span id="sumSubtotal">24.00</span></span></div>
+              <div class="flex justify-between"><span>Discount</span><span class="text-brand-600">−$<span id="sumDiscount">0.00</span></span></div>
+              <div class="flex justify-between"><span>Shipping</span><span>$<span id="sumShipping">3.00</span></span></div>
+              <div class="flex justify-between"><span>Tax (5%)</span><span>$<span id="sumTax">1.20</span></span></div>
+              <div class="flex justify-between"><span>Tip</span><span>$<span id="sumTip">0.00</span></span></div>
+              <div class="border-t pt-3 text-base font-extrabold flex justify-between">
+                <span>Total</span><span>$<span id="sumTotal">28.20</span></span>
+              </div>
+            </div>
+
+            <!-- Coupon -->
+            <div class="mt-5 rounded-xl border p-3">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-ticket text-brand-600"></i>
+                <div class="text-sm font-semibold">Have a coupon?</div>
+              </div>
+              <div class="mt-2 flex gap-2">
+                <input id="couponInput" type="text" placeholder="Try FOOD10 / FREESHIP" class="w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" />
+                <button id="applyCoupon" class="rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">Apply</button>
+              </div>
+              <p id="couponMsg" class="mt-1 text-xs text-gray-600"></p>
+            </div>
+          </div>
+
+          <!-- Trust -->
+          <div class="rounded-2xl border bg-white p-5 shadow-sm">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+              <div class="font-semibold">Why shop with us?</div>
+            </div>
+            <ul class="mt-3 space-y-2 text-sm text-gray-700">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-lock text-gray-900"></i> Secure payments</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-gray-900"></i> 30–45 min delivery</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-rotate-left text-gray-900"></i> Easy refunds</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="home.html" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text-lg font-extrabold">Food Mins</span>
+        </a>
+        <p class="mt-3 text-sm text-gray-600">Sylhet, Bangladesh</p>
+        <p class="mt-1 text-sm"><a class="hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a></p>
+        <p class="text-sm"><a class="hover:text-brand-600" href="tel:+8801746462491">+880 174646-2491</a></p>
       </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a class="hover:text-brand-600" href="about.html">About</a></li>
+          <li><a class="hover:text-brand-600" href="menu.html">Menu</a></li>
+          <li><a class="hover:text-brand-600" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand-600" href="contact.html">Contact</a></li>
+        </ul>
       </div>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Hours</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li>Sun–Thu: 10:00–22:00</li>
+          <li>Fri–Sat: 10:00–23:00</li>
+        </ul>
       </div>
 
-   </section>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Follow</h4>
+        <div class="mt-3 flex gap-3 text-gray-600">
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- Overlay + Toast -->
+  <div id="overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-6">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-xl">
+      <div class="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-100">
+        <i class="fa-solid fa-spinner animate-spin text-brand-600 text-xl"></i>
+      </div>
+      <h3 class="mt-4 text-xl font-extrabold">Processing your order…</h3>
+      <p class="mt-1 text-gray-600 text-sm">Please don’t close this window.</p>
+    </div>
+  </div>
 
-</footer>
-<!--Js connection for site loader gif image-->
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
-</div>
+  <div id="toast" class="fixed right-4 top-4 z-50 hidden rounded-xl border bg-white px-4 py-3 shadow-lg">
+    <div class="flex items-start gap-3">
+      <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+      <div>
+        <div class="font-semibold">Order placed!</div>
+        <div class="text-sm text-gray-600">Your order <span id="ordNo" class="font-mono"></span> is on the way 🚀</div>
+      </div>
+    </div>
+  </div>
 
-<script src="js/script.js"></script>
+  <!-- Logic -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Helpers
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    const currency = n => n.toFixed(2);
+
+    // State
+    const TAX_RATE = 0.05;
+    const FREE_SHIP_THRESHOLD = 40;
+    const BASE_DELIVERY = 3.00;
+
+    let coupon = { code:null, rate:0, freeship:false };
+    let tip = 0;
+
+    // Elements
+    const els = {
+      items: $('#items'),
+      sumSubtotal: $('#sumSubtotal'),
+      sumDiscount: $('#sumDiscount'),
+      sumShipping: $('#sumShipping'),
+      sumTax: $('#sumTax'),
+      sumTip: $('#sumTip'),
+      sumTotal: $('#sumTotal'),
+      freeText: $('#freeText'),
+      freeProgress: $('#freeProgress'),
+      methodRadios: $$('.method-radio'),
+      payRadios: $$('.pay-radio'),
+      cardFields: $('#cardFields'),
+      paypalNote: $('#paypalNote'),
+      codNote: $('#codNote'),
+      tipBtns: $$('.tip-btn'),
+      tipCustom: $('#tipCustom'),
+      hdrBadge: $('#hdrBadge'),
+      couponInput: $('#couponInput'),
+      couponMsg: $('#couponMsg'),
+      applyCoupon: $('#applyCoupon'),
+      placeOrder: $('#placeOrder'),
+      overlay: $('#overlay'),
+      toast: $('#toast'),
+      ordNo: $('#ordNo'),
+      addressFields: $('#addressFields'),
+      agree: $('#agree'),
+    };
+
+    function computeSubtotal(){
+      let sub = 0, count = 0;
+      $$('#items > div[data-price]').forEach(row=>{
+        const price = parseFloat(row.dataset.price);
+        const qty = parseInt(row.dataset.qty,10) || 1;
+        row.querySelector('.i-qty').textContent = qty;
+        row.querySelector('.i-sub').textContent = currency(price*qty);
+        sub += price*qty;
+        count += qty;
+      });
+      if (els.hdrBadge) els.hdrBadge.textContent = count;
+      return sub;
+    }
+
+    function updateFreeBar(subtotal){
+      if(subtotal >= FREE_SHIP_THRESHOLD){
+        els.freeText.innerHTML = `🎉 You unlocked <span class="font-semibold">FREE delivery</span>!`;
+        els.freeProgress.style.width = '100%';
+      } else {
+        const remain = FREE_SHIP_THRESHOLD - subtotal;
+        els.freeText.innerHTML = `Spend <span class="font-semibold">$${currency(remain)}</span> more for free delivery.`;
+        els.freeProgress.style.width = Math.min(100,(subtotal/FREE_SHIP_THRESHOLD)*100)+'%';
+      }
+    }
+
+    function recalc(){
+      const subtotal = computeSubtotal();
+
+      // coupon
+      let discount = subtotal * (coupon.rate || 0);
+      if (coupon.code === 'WELCOME15' && subtotal < 30) discount = 0;
+
+      // shipping
+      const method = els.methodRadios.find(r=>r.checked)?.value || 'delivery';
+      let shipping = 0;
+      if(method === 'delivery'){
+        shipping = (coupon.freeship || subtotal >= FREE_SHIP_THRESHOLD) ? 0 : BASE_DELIVERY;
+      }
+
+      // tax on (subtotal - discount)
+      const taxable = Math.max(0, subtotal - discount);
+      const tax = taxable * TAX_RATE;
+
+      // tip
+      const tipAmount = +tip || 0;
+
+      const total = taxable + shipping + tax + tipAmount;
+
+      // render
+      els.sumSubtotal.textContent = currency(subtotal);
+      els.sumDiscount.textContent = currency(discount);
+      els.sumShipping.textContent = currency(shipping);
+      els.sumTax.textContent = currency(tax);
+      els.sumTip.textContent = currency(tipAmount);
+      els.sumTotal.textContent = currency(total);
+
+      updateFreeBar(subtotal);
+      // Toggle address if pickup
+      els.addressFields.classList.toggle('opacity-50', method==='pickup');
+      $$('#addressFields input, #addressFields select, #addressFields textarea').forEach(i=>i.disabled = (method==='pickup'));
+    }
+
+    // Initial calc
+    recalc();
+
+    // Method change
+    els.methodRadios.forEach(r=>r.addEventListener('change', recalc));
+
+    // Payment switch
+    function setPayUI(){
+      const val = els.payRadios.find(r=>r.checked)?.value || 'card';
+      els.cardFields.classList.toggle('hidden', val!=='card');
+      els.paypalNote.classList.toggle('hidden', val!=='paypal');
+      els.codNote.classList.toggle('hidden', val!=='cod');
+    }
+    els.payRadios.forEach(r=>r.addEventListener('change', setPayUI));
+    setPayUI();
+
+    // Tip
+    els.tipBtns.forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        tip = parseFloat(btn.dataset.tip || '0');
+        els.tipCustom.value = '';
+        els.tipBtns.forEach(b=>b.classList.remove('border-brand-400','bg-brand-50'));
+        btn.classList.add('border-brand-400','bg-brand-50');
+        recalc();
+      });
+    });
+    els.tipCustom.addEventListener('input', ()=>{
+      els.tipBtns.forEach(b=>b.classList.remove('border-brand-400','bg-brand-50'));
+      const v = parseFloat(els.tipCustom.value||'0');
+      tip = isNaN(v)?0:v;
+      recalc();
+    });
+
+    // Coupon
+    els.applyCoupon.addEventListener('click', ()=>{
+      const code = (els.couponInput.value || '').trim().toUpperCase();
+      coupon = { code:null, rate:0, freeship:false };
+      let msg = '';
+      if (!code) {
+        msg = 'Enter a coupon code.';
+      } else if (code === 'FOOD10') {
+        coupon = { code, rate:0.10, freeship:false };
+        msg = 'Applied 10% off.';
+      } else if (code === 'WELCOME15') {
+        coupon = { code, rate:0.15, freeship:false };
+        msg = 'Applied 15% off on orders $30+.';
+      } else if (code === 'FREESHIP') {
+        coupon = { code, rate:0, freeship:true };
+        msg = 'Free delivery applied.';
+      } else {
+        msg = 'Invalid code. Try FOOD10, WELCOME15, or FREESHIP.';
+      }
+      els.couponMsg.textContent = msg;
+      recalc();
+    });
+
+    // Basic formatting for card fields
+    $('#ccnum').addEventListener('input', (e)=>{
+      let v = e.target.value.replace(/\D/g,'').slice(0,16);
+      e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+    });
+    $('#ccexp').addEventListener('input', (e)=>{
+      let v = e.target.value.replace(/\D/g,'').slice(0,4);
+      if (v.length>=3) v = v.slice(0,2)+'/'+v.slice(2);
+      e.target.value = v;
+    });
+
+    // Place order
+    els.placeOrder.addEventListener('click', ()=>{
+      // Validate essentials
+      if (!els.agree.checked) {
+        alert('Please agree to the Terms and Privacy to continue.');
+        return;
+      }
+      const method = els.methodRadios.find(r=>r.checked)?.value;
+      if (method==='delivery') {
+        for (const id of ['addr1','city','zip','country']) {
+          const el = document.getElementById(id);
+          if (!el.value.trim()) { el.focus(); alert('Please fill delivery address.'); return; }
+        }
+      }
+      const pay = els.payRadios.find(r=>r.checked)?.value;
+      if (pay==='card') {
+        if (!$('#ccnum').value.trim() || !$('#ccname').value.trim() || !$('#ccexp').value.trim() || !$('#cccvc').value.trim()) {
+          alert('Please complete card details.');
+          return;
+        }
+      }
+
+      // Simulate processing
+      els.overlay.classList.remove('hidden');
+      setTimeout(()=>{
+        els.overlay.classList.add('hidden');
+        const id = 'FM' + Math.floor(Math.random()*900000+100000);
+        els.ordNo.textContent = id;
+        els.toast.classList.remove('hidden');
+        setTimeout(()=>els.toast.classList.add('hidden'), 3500);
+        // Optionally: window.location.href='orders.html';
+      }, 1500);
+    });
+  </script>
 </body>
 </html>

@@ -1,149 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>contact us</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — Contact Us</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:"#fff7f7",100:"#ffe9e8",200:"#ffd1ce",300:"#ffaaa5",400:"#ff7b72",
+              500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337"
+            }
+          },
+          boxShadow: {
+            glow: "0 10px 30px rgba(244,63,94,.35)",
+          },
+          animation: {
+            blob: "blob 10s infinite",
+            float: "float 6s ease-in-out infinite",
+            pingsoft: "pingsoft 1.8s cubic-bezier(0,0,.2,1) infinite",
+            pulseSlow: "pulse 3s cubic-bezier(0.4,0,0.6,1) infinite"
+          },
+          keyframes: {
+            blob: {
+              "0%":{transform:"translate(0,0) scale(1)"},
+              "33%":{transform:"translate(20px,-15px) scale(1.04)"},
+              "66%":{transform:"translate(-15px,15px) scale(.98)"},
+              "100%":{transform:"translate(0,0) scale(1)"}
+            },
+            float: {
+              "0%,100%":{transform:"translateY(0)"},
+              "50%":{transform:"translateY(-8px)"}
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+  <style>
+    .grad { background: linear-gradient(90deg,#fde68a,#fb923c,#f43f5e,#be123c); }
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="bg-white text-gray-900 antialiased">
+  <!-- Soft background blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand-200/60 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-32 h-96 w-96 rounded-full bg-orange-200/60 blur-3xl animate-blob" style="animation-delay:2s"></div>
+    <div class="absolute bottom-10 left-20 h-64 w-64 rounded-full bg-amber-200/60 blur-3xl animate-blob" style="animation-delay:4s"></div>
+  </div>
 
-   <section class="flex">
+  <!-- Header -->
+  <header class="relative border-b bg-white/70 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+      <a href="home.html" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow group-hover:scale-105 transition">
+          <i class="fa-solid fa-bowl-food"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Food Mins</span>
+      </a>
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-<!--navabr-->
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+      <div class="hidden gap-8 md:flex">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-<!--cart and search options-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <a href="profile.html">Profile</a>
       </div>
 
-   </section>
-
-</header>
-
-<div class="heading">
-   <h3>contact us</h3>
-   <p><a href="home.html">home </a> <span> / contact</span></p>
-</div>
-
-<section class="contact">
-
-   <div class="row">
-
-      <div class="image">
-         <img src="images/contactimage.jpg" alt="contact image">
-      </div>
-<!--Contact form, user input their contact details and adding a message box where max text length not more than 500 char-->
-      <form id="myForm" onSubmit="submitForm(event)">
-         <h3>Tell Us Anything!</h3>
-         <input type="text" id="name" name="name" required placeholder="enter your name" maxlength="50" class="box">
-         <input type="number" id="number" name="number" required placeholder="enter your number" max="9999999999" min="0" class="box" onkeypress="if(this.value.length == 10) return false;">
-         <input type="email" id="email" name="email" required placeholder="enter your email" maxlength="50" class="box">
-         <textarea name="msg" id="msg" placeholder="enter your message" required class="box" cols="30" rows="10" maxlength="500"></textarea>
-         <button class="btn">submit</button>
-      </form>
-
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div class="hidden md:flex items-center gap-3">
+        <a href="search.html" class="p-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative p-2 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="absolute -right-1 -top-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-500 px-1.5 text-xs text-white" id="hdrBadge">3</span>
+        </a>
+        <a href="login.html" class="rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
       </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <button class="md:hidden rounded-xl border px-3 py-2" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile nav -->
+    <div id="mnav" class="mx-auto hidden max-w-7xl px-6 pb-4 md:hidden">
+      <div class="grid gap-2 rounded-2xl border bg-white p-4 shadow-sm">
+        <a href="home.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Home</a>
+        <a href="about.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">About</a>
+        <a href="menu.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Menu</a>
+        <a href="orders.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Orders</a>
+        <a href="contact.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Contact</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="search.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</a>
+          <a href="cart.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
+          <a href="login.html" class="ml-auto rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="mx-auto max-w-7xl px-6 pt-10 lg:px-8">
+    <div class="relative overflow-hidden rounded-3xl border bg-white shadow-sm">
+      <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full grad opacity-40 blur-2xl animate-float"></div>
+      <div class="grid gap-6 p-8 sm:p-12 lg:grid-cols-2">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 ring-1 ring-brand-200">
+            <i class="fa-solid fa-headset"></i> We reply in under 1 hour
+          </span>
+          <h1 class="mt-4 text-3xl font-extrabold sm:text-4xl">Contact our friendly team</h1>
+          <p class="mt-2 text-gray-600">Questions, feedback, or special requests? Tell us how we can help and we’ll get back to you fast.</p>
+          <div class="mt-5 flex flex-wrap gap-3 text-sm">
+            <a href="tel:+8801746462491" class="inline-flex items-center gap-2 rounded-xl border bg-white px-4 py-2 font-semibold hover:border-brand-300">
+              <i class="fa-solid fa-phone text-brand-600"></i> +880 174646-2491
+            </a>
+            <a href="mailto:eaemonkhan720@gmail.com" class="inline-flex items-center gap-2 rounded-xl border bg-white px-4 py-2 font-semibold hover:border-brand-300">
+              <i class="fa-solid fa-envelope text-brand-600"></i> Email us
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="relative">
+            <div class="absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-tr from-amber-200/50 via-orange-200/50 to-rose-200/50 blur-xl"></div>
+            <img src="images/contactimage.jpg" alt="Contact" class="h-56 w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/70 shadow-glow" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <main class="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <!-- Form -->
+      <section class="lg:col-span-7">
+        <form id="contactForm" class="rounded-3xl border bg-white p-6 shadow-sm sm:p-8">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-message text-gray-900"></i>
+            <h2 class="text-xl font-extrabold">Send us a message</h2>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="text-sm font-medium text-gray-700">Full name</label>
+              <input name="name" type="text" required class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Email</label>
+              <input name="email" type="email" required class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="you@example.com" />
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Phone (optional)</label>
+              <input name="phone" type="tel" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="+880…" />
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">Topic</label>
+              <select name="topic" class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400">
+                <option>General question</option>
+                <option>Order issue</option>
+                <option>Partnership</option>
+                <option>Press</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Subject</label>
+              <input name="subject" type="text" required class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="How can we help?" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-gray-700">Message</label>
+              <textarea name="message" rows="6" maxlength="500" required class="mt-1 w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" placeholder="Write your message (max 500 characters)"></textarea>
+              <div class="mt-1 text-xs text-gray-500">Max 500 characters.</div>
+            </div>
+            <div class="sm:col-span-2 grid gap-3 rounded-2xl bg-gray-50 p-4 sm:grid-cols-2">
+              <label class="flex items-center gap-3">
+                <input type="checkbox" name="callback" class="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                <span class="text-sm">Request a callback</span>
+              </label>
+              <label class="flex items-center gap-3">
+                <input type="checkbox" name="subscribe" class="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                <span class="text-sm">Send me deals & updates</span>
+              </label>
+            </div>
+
+            <!-- Honeypot -->
+            <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="mt-6 flex items-center justify-between gap-3">
+            <p class="text-sm text-gray-500"><i class="fa-solid fa-lock mr-1"></i> Your info is protected.</p>
+            <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-glow hover:bg-brand-600">
+              <span class="relative inline-flex">
+                <span class="absolute inline-flex h-full w-full animate-pingsoft rounded-full bg-white/40 opacity-75"></span>
+                <i class="relative fa-solid fa-paper-plane"></i>
+              </span>
+              Send message
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:col-span-5">
+        <!-- Contact blocks -->
+        <div class="rounded-3xl border bg-white p-6 shadow-sm">
+          <h3 class="text-lg font-extrabold">Contact details</h3>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <a href="mailto:eaemonkhan720@gmail.com" class="group flex items-start gap-3 rounded-2xl border p-4 hover:border-brand-300">
+              <span class="rounded-xl bg-brand-50 p-2 text-brand-600"><i class="fa-solid fa-envelope"></i></span>
+              <div>
+                <div class="text-sm font-semibold">Email</div>
+                <div class="text-sm text-gray-600 group-hover:text-gray-900">eaemonkhan720@gmail.com</div>
+              </div>
+            </a>
+            <a href="tel:+8801746462491" class="group flex items-start gap-3 rounded-2xl border p-4 hover:border-brand-300">
+              <span class="rounded-xl bg-brand-50 p-2 text-brand-600"><i class="fa-solid fa-phone"></i></span>
+              <div>
+                <div class="text-sm font-semibold">Phone</div>
+                <div class="text-sm text-gray-600 group-hover:text-gray-900">+880 174646-2491</div>
+              </div>
+            </a>
+            <div class="group flex items-start gap-3 rounded-2xl border p-4 hover:border-brand-300 sm:col-span-2">
+              <span class="rounded-xl bg-brand-50 p-2 text-brand-600"><i class="fa-solid fa-location-dot"></i></span>
+              <div class="flex-1">
+                <div class="text-sm font-semibold">Address</div>
+                <div class="text-sm text-gray-600 group-hover:text-gray-900">Sylhet, Bangladesh</div>
+                <div class="mt-3 overflow-hidden rounded-xl ring-1 ring-gray-100">
+                  <iframe class="h-56 w-full" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.19172313675074!2d91.8702069122075!3d24.895676700979067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505536e8446057%3A0x4025bb4dcb6ad526!2sKazi%20Asparagus%20Food%20Island%20Sylhet!5e0!3m2!1sen!2sbd!4v1682528587585!5m2!1sen!2sbd"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+            <div class="rounded-2xl bg-gray-50 p-4">
+              <div class="font-semibold">Opening hours</div>
+              <div class="mt-1 text-gray-600">Sun–Thu: 10:00–22:00</div>
+              <div class="text-gray-600">Fri–Sat: 10:00–23:00</div>
+            </div>
+            <div class="rounded-2xl bg-gray-50 p-4">
+              <div class="font-semibold">Follow us</div>
+              <div class="mt-2 flex gap-3 text-gray-600">
+                <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="rounded-3xl border bg-white p-6 shadow-sm">
+          <h3 class="text-lg font-extrabold">FAQs</h3>
+          <div class="mt-4 space-y-3">
+            <details class="group rounded-2xl border p-4 open:bg-brand-50/30">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+                <span class="font-semibold">How fast is delivery?</span>
+                <i class="fa-solid fa-chevron-down transition group-open:rotate-180"></i>
+              </summary>
+              <p class="mt-2 text-sm text-gray-600">Most orders arrive in 30–45 minutes depending on your location and traffic.</p>
+            </details>
+            <details class="group rounded-2xl border p-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+                <span class="font-semibold">Can I change my order?</span>
+                <i class="fa-solid fa-chevron-down transition group-open:rotate-180"></i>
+              </summary>
+              <p class="mt-2 text-sm text-gray-600">Yes, within 5 minutes of placing it. Call us or reply to the confirmation email.</p>
+            </details>
+            <details class="group rounded-2xl border p-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+                <span class="font-semibold">Do you cater events?</span>
+                <i class="fa-solid fa-chevron-down transition group-open:rotate-180"></i>
+              </summary>
+              <p class="mt-2 text-sm text-gray-600">We do! Mention your guest count and date in the message and our team will help.</p>
+            </details>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- CTA strip -->
+  <section class="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+    <div class="grad relative overflow-hidden rounded-3xl p-6 sm:p-8">
+      <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl animate-float"></div>
+      <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="text-white">
+          <h3 class="text-xl font-extrabold">Prefer to talk?</h3>
+          <p class="opacity-90">Our team is available 10am–10pm every day.</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="tel:+8801746462491" class="inline-flex items-center gap-2 rounded-xl bg-white/90 px-5 py-3 font-semibold text-gray-900 shadow hover:bg-white">
+            <i class="fa-solid fa-phone text-brand-600"></i> Call now
+          </a>
+          <a href="mailto:eaemonkhan720@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-black/20 px-5 py-3 font-semibold text-white ring-1 ring-white/40 hover:bg-black/25">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="home.html" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text-lg font-extrabold">Food Mins</span>
+        </a>
+        <p class="mt-3 text-sm text-gray-600">Sylhet, Bangladesh</p>
+        <p class="mt-1 text-sm"><a class="hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a></p>
+        <p class="text-sm"><a class="hover:text-brand-600" href="tel:+8801746462491">+880 174646-2491</a></p>
       </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a class="hover:text-brand-600" href="about.html">About</a></li>
+          <li><a class="hover:text-brand-600" href="menu.html">Menu</a></li>
+          <li><a class="hover:text-brand-600" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand-600" href="contact.html">Contact</a></li>
+        </ul>
       </div>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Hours</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li>Sun–Thu: 10:00–22:00</li>
+          <li>Fri–Sat: 10:00–23:00</li>
+        </ul>
       </div>
 
-   </section>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Follow</h4>
+        <div class="mt-3 flex gap-3 text-gray-600">
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- Overlay + Toast -->
+  <div id="overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-6">
+    <div class="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-xl">
+      <div class="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-100">
+        <i class="fa-solid fa-spinner animate-spin text-brand-600 text-xl"></i>
+      </div>
+      <h3 class="mt-4 text-xl font-extrabold">Sending your message…</h3>
+      <p class="mt-1 text-gray-600 text-sm">Please don’t close this window.</p>
+    </div>
+  </div>
 
-</footer>
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
+  <div id="toast" class="fixed right-4 top-4 z-50 hidden rounded-xl border bg-white px-4 py-3 shadow-lg">
+    <div class="flex items-start gap-3">
+      <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+      <div>
+        <div class="font-semibold">Message sent!</div>
+        <div class="text-sm text-gray-600">We’ll reply to <span id="toastEmail" class="font-medium"></span> shortly.</div>
+      </div>
+    </div>
+  </div>
 
-</div>
-<!-- Javascript connection-->
-<script src="js/script.js"></script>
-<!--register  Javascript connection-->
-<script src="config.js"></script>
-<!--message Javascript connection-->
- <script src="js/mess.js"></script>
+  <!-- Scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Contact form (demo behavior)
+    const form = document.getElementById('contactForm');
+    const overlay = document.getElementById('overlay');
+    const toast = document.getElementById('toast');
+    const toastEmail = document.getElementById('toastEmail');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic honeypot
+      const hp = new FormData(form).get('company');
+      if (hp) return; // likely a bot
+
+      // Validate required
+      const name = form.elements['name'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const subject = form.elements['subject'].value.trim();
+      const message = form.elements['message'].value.trim();
+
+      if (!name || !email || !subject || !message) {
+        alert('Please fill all required fields.');
+        return;
+      }
+
+      overlay.classList.remove('hidden');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        toastEmail.textContent = email;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+        form.reset();
+      }, 1200);
+    });
+  </script>
 </body>
 </html>

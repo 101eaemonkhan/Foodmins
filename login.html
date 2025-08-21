@@ -1,112 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>login</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login • Food Mins</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  "#FFF7F2",
+              100: "#FFE9DD",
+              200: "#FFD0B8",
+              300: "#FFB08A",
+              400: "#FF8E5F",
+              500: "#FF6A3D",   /* brand primary */
+              600: "#E94F25",
+              700: "#C83D1A",
+              800: "#9F3015",
+              900: "#7F2613",
+            },
+          },
+          boxShadow: {
+            glow: "0 10px 30px -5px rgba(255,106,61,.35), 0 6px 14px -6px rgba(255,106,61,.45)"
+          },
+          keyframes: {
+            floaty: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-8px)" } },
+            shine:  { "0%": { transform: "translateX(-120%)" }, "100%": { transform: "translateX(120%)" } }
+          },
+          animation: {
+            floaty: "floaty 5s ease-in-out infinite",
+            shine: "shine 1.5s linear infinite"
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
+  <style>
+    /* glassy scrollbar for WebKit */
+    ::-webkit-scrollbar{ width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{ background:linear-gradient(180deg,#ff8e5f,#ff6a3d); border-radius:999px}
+    /* input glow on focus (fallback if Tailwind classes are altered) */
+    .focus-glow:focus{ box-shadow:0 0 0 4px rgba(255,106,61,.18) }
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-amber-50 to-orange-50 text-slate-800">
+  <!-- decorative background orbs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-16 h-80 w-80 rounded-full bg-orange-300/40 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-rose-300/30 blur-3xl"></div>
+    <div class="absolute top-1/2 left-10 h-40 w-40 rounded-full bg-amber-200/50 blur-2xl"></div>
+  </div>
 
-   <section class="flex">
-
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-
-      <!--Homepage Navigation Bar + Hyperlink Multiple local html pages-->
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+  <!-- Header -->
+  <header class="sticky top-0 z-20 bg-white/60 backdrop-blur border-b border-white/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="home.html" class="inline-flex items-center gap-2">
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-brand-500 to-rose-500 bg-clip-text text-transparent">
+          Food Mins 🍽
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
       </nav>
-
-      <!--Adding search & shopping cart pages with icon logo-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+      <div class="flex items-center gap-3">
+        <a href="register.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 bg-white/70 hover:bg-white transition">
+          Create account
+        </a>
       </div>
+    </div>
+  </header>
 
-      <!--Local Profile -->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">Profile</a>
-            <a href="login.html" class="delete-btn">Logout</a>
-         </div>
-         <p class="account"><a href="login.html">Login</a> or <a href="register.html">Register</a></p>
+  <!-- Main -->
+  <main class="relative max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+      <!-- Left: brand panel -->
+      <section class="relative order-2 lg:order-1">
+        <div class="relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur border border-white/60 p-8 lg:p-10 shadow-xl">
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-brand-400/25 blur-2xl"></div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-brand-600 to-rose-500 text-white shadow-md">
+              <i class="fa-solid fa-bowl-food text-xl"></i>
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Welcome back, <span class="bg-gradient-to-r from-brand-600 to-rose-500 bg-clip-text text-transparent">foodie!</span>
+            </h1>
+          </div>
+
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Sign in to track your orders, reorder favorites, and unlock exclusive offers.
+          </p>
+
+          <!-- feature bullets -->
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              <p class="text-slate-700">1-click reorders of your recent meals</p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <p class="text-slate-700">Live order tracking &amp; delivery ETA</p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-pink-100 text-pink-600">
+                <i class="fa-solid fa-gift"></i>
+              </span>
+              <p class="text-slate-700">Rewards &amp; members-only discounts</p>
+            </li>
+          </ul>
+
+          <!-- floating dish image -->
+          <img src="images/pizza1.png" alt="Decorative pizza"
+               class="select-none pointer-events-none w-40 sm:w-48 lg:w-56 absolute -bottom-6 -right-4 rotate-6 drop-shadow-xl animate-floaty" />
+        </div>
+      </section>
+
+      <!-- Right: login card -->
+      <section class="order-1 lg:order-2">
+        <div class="relative">
+          <!-- gradient border wrapper -->
+          <div class="rounded-[28px] p-0.5 bg-gradient-to-br from-white via-white to-white shadow-glow">
+            <div class="rounded-[26px] bg-white/80 backdrop-blur border border-slate-100 p-6 sm:p-8">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xl sm:text-2xl font-bold">Login to your account</h2>
+                <a href="register.html" class="text-sm text-brand-600 hover:text-brand-700 font-medium">Create account</a>
+              </div>
+
+              <form action="#" method="post" class="mt-6 space-y-5" onsubmit="event.preventDefault(); alert('Demo only: connect your auth here.');">
+                <!-- Email -->
+                <div>
+                  <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email address</label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                      <i class="fa-regular fa-envelope"></i>
+                    </span>
+                    <input id="email" name="email" type="email" required
+                      class="focus-glow w-full rounded-xl border border-slate-200 bg-white/70 py-3 pl-10 pr-3 outline-none
+                             focus:border-brand-300 focus:ring-2 focus:ring-brand-200"
+                      placeholder="you@example.com" />
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <label for="password" class="block text-sm font-semibold text-slate-700">Password</label>
+                    <a href="#" class="text-sm text-slate-500 hover:text-slate-700">Forgot?</a>
+                  </div>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                      <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input id="password" name="password" type="password" minlength="6" required
+                      class="focus-glow w-full rounded-xl border border-slate-200 bg-white/70 py-3 pl-10 pr-12 outline-none
+                             focus:border-brand-300 focus:ring-2 focus:ring-brand-200"
+                      placeholder="••••••••" />
+                    <button type="button" aria-label="Toggle password visibility"
+                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                      onclick="const p=document.getElementById('password'); const i=this.querySelector('i'); p.type=p.type==='password'?'text':'password'; i.classList.toggle('fa-eye'); i.classList.toggle('fa-eye-slash');">
+                      <i class="fa-regular fa-eye-slash"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Remember -->
+                <div class="flex items-center justify-between">
+                  <label class="inline-flex items-center gap-2">
+                    <input type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-300">
+                    <span class="text-sm text-slate-600">Remember me</span>
+                  </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit"
+                        class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-rose-500
+                               px-4 py-3 font-semibold text-white shadow-md transition hover:shadow-lg hover:brightness-105">
+                  <span class="relative z-10">Login</span>
+                  <!-- shine -->
+                  <span class="absolute inset-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 animate-shine"></span>
+                </button>
+
+                <!-- Divider -->
+                <div class="flex items-center gap-3">
+                  <div class="h-px flex-1 bg-slate-200"></div>
+                  <span class="text-xs text-slate-400">or</span>
+                  <div class="h-px flex-1 bg-slate-200"></div>
+                </div>
+
+                <!-- Social -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button type="button" class="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-2.5 hover:bg-slate-50 transition">
+                    <span class="inline-flex items-center gap-2">
+                      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5 w-5" alt="" />
+                      <span class="text-sm font-semibold text-slate-700">Google</span>
+                    </span>
+                  </button>
+                  <button type="button" class="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-2.5 hover:bg-slate-50 transition">
+                    <span class="inline-flex items-center gap-2">
+                      <i class="fa-brands fa-facebook text-[#1877F2]"></i>
+                      <span class="text-sm font-semibold text-slate-700">Facebook</span>
+                    </span>
+                  </button>
+                </div>
+
+                <p class="text-sm text-slate-600 text-center">
+                  Don’t have an account?
+                  <a href="register.html" class="font-semibold text-brand-600 hover:text-brand-700">Register now</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-10 border-t border-white/60 bg-white/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; <span id="yr"></span> Food Mins. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="mailto:eaemonkhan720@gmail.com" class="hover:text-brand-600"><i class="fa-regular fa-envelope"></i> Email</a>
+        <a href="tel:+8801746462491" class="hover:text-brand-600"><i class="fa-solid fa-phone"></i> +880174646-2491</a>
+        <a href="contact.html" class="hover:text-brand-600"><i class="fa-solid fa-location-dot"></i> Sylhet, BD</a>
       </div>
+    </div>
+  </footer>
 
-   </section>
-
-</header>
-
-<section class="form-container">
-
-   <form action="" method="post">
-      <h3>Login now</h3>
-      <input type="email" required maxlength="50" name="email" placeholder="enter your email" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" required maxlength="20" name="pass" placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="login now" class="btn" name="submit">
-      <p>Don't have an account? <a href="register.html">Register now</a></p>
-   </form>
-
-</section>
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
-      </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
-      </div>
-
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
-      </div>
-
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
-
-   </section>
-
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
-
-</footer>
-
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading gif">
-</div>
-
-<script src="js/script.js"></script>
-
+  <script>
+    // year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

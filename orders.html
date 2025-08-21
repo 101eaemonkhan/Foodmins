@@ -1,155 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>My Orders</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Orders • Food Mins</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors:{
+            brand:{50:"#FFF7F2",100:"#FFE9DD",200:"#FFD0B8",300:"#FFB08A",400:"#FF8E5F",500:"#FF6A3D",600:"#E94F25",700:"#C83D1A",800:"#9F3015",900:"#7F2613"}
+          },
+          boxShadow:{glow:"0 10px 30px -5px rgba(255,106,61,.35), 0 6px 16px -8px rgba(255,106,61,.45)"},
+          keyframes:{
+            floaty:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-6px)'}},
+            shine:{'0%':{transform:'translateX(-100%)'},'100%':{transform:'translateX(100%)'}}
+          },
+          animation:{floaty:'floaty 6s ease-in-out infinite',shine:'shine 1.2s linear infinite'}
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8e5f,#ff6a3d);border-radius:999px}
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-amber-50 to-orange-50 text-slate-800">
+  <!-- soft blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-orange-300/40 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-rose-300/30 blur-3xl"></div>
+    <div class="absolute top-1/2 left-10 h-40 w-40 rounded-full bg-amber-200/50 blur-2xl"></div>
+  </div>
 
-   <section class="flex">
-
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/70 backdrop-blur border-b border-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="inline-flex items-center gap-2">
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-brand-500 to-rose-500 bg-clip-text text-transparent">Food Mins 🍽</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
       </nav>
+      <div class="flex items-center gap-3">
+        <a href="search.html" class="hidden sm:inline-flex p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative inline-flex items-center p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cartCount" class="absolute -top-2 -right-2 text-xs px-1.5 py-0.5 rounded-full bg-brand-600 text-white">3</span>
+        </a>
+        <a href="login.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 bg-white/70 hover:bg-white text-sm font-semibold">Login</a>
+      </div>
+    </div>
+  </header>
 
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="relative overflow-hidden rounded-3xl border border-white/60 bg-white/60 backdrop-blur p-8 lg:p-12 shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"></div>
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <nav class="text-sm text-slate-600 mb-4">
+              <a class="hover:text-brand-600" href="home.html">Home</a>
+              <span class="mx-2 opacity-60">/</span>
+              <span class="font-semibold text-slate-800">Orders</span>
+            </nav>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+              Your Orders
+              <span class="block text-2xl sm:text-3xl mt-2 bg-gradient-to-r from-brand-600 to-rose-500 bg-clip-text text-transparent">
+                Track & manage every bite
+              </span>
+            </h1>
+            <p class="mt-4 text-slate-600 max-w-xl">Filter by status, peek into details, download invoices, or reorder your favorites in one tap.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold"><i class="fa-solid fa-check"></i> Secure payments</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold"><i class="fa-solid fa-clock"></i> 30-min delivery</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 px-3 py-1 text-xs font-semibold"><i class="fa-solid fa-rotate-right"></i> Quick reorder</span>
+            </div>
+          </div>
+          <div class="relative">
+            <img src="images/burger1.png" alt="Order" class="w-72 lg:w-96 mx-auto drop-shadow-2xl animate-floaty"/>
+            <img src="images/foodminscooldrink.png" class="hidden sm:block absolute -bottom-6 -left-4 w-36 rotate-6 drop-shadow-2xl" alt="">
+            <img src="uploaded_img/cake.png" class="hidden sm:block absolute -top-6 -right-4 w-32 -rotate-6 drop-shadow-2xl" alt="">
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-white/30 skew-x-12 animate-shine"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview + Controls -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid lg:grid-cols-3 gap-5">
+      <!-- Overview cards -->
+      <div class="lg:col-span-2 grid sm:grid-cols-3 gap-4">
+        <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-5 shadow">
+          <div class="text-slate-500 text-sm">Total Orders</div>
+          <div class="mt-1 text-3xl font-black">3</div>
+        </div>
+        <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-5 shadow">
+          <div class="text-slate-500 text-sm">Completed</div>
+          <div class="mt-1 text-3xl font-black text-emerald-600">1</div>
+        </div>
+        <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-5 shadow">
+          <div class="text-slate-500 text-sm">Pending</div>
+          <div class="mt-1 text-3xl font-black text-amber-600">1</div>
+        </div>
       </div>
 
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+      <!-- Filters -->
+      <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-5 shadow">
+        <div class="text-sm font-semibold mb-2">Filter orders</div>
+        <div class="flex flex-wrap gap-2">
+          <button class="status-chip active px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm hover:bg-white" data-status="all">All</button>
+          <button class="status-chip px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm hover:bg-white" data-status="pending">Pending</button>
+          <button class="status-chip px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm hover:bg-white" data-status="completed">Completed</button>
+          <button class="status-chip px-3 py-1.5 rounded-full border border-slate-200 bg-white/80 text-sm hover:bg-white" data-status="cancelled">Cancelled</button>
+        </div>
+        <div class="mt-4 relative">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input id="orderSearch" type="search" placeholder="Search by order # or item"
+                 class="w-full rounded-xl border border-slate-200 bg-white/80 pl-10 pr-3 py-2.5 outline-none focus:ring-2 focus:ring-brand-200"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orders List -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+    <div id="ordersWrap" class="grid lg:grid-cols-2 gap-6">
+
+      <!-- Order Card -->
+      <article class="order-card rounded-3xl border border-white/60 bg-white/70 backdrop-blur shadow" data-status="pending" data-id="FM-2023-0301">
+        <div class="p-5 border-b border-white/70">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-50 text-amber-700"><i class="fa-solid fa-receipt"></i></span>
+              <div>
+                <h3 class="font-extrabold">Order #FM-2023-0301</h3>
+                <p class="text-sm text-slate-600">Placed on <span class="font-medium">01 Mar 2023</span></p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700"><i class="fa-solid fa-clock"></i> Pending</span>
+          </div>
+        </div>
+
+        <div class="p-5 space-y-4">
+          <div class="flex flex-wrap gap-3 text-sm">
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-location-dot text-slate-500"></i> Sylhet, Bangladesh</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-wallet text-slate-500"></i> Cash on Delivery</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-tag text-slate-500"></i> Total $12</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/pizzachess.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Pizza 01 ×1</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/Islamabadbiryani.PNG" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Main dish 02 ×3</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/cooldrinks1.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Drink ×1</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="text-sm">
+              <p class="text-slate-500">Deliver to</p>
+              <p class="font-semibold">Emon Ahmed • +880174646-2491</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="track-btn inline-flex items-center gap-2 rounded-xl bg-amber-600 text-white px-4 py-2 font-semibold shadow hover:shadow-lg" data-progress="2">
+                <i class="fa-solid fa-truck-fast"></i> Track
+              </button>
+              <button class="toggle-details inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold hover:bg-slate-50">
+                <i class="fa-regular fa-eye"></i> Details
+              </button>
+              <a href="#" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold hover:bg-slate-50">
+                <i class="fa-regular fa-file-lines"></i> Invoice
+              </a>
+              <button class="reorder-btn inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg">
+                <i class="fa-solid fa-cart-plus"></i> Reorder
+              </button>
+            </div>
+          </div>
+
+          <!-- collapsible details -->
+          <div class="details hidden">
+            <div class="mt-4 rounded-xl border border-slate-100 bg-white/80 p-4 text-sm">
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <p class="text-slate-500">Payment</p>
+                  <p class="font-semibold">Cash on delivery</p>
+                </div>
+                <div>
+                  <p class="text-slate-500">Subtotal</p>
+                  <p class="font-semibold">$11.00</p>
+                </div>
+                <div>
+                  <p class="text-slate-500">Delivery</p>
+                  <p class="font-semibold">$1.00</p>
+                </div>
+              </div>
+              <div class="mt-3 border-t pt-3 flex items-center justify-between">
+                <span class="font-bold">Grand total</span>
+                <span class="text-lg font-black">$12.00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Completed Order -->
+      <article class="order-card rounded-3xl border border-white/60 bg-white/70 backdrop-blur shadow" data-status="completed" data-id="FM-2023-0202">
+        <div class="p-5 border-b border-white/70">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700"><i class="fa-solid fa-receipt"></i></span>
+              <div>
+                <h3 class="font-extrabold">Order #FM-2023-0202</h3>
+                <p class="text-sm text-slate-600">Placed on <span class="font-medium">02 Feb 2023</span></p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700"><i class="fa-solid fa-check"></i> Completed</span>
+          </div>
+        </div>
+
+        <div class="p-5 space-y-4">
+          <div class="flex flex-wrap gap-3 text-sm">
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-location-dot text-slate-500"></i> Sylhet, Bangladesh</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-wallet text-slate-500"></i> Cash on Delivery</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-tag text-slate-500"></i> Total $14</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/pizzachess.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Pizza 01 ×1</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/Islamabadbiryani.PNG" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Main dish 02 ×3</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/dessert1.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Dessert ×1</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="text-sm">
+              <p class="text-slate-500">Delivered to</p>
+              <p class="font-semibold">Emon Ahmed • +880174646-2491</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="toggle-details inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold hover:bg-slate-50">
+                <i class="fa-regular fa-eye"></i> Details
+              </button>
+              <a href="#" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold hover:bg-slate-50">
+                <i class="fa-regular fa-file-lines"></i> Invoice
+              </a>
+              <button class="reorder-btn inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg">
+                <i class="fa-solid fa-cart-plus"></i> Reorder
+              </button>
+            </div>
+          </div>
+
+          <div class="details hidden">
+            <div class="mt-4 rounded-xl border border-slate-100 bg-white/80 p-4 text-sm">
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <p class="text-slate-500">Payment</p>
+                  <p class="font-semibold">Cash on delivery</p>
+                </div>
+                <div>
+                  <p class="text-slate-500">Subtotal</p>
+                  <p class="font-semibold">$13.00</p>
+                </div>
+                <div>
+                  <p class="text-slate-500">Delivery</p>
+                  <p class="font-semibold">$1.00</p>
+                </div>
+              </div>
+              <div class="mt-3 border-t pt-3 flex items-center justify-between">
+                <span class="font-bold">Grand total</span>
+                <span class="text-lg font-black">$14.00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Cancelled Order (example) -->
+      <article class="order-card rounded-3xl border border-white/60 bg-white/70 backdrop-blur shadow" data-status="cancelled" data-id="FM-2023-0110">
+        <div class="p-5 border-b border-white/70">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-rose-50 text-rose-700"><i class="fa-solid fa-receipt"></i></span>
+              <div>
+                <h3 class="font-extrabold">Order #FM-2023-0110</h3>
+                <p class="text-sm text-slate-600">Placed on <span class="font-medium">10 Jan 2023</span></p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-700"><i class="fa-solid fa-xmark"></i> Cancelled</span>
+          </div>
+        </div>
+
+        <div class="p-5 space-y-4">
+          <div class="flex flex-wrap gap-3 text-sm">
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-location-dot text-slate-500"></i> Sylhet, Bangladesh</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-wallet text-slate-500"></i> Credit Card</span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 text-slate-700 px-3 py-1"><i class="fa-solid fa-tag text-slate-500"></i> Total $9</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/stickbeefburger.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Beef Burger ×1</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/cooldrinks1.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Drink ×1</p>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-white/80 p-3">
+              <img src="uploaded_img/dessert4.png" class="h-20 w-full object-cover rounded-lg" alt="">
+              <p class="mt-2 text-xs font-medium">Chocolate ×1</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="text-sm">
+              <p class="text-slate-500">Recipient</p>
+              <p class="font-semibold">Emon Ahmed • +880174646-2491</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="toggle-details inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold hover:bg-slate-50">
+                <i class="fa-regular fa-eye"></i> Details
+              </button>
+              <button class="reorder-btn inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg">
+                <i class="fa-solid fa-cart-plus"></i> Reorder
+              </button>
+            </div>
+          </div>
+
+          <div class="details hidden">
+            <div class="mt-4 rounded-xl border border-slate-100 bg-white/80 p-4 text-sm">
+              <p class="text-slate-600">This order was cancelled. No charges were made.</p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-10 border-t border-white/60 bg-white/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-600 grid sm:grid-cols-2 gap-6">
+      <p>&copy; <span id="yr"></span> Food Mins. All rights reserved.</p>
+      <div class="flex sm:justify-end items-center gap-4">
+        <a href="mailto:eaemonkhan720@gmail.com" class="hover:text-brand-600"><i class="fa-regular fa-envelope"></i> Email</a>
+        <a href="tel:+8801746462491" class="hover:text-brand-600"><i class="fa-solid fa-phone"></i> +880174646-2491</a>
+        <a href="contact.html" class="hover:text-brand-600"><i class="fa-solid fa-location-dot"></i> Sylhet, BD</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Track Modal -->
+  <div id="trackModal" class="fixed inset-0 z-40 hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/40" onclick="closeTrack()"></div>
+    <div class="relative z-10 mx-4 max-w-2xl w-full rounded-3xl bg-white/90 backdrop-blur border border-white/60 shadow-2xl p-6">
+      <button class="absolute top-3 right-3 p-2 rounded-full bg-white/80 border border-slate-200 hover:bg-white" onclick="closeTrack()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="flex items-start gap-4">
+        <span class="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-brand-600 text-white shadow"><i class="fa-solid fa-truck-fast"></i></span>
+        <div>
+          <h3 class="text-2xl font-extrabold">Delivery progress</h3>
+          <p class="text-slate-600">Order <span id="trackOrderId" class="font-semibold">#</span></p>
+        </div>
       </div>
 
-   </section>
+      <ol id="trackSteps" class="mt-6 relative border-l-2 border-slate-200 pl-6 space-y-6">
+        <li class="step">
+          <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300"></div>
+          <p class="font-semibold">Order placed</p>
+          <p class="text-sm text-slate-600">We’ve received your order.</p>
+        </li>
+        <li class="step">
+          <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300"></div>
+          <p class="font-semibold">Preparing</p>
+          <p class="text-sm text-slate-600">Our chef is cooking up your meal.</p>
+        </li>
+        <li class="step">
+          <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300"></div>
+          <p class="font-semibold">Out for delivery</p>
+          <p class="text-sm text-slate-600">Your rider is on the way.</p>
+        </li>
+        <li class="step">
+          <div class="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300"></div>
+          <p class="font-semibold">Delivered</p>
+          <p class="text-sm text-slate-600">Enjoy your food!</p>
+        </li>
+      </ol>
+    </div>
+  </div>
 
-</header>
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden">
+    <div class="rounded-xl bg-slate-900 text-white/95 px-4 py-2 shadow-lg flex items-center gap-2">
+      <i class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
 
-<div class="heading">
-   <h3>your orders</h3>
-   <p><a href="home.html">Home </a> <span> / Orders</span> <span><a href="menu.html">/ Menu</a></span></p>
-</div>
+  <!-- Scripts -->
+  <script>
+    // footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-<section class="orders">
+    // filter chips
+    const chips = document.querySelectorAll('.status-chip');
+    const cards = [...document.querySelectorAll('.order-card')];
+    const searchEl = document.getElementById('orderSearch');
 
-   <h1 class="title">placed orders</h1>
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      chips.forEach(c=>c.classList.remove('active','bg-gradient-to-r','from-brand-600','to-rose-500','text-white','border-transparent','shadow'));
+      chips.forEach(c=>c.classList.add('border','border-slate-200','bg-white/80'));
+      ch.classList.add('active','bg-gradient-to-r','from-brand-600','to-rose-500','text-white','border-transparent','shadow');
+      applyFilters();
+    }));
+    searchEl.addEventListener('input', applyFilters);
 
-   <div class="box-container">
+    function applyFilters(){
+      const active = document.querySelector('.status-chip.active')?.dataset.status || 'all';
+      const q = searchEl.value.toLowerCase().trim();
+      cards.forEach(card=>{
+        const st = card.dataset.status;
+        const id = card.dataset.id.toLowerCase();
+        const text = card.innerText.toLowerCase();
+        const matchStatus = (active==='all' || st===active);
+        const matchText = !q || id.includes(q) || text.includes(q);
+        card.style.display = (matchStatus && matchText) ? '' : 'none';
+      });
+    }
 
-      <div class="box">
-         <p> Date: <span>01-03-2023</span> </p>
-         <p> name : <span>Emon Ahmed</span> </p>
-         <p> number : <span>+880174646-2491</span> </p>
-         <p> email : <span>eaemonkhan720@gmail.com</span> </p>
-         <p> address : <span>Sylhet, Bangladesh</span> </p>
-         <p> your orders : <span>pizza 01 (1) - main dish 02 (3) -</span> </p>
-         <p> total price : <span>$12/-</span> </p>
-         <p> payment method : <span>cash on delivery</span> </p>
-         <p> payment status : <span>pending</span> </p>
-      </div>
+    // details toggles
+    document.querySelectorAll('.toggle-details').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const wrap = btn.closest('.order-card').querySelector('.details');
+        wrap.classList.toggle('hidden');
+      });
+    });
 
-      <div class="box">
-         <p> Date : <span>02-02-2023</span> </p>
-         <p> name : <span>Emon Ahmed</span> </p>
-         <p> number : <span>+880174646-2491</span> </p>
-         <p> email : <span>eaemonkhan720@gmail.com</span> </p>
-         <p> address : <span>Sylhet, Bangladesh</span> </p>
-         <p> your orders : <span>pizza 01 (1) - main dish 02 (3) -</span> </p>
-         <p> total price : <span>$14/-</span> </p>
-         <p> payment method : <span>cash on delivery</span> </p>
-         <p> payment status : <span>Completed</span> </p>
-      </div>
+    // reorder (fake add to cart)
+    const cartCountEl = document.getElementById('cartCount');
+    function showToast(){
+      const t = document.getElementById('toast');
+      t.classList.remove('hidden');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(()=>t.classList.add('hidden'), 1200);
+    }
+    document.querySelectorAll('.reorder-btn').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        cartCountEl.textContent = (Number(cartCountEl.textContent)||0)+1;
+        showToast();
+      });
+    });
 
-   </div>
+    // track modal
+    const trackModal = document.getElementById('trackModal');
+    const trackOrderId = document.getElementById('trackOrderId');
+    const stepEls = [...document.querySelectorAll('#trackSteps .step')];
 
-</section>
+    function openTrack(orderId, progress){
+      trackOrderId.textContent = orderId;
+      stepEls.forEach((li,i)=>{
+        const dot = li.querySelector('div');
+        if(i < progress){
+          dot.className = "absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-emerald-500";
+          li.classList.add('text-emerald-700');
+        }else if(i === progress){
+          dot.className = "absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-amber-500";
+          li.classList.remove('text-emerald-700');
+        }else{
+          dot.className = "absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-slate-300";
+          li.classList.remove('text-emerald-700');
+        }
+      });
+      trackModal.classList.remove('hidden'); trackModal.classList.add('flex');
+    }
+    function closeTrack(){ trackModal.classList.add('hidden'); trackModal.classList.remove('flex'); }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
-      </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
-      </div>
-
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
-      </div>
-
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
-
-   </section>
-
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
-
-</footer>
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
-
-<script src="js/script.js"></script>
-
+    document.querySelectorAll('.track-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.order-card');
+        openTrack(card.dataset.id, Number(btn.dataset.progress||1)); // 0..3
+      });
+    });
+  </script>
 </body>
 </html>

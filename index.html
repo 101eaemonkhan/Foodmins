@@ -1,377 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Mins 🍽 • Delicious Food Delivered To You</title>
 
-<!-- adding a Unpkg content delivery network link-->
-   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            },
+          },
+          boxShadow: {
+            glass: '0 10px 30px rgba(249,115,22,.15)',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(12px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            pulseRing: { '0%': { transform: 'scale(0.9)', opacity: 0.6 }, '80%,100%': { transform: 'scale(1.25)', opacity: 0 } }
+          },
+          animation: {
+            float: 'float 5s ease-in-out infinite',
+            fadeUp: 'fadeUp .65s ease-out both',
+            pulseRing: 'pulseRing 1.8s ease-out infinite'
+          }
+        }
+      }
+    }
+  </script>
 
-   <!--  cdn font awesome link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
-   <!-- local Css link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+  <style>
+    .pattern {
+      background-image:
+      radial-gradient(30% 20% at 10% 5%, rgba(249,115,22,.12) 0%, transparent 100%),
+      radial-gradient(35% 25% at 90% 0%, rgba(244,114,182,.15) 0%, transparent 100%),
+      radial-gradient(30% 20% at 80% 90%, rgba(34,197,94,.12) 0%, transparent 100%),
+      radial-gradient(20% 25% at 0% 100%, rgba(14,165,233,.12) 0%, transparent 100%);
+    }
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(140deg, rgba(255,255,255,.75), rgba(255,255,255,.45)); }
+    .text-gradient { background: linear-gradient(92deg,#ffedd5,#fdba74,#fb923c,#ea580c); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .flame-text { text-shadow: 0 0 8px rgba(249,115,22,.85), 0 0 18px rgba(234,88,12,.55), 0 0 32px rgba(251,146,60,.45); animation: flicker 2.2s ease-in-out infinite; }
+    @keyframes flicker {
+      0%,100% { filter: brightness(1); }
+      50% { filter: brightness(1.08); text-shadow: 0 0 12px rgba(253,186,116,.9), 0 0 26px rgba(249,115,22,.7), 0 0 42px rgba(234,88,12,.55); }
+    }
+    .btn-cta { position: relative; overflow: hidden; }
+    .btn-cta::after { content:""; position:absolute; inset:0; transform:translateX(-120%); background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent); }
+    .btn-cta:hover::after { animation: shine 1.05s ease-in-out; }
+    @keyframes shine { to { transform: translateX(120%); } }
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-b from-white via-orange-50 to-white pattern text-slate-800">
 
-   <section class="flex">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur border-b border-slate-200/70 bg-white/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2 font-bold text-lg">
+          <span class="text-brand-700">Food Mins</span> <span aria-hidden>🍽</span>
+        </a>
 
-<!--Website main Logo-->
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-
-     <!--Homepage Navigation Bar + Hyperlink Multiple local html pages-->
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+       <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
+         <a href="profile.html">Profile</a>
+        </nav>
 
- <!--Adding search & shopping cart pages with icon logo-->
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-<!--Registration and login button and i am using a custom profile-->
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">Profile</a>
-            <a href="login.html" class="delete-btn">Logout</a>
-         </div>
-         <!--Login and register button with hyper-link both pages-->
-         <p class="account"><a href="login.html">Login</a> or <a href="register.html">Register</a></p>
+        <div class="flex items-center gap-4">
+          <a href="search.html" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass text-slate-600 hover:text-brand-700 transition"></i>
+          </a>
+          <a href="cart.html" class="relative" aria-label="Cart">
+            <i class="fa-solid fa-cart-shopping text-slate-600 hover:text-brand-700 transition"></i>
+            <span id="cartBadge" class="absolute -top-2 -right-2 text-xs bg-brand-600 text-white rounded-full px-1.5 py-0.5">3</span>
+          </a>
+          <a href="login.html" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-orange-50/60 text-sm transition">
+            <i class="fa-regular fa-user"></i> <span>Account</span>
+          </a>
+          <button id="mobileMenuBtn" class="md:hidden text-slate-700"><i class="fa-solid fa-bars"></i></button>
+        </div>
       </div>
 
-   </section>
-
-</header>
-
-<section class="home">
-<!--crating swipe slider for image-->
-   <div class="swiper home-slider">
-
-      <div class="swiper-wrapper">
-<!--Front banner slider with picture and linking some food manus pages-->
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>See The Categories</span>
-               <h3>Delicious Pizza</h3>
-               <!--creating manu button for viewing more categories of pizza-->
-               <a href="menu.html" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/pizza1.png" alt="Pizza">
-            </div>
-         </div>
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>See The Categories</span>
-               <h3>Burger Types</h3>
-                <!--creating manu button for viewing more categories of Burger-->
-               <a href="menu.html" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/burger1.png" alt="Burger ">
-            </div>
-         </div>
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span> See The Categories</span>
-               <!--creating manu button for viewing more categories of Cool Drinks-->
-               <h3>Cool Drinks</h3>
-               <a href="menu.html" class="btn"> See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/foodminscooldrink.png" alt="Cool Drinks">
-            </div>
-         </div>
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>See The Categories</span>
-               <h3>Chicken Biryani</h3>
-                <!--creating manu button for viewing more categories of Chicken Biryani-->
-               <a href="menu.html" class="btn">See Menus</a>
-            </div>
-            <div class="image">
-               <img src="images/chickenbiryani.png" alt="Chicken Biryani">
-            </div>
-         </div>
-
+      <!-- Mobile -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <nav class="flex flex-col gap-2 text-sm">
+          <a href="index.html" class="px-3 py-2 rounded hover:bg-orange-50">Home</a>
+          <a href="about.html" class="px-3 py-2 rounded hover:bg-orange-50">About</a>
+          <a href="menu.html" class="px-3 py-2 rounded hover:bg-orange-50">Menu</a>
+          <a href="orders.html" class="px-3 py-2 rounded hover:bg-orange-50">Orders</a>
+          <a href="contact.html" class="px-3 py-2 rounded hover:bg-orange-50">Contact</a>
+        </nav>
       </div>
+    </div>
+  </header>
 
-      <div class="swiper-pagination"></div>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1">
+          <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
+            <span class="relative w-2.5 h-2.5 bg-emerald-500 rounded-full">
+              <span class="absolute inset-0 rounded-full bg-emerald-400 animate-pulseRing"></span>
+            </span>
+            30-min delivery in Sylhet
+          </span>
 
-   </div>
+          <h1 class="mt-4 text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-tight flame-text">
+            <span class="text-gradient">Delicious Food</span> Delivered To You
+          </h1>
+          <p class="mt-4 text-slate-600 text-lg max-w-xl">
+            Freshly made pizzas, burgers, steaks, desserts and more. Track your order live and enjoy exclusive deals every day.
+          </p>
 
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="menu.html" class="btn-cta inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl shadow-glass">
+              <i class="fa-solid fa-utensils"></i> Order Now
+            </a>
+            <a href="Fooddetails.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-200 hover:bg-white font-semibold text-slate-700">
+              <i class="fa-solid fa-bolt"></i> Quick Recipe
+            </a>
+          </div>
+
+          <div class="mt-6 flex items-center gap-5 text-sm text-slate-500">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-heart text-rose-500"></i> Hygiene first</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-leaf text-emerald-600"></i> Fresh ingredients</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-sky-600"></i> Real-time tracking</div>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2 relative">
+          <div class="glass rounded-[38px] p-4 sm:p-6 shadow-glass">
+            <img src="images/feature-image.gif" alt="Pizza" class="w-full aspect-[7/4] object-contain rounded-2xl animate-float" />
+          </div>
+           </div>
+      </div>
+    </div>
+
+    <!-- Promo strip -->
+    <div class="border-y border-slate-200 bg-white/70 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 text-sm flex flex-wrap gap-4 items-center justify-center">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-truck-fast text-brand-600"></i> Free delivery over $12</div>
+        <span class="hidden sm:inline text-slate-300">|</span>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-percent text-brand-600"></i> 15% off first order: <code class="bg-orange-50 text-brand-700 px-2 py-0.5 rounded">FOODMINS15</code></div>
+        <span class="hidden sm:inline text-slate-300">|</span>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-600"></i> Open 10:00 AM – 12:00 PM</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Browse Categories (enhanced) -->
+<section class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14">
+  <!-- soft blobs -->
+  <span class="pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-orange-200/40 blur-3xl"></span>
+  <span class="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-rose-200/40 blur-3xl"></span>
+
+  <div class="flex items-end justify-between">
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Browse <span class="bg-gradient-to-r from-orange-500 via-amber-500 to-pink-500 bg-clip-text text-transparent">Categories</span>
+      </h2>
+      <p class="mt-1 text-slate-600">Find your cravings—fast.</p>
+    </div>
+    <a href="menu.html" class="hidden md:inline-flex items-center gap-2 text-brand-700 font-semibold hover:text-brand-800">
+      View all <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+  </div>
+
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-5">
+
+    <!-- Card: Fast Foods -->
+    <a href="fastfoodcategory.html"
+       class="group relative rounded-2xl p-0.5 bg-gradient-to-br from-orange-200 via-rose-200 to-amber-200 transition
+              hover:shadow-xl hover:-translate-y-1">
+      <div class="relative h-full rounded-[15px] bg-white/80 backdrop-blur p-4 sm:p-5">
+        <!-- sticker -->
+        <img src="images/fastfoods.png" alt="" class="absolute -top-6 -right-3 w-16 rotate-6 drop-shadow group-hover:-rotate-3 transition" />
+        <!-- icon -->
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl
+                    bg-gradient-to-tr from-orange-500 to-amber-400 text-white shadow-md">
+          <i class="fa-solid fa-burger"></i>
+        </div>
+        <h3 class="mt-3 font-bold text-lg">Fast Foods</h3>
+        <p class="mt-0.5 text-sm text-slate-500">Burgers, pizza &amp; more</p>
+        <div class="mt-3 flex items-center justify-between">
+          <span class="text-xs px-2 py-1 rounded-full bg-orange-100 text-orange-700">Popular</span>
+          <span class="text-brand-700 font-semibold opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition">
+            Explore <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card: Main Dishes -->
+    <a href="maindishes.html"
+       class="group relative rounded-2xl p-0.5 bg-gradient-to-br from-emerald-200 via-sky-200 to-cyan-200 transition
+              hover:shadow-xl hover:-translate-y-1">
+      <div class="relative h-full rounded-[15px] bg-white/80 backdrop-blur p-4 sm:p-5">
+        <img src="images/maindishes.png" alt="" class="absolute -top-7 -right-4 w-16 rotate-[-8deg] drop-shadow group-hover:rotate-[-2deg] transition" />
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl
+                    bg-gradient-to-tr from-emerald-500 to-teal-400 text-white shadow-md">
+          <i class="fa-solid fa-bowl-food"></i>
+        </div>
+        <h3 class="mt-3 font-bold text-lg">Main Dishes</h3>
+        <p class="mt-0.5 text-sm text-slate-500">Biryani, steaks</p>
+        <div class="mt-3 flex items-center justify-between">
+          <span class="text-xs px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">Chef’s pick</span>
+          <span class="text-emerald-700 font-semibold opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition">
+            Explore <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card: Drinks -->
+    <a href="Drinks.html"
+       class="group relative rounded-2xl p-0.5 bg-gradient-to-br from-sky-200 via-indigo-200 to-fuchsia-200 transition
+              hover:shadow-xl hover:-translate-y-1">
+      <div class="relative h-full rounded-[15px] bg-white/80 backdrop-blur p-4 sm:p-5">
+        <img src="images/cooldrinks1.png" alt="" class="absolute -top-6 -right-3 w-14 rotate-12 drop-shadow group-hover:rotate-6 transition" />
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl
+                    bg-gradient-to-tr from-sky-500 to-indigo-500 text-white shadow-md">
+          <i class="fa-solid fa-champagne-glasses"></i>
+        </div>
+        <h3 class="mt-3 font-bold text-lg">Drinks</h3>
+        <p class="mt-0.5 text-sm text-slate-500">Cool &amp; refreshing</p>
+        <div class="mt-3 flex items-center justify-between">
+          <span class="text-xs px-2 py-1 rounded-full bg-sky-100 text-sky-700">Summer</span>
+          <span class="text-sky-700 font-semibold opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition">
+            Explore <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card: Desserts -->
+    <a href="desserts.html"
+       class="group relative rounded-2xl p-0.5 bg-gradient-to-br from-pink-200 via-rose-200 to-amber-200 transition
+              hover:shadow-xl hover:-translate-y-1">
+      <div class="relative h-full rounded-[15px] bg-white/80 backdrop-blur p-4 sm:p-5">
+        <img src="images/desserts.png" alt="" class="absolute -top-6 -right-4 w-16 rotate-3 drop-shadow group-hover:-rotate-1 transition" />
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl
+                    bg-gradient-to-tr from-pink-500 to-rose-500 text-white shadow-md">
+          <i class="fa-solid fa-ice-cream"></i>
+        </div>
+        <h3 class="mt-3 font-bold text-lg">Desserts</h3>
+        <p class="mt-0.5 text-sm text-slate-500">Make you smile</p>
+        <div class="mt-3 flex items-center justify-between">
+          <span class="text-xs px-2 py-1 rounded-full bg-pink-100 text-pink-700">Sweet</span>
+          <span class="text-pink-700 font-semibold opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition">
+            Explore <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+      <!-- Card: Rice -->
+       <div>
+  <a href="ricedishmanu.html"
+   class="group relative block aspect-square w-full max-w-[210px] rounded-2xl p-0.5
+          bg-gradient-to-br from-pink-200 via-rose-200 to-amber-200 transition
+          hover:shadow-xl hover:-translate-y-1">
+  <div class="relative flex h-full flex-col justify-between rounded-[14px]
+              bg-white/80 backdrop-blur p-3 sm:p-4">
+    <img src="images/desserts.png" alt=""
+         class="absolute -top-4 -right-3 w-12 rotate-3 drop-shadow
+                group-hover:-rotate-1 transition" />
+    <div>
+      <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl
+                  bg-gradient-to-tr from-pink-500 to-rose-500 text-white shadow-md">
+        <i class="fa-solid fa-ice-cream text-sm"></i>
+      </div>
+      <h3 class="mt-2 font-semibold text-base">Rice Dishes</h3>
+      <p class="mt-0.5 text-xs text-slate-500">Make you smile</p>
+    </div>
+    <div class="mt-2 flex items-center justify-between">
+      <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700">Sweet</span>
+      <span class="text-pink-700 text-xs font-semibold opacity-0 translate-x-2
+                   group-hover:opacity-100 group-hover:translate-x-0 transition">
+        Explore <i class="fa-solid fa-arrow-right-long"></i>
+      </span>
+    </div>
+  </div>
+</a>
+
+
+  </div>
+
+  <!-- mobile "view all" -->
+  <div class="mt-6 text-center md:hidden">
+    <a href="menu.html" class="inline-flex items-center gap-2 text-brand-700 font-semibold">
+      View all <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+  </div>
 </section>
 
-<section class="category">
-<!--types of Food categories on box-container-->
-   <h1 class="title"></h1>
+  </section>
 
-   <div class="box-container">
-          <!--hyper-linking for viewing more fast foods-->
-      <a href="fastfoodcategory.html" class="box">
-         <img src="images/fastfoods.png" alt="Fast Foods">
-         
-         <h3 style="font-family:cursive" > Fast Foods</h3>
-      </a>
-     <!--hyper-linking for viewing more Dishes-->
-      <a href="ricedishmanu.html" class="box">
-         <img src="images/maindishes.png" alt="Main dishes">
-         <h3>Main Dishes</h3>
-      </a>
-     <!--hyper-linking for viewing more Drinks-->
-      <a href="Drinks.html" class="box">
-         <img src="images/cooldrinks1.png" alt="Drinks">
-         <h3>Drinks</h3>
-      </a>
-     <!--hyper-linking for viewing more Desserts-->
-      <a href="desserts.html" class="box">
-         <img src="images/desserts.png" alt="Desserts">
-         <h3>Desserts</h3>
-      </a>
-
-   </div>
-
-</section>
-<!--Foods list and ctegoreis with image, add cart and included price in boxes -->
-<section class="products">
-
-   <h2  class="title">Our Latest Dishes</h2>
-
-   <div class="box-container">
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pizzahome1.jpg" alt="">
-         <a href="category.html" class="cat">Fast Foods</a>
-         <div class="name">Offer going on</div>
-         <div class="flex">
-            <div class="price"><span>$</span>8<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pizzahome2.jpg" alt="">
-         <a href="category.html" class="cat">Fast Foods</a>
-         <div class="name">Offer going on</div>
-         <div class="flex">
-            <div class="price"><span>$</span>12-30<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/pizzahome3.jpg" alt="">
-         <a href="category.html" class="cat">Fast Foods</a>
-         <div class="name">Offer going on</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3-18<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/drinks1.jpg" alt="">
-         <a href="category.html" class="cat">Cool Drinks</a>
-         <div class="name">Drinks 0.4</div>
-         <div class="flex">
-            <div class="price"><span>$</span>2-11<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/drinks3.jpg" alt="">
-         <a href="category.html" class="cat">Cool Drinks</a>
-         <div class="name">Drinks 0.5</div>
-         <div class="flex">
-            <div class="price"><span>$</span>1-3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/drinks2.jpg" alt="Cool Drinks">
-         <a href="category.html" class="cat">Cool Drinks</a>
-         <div class="name">Drinks 0.4</div>
-         <div class="flex">
-            <div class="price"><span>$</span>1-6<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/steak1.jpg" alt="">
-         <a href="category.html" class="cat">Steaks</a>
-         <div class="name">Steak 0.1</div>
-         <div class="flex">
-            <div class="price"><span>$</span>1-3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/steak 2.jpg" alt="">
-         <a href="category.html" class="cat">Steak</a>
-         <div class="name">Steak 0.2</div>
-         <div class="flex">
-            <div class="price"><span>$</span>1-3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-      <form accept="" method="post" class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-shopping-cart" type="submit" name="add_to_cart"></button>
-         <img src="uploaded_img/steak3.jpg" alt="">
-         <a href="category.html" class="cat">Steak</a>
-         <div class="name">Steak 0.3</div>
-         <div class="flex">
-            <div class="price"><span>$</span>1-3<span>/-</span></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-         </div>
-      </form>
-
-   </div>
-
-   <!-- View more menu button-->
-
-   <div class="more-btn">
-      <a href="Fooddetails.html" class="btn">Recipe Details</a>
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--footer area addressed -->
-
-
-<footer class="footer">
-   <section class="box-container">
-      <div class="box">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.19172313675074!2d91.8702069122075!3d24.895676700979067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505536e8446057%3A0x4025bb4dcb6ad526!2sKazi%20Asparagus%20Food%20Island%20Sylhet!5e0!3m2!1sen!2sbd!4v1682528587585!5m2!1sen!2sbd" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-   
+  <!-- Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-6 sm:p-10">
+      <div class="max-w-2xl">
+        <h3 class="text-2xl sm:text-3xl font-extrabold">Track your order live</h3>
+        <p class="mt-2 text-slate-600">Stay updated from kitchen to your doorstep. Enable notifications for real-time tracking.</p>
+        <a href="orders.html" class="mt-4 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white hover:bg-slate-800 font-semibold">
+          <i class="fa-solid fa-map-location-dot"></i> Go to Orders
+        </a>
       </div>
-            <div class="boxs">
-              
-               <img src="uploaded_img/foodminsbaner.jpg">
-       
-            </div>
-   </section>
+      <img src="images/chickenbiryani.png" alt="Dish" class="hidden md:block absolute -right-8 bottom-0 w-72 drop-shadow-xl animate-float" />
+    </div>
+  </section>
 
-   <section class="box-container">
+  <!-- Reviews -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <h2 class="text-2xl sm:text-3xl font-extrabold">What customers say</h2>
+    <div class="mt-6 grid md:grid-cols-3 gap-6" id="reviewGrid">
+      <figure class="glass p-5 rounded-2xl shadow-glass">
+        <div class="flex items-center gap-3">
+          <img src="images/pic1.jpeg" alt="Emon" class="w-10 h-10 rounded-full object-cover" />
+          <figcaption>
+            <p class="font-semibold">Emon Ahmed</p>
+            <p class="text-xs text-slate-500">Pizza Lover</p>
+          </figcaption>
+        </div>
+        <div class="mt-3 text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+        <p class="mt-2 text-slate-700">“Super creamy Alfredo and the crust is perfect. Delivery was fast!”</p>
+      </figure>
 
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <figure class="glass p-5 rounded-2xl shadow-glass">
+        <div class="flex items-center gap-3">
+          <img src="images/pic2.jpeg" alt="Guest" class="w-10 h-10 rounded-full object-cover" />
+          <figcaption>
+            <p class="font-semibold">Sadia</p>
+            <p class="text-xs text-slate-500">Foodie</p>
+          </figcaption>
+        </div>
+        <div class="mt-3 text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star"></i></div>
+        <p class="mt-2 text-slate-700">“The buffalo wings are 🔥 and the app is easy to use.”</p>
+      </figure>
+
+      <figure class="glass p-5 rounded-2xl shadow-glass">
+        <div class="flex items-center gap-3">
+          <img src="images/pic3.jpeg" alt="Guest" class="w-10 h-10 rounded-full object-cover" />
+          <figcaption>
+            <p class="font-semibold">Rafi</p>
+            <p class="text-xs text-slate-500">Regular</p>
+          </figcaption>
+        </div>
+        <div class="mt-3 text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="mt-2 text-slate-700">“Great value and consistent taste. Highly recommended.”</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white/70 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="font-bold text-slate-900">Email</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Opening Hours</h4>
+          <p class="mt-2 text-slate-600">10:00 AM – 12:00 PM</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Address</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet, Bangladesh</a>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-900">Phone</h4>
+          <a class="text-brand-700 hover:underline block mt-2" href="tel:+8801746462491">+880 174646-2491</a>
+        </div>
       </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+      <div class="pt-8 mt-8 border-t border-slate-200 text-sm text-slate-500">
+        © Copyright 2023 by <span class="font-semibold text-slate-700">Emon Ahmed</span> • All rights reserved.
       </div>
- 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <p> Sylhet, Bangladesh</p>
-      </div>
+    </div>
+  </footer>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+    <div class="glass rounded-xl shadow-glass px-4 py-3 flex items-center gap-3">
+      <i class="fa-solid fa-circle-check text-emerald-600"></i>
+      <p class="text-sm font-semibold">Added to cart!</p>
+    </div>
+  </div>
 
-   </section>
+  <!-- Scripts -->
+  <script>
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
 
-
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
-
-</footer>
-
-
-
-
-
-
-
-
-
-<!--loader gif image for every linked pages -->
-
-
-
-
-<div class="loader">
-   <img src="images/siteloading.gif" alt="site loading image">
-</div>
-
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-<script src="js/script.js"></script>
-
-<!--adding some JS effect for loader image-->
-<script>
-var swiper = new Swiper(".home-slider", {
-   loop:true,
-   grabCursor:true,
-   effect: "flip",
-   pagination: {
-      el: ".swiper-pagination",
-      clickable:true,
-   },
-});
-
-</script>
-
-
-
+    // Add to cart buttons
+    const badge = document.getElementById('cartBadge');
+    const toast = document.getElementById('toast');
+    function showToast(){
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(()=> toast.classList.add('hidden'), 1400);
+    }
+    document.querySelectorAll('.add-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        let c = parseInt(badge?.textContent || '0', 10); c++; if (badge) badge.textContent = c.toString();
+        showToast();
+      });
+    });
+  </script>
 </body>
 </html>
-

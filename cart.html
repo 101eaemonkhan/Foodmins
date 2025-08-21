@@ -1,183 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>My Cart</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Mins 🍽 — Your Cart</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  "#fff7f7",
+              100: "#ffe9e8",
+              200: "#ffd1ce",
+              300: "#ffaaa5",
+              400: "#ff7b72",
+              500: "#f43f5e",
+              600: "#e11d48",
+              700: "#be123c",
+              800: "#9f1239",
+              900: "#881337",
+            }
+          },
+          boxShadow: {
+            glow: "0 10px 30px rgba(244,63,94,.35)",
+          },
+          animation: {
+            float: "float 6s ease-in-out infinite",
+            blob: "blob 10s infinite",
+            pulsefast: "pulse 1s ease-in-out infinite",
+          },
+          keyframes: {
+            float: {
+              "0%,100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-8px)" }
+            },
+            blob: {
+              "0%": { transform: "translate(0px, 0px) scale(1)" },
+              "33%": { transform: "translate(20px, -15px) scale(1.04)" },
+              "66%": { transform: "translate(-15px, 15px) scale(0.98)" },
+              "100%": { transform: "translate(0px, 0px) scale(1)" }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+  <style>
+    .progress-track { background: linear-gradient(90deg,#fde68a,#fb923c,#f43f5e); }
+  </style>
 </head>
-<body>
-   
-<header class="header">
 
-   <section class="flex">
+<body class="bg-white text-gray-900 antialiased">
+  <!-- Decorative background -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand-200 opacity-50 blur-3xl animate-blob"></div>
+    <div class="absolute top-40 -right-32 h-96 w-96 rounded-full bg-orange-200 opacity-50 blur-3xl animate-blob" style="animation-delay:2s"></div>
+    <div class="absolute bottom-10 left-20 h-64 w-64 rounded-full bg-amber-200 opacity-50 blur-3xl animate-blob" style="animation-delay:4s"></div>
+  </div>
 
-      <a href="home.html" class="logo">Food Mins 🍽</a>
+  <!-- Header -->
+  <header class="relative">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+      <a href="home.html" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white shadow-glow group-hover:scale-105 transition">
+          <i class="fa-solid fa-bowl-food"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight">Food Mins</span>
+      </a>
 
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+      <div class="hidden gap-8 md:flex">
+         <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
-      </nav>
-
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+         <a href="profile.html">Profile</a>
       </div>
 
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">Logout</a>
-         </div>
-         <p class="account"><a href="login.html">Login</a> or <a href="register.html">register</a></p>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="search.html" class="p-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative p-2 rounded-lg hover:bg-gray-100">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cartBadge" class="absolute -right-1 -top-1 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-500 px-1.5 text-xs text-white">3</span>
+        </a>
+        <a href="login.html" class="rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
       </div>
 
-   </section>
+      <button class="md:hidden rounded-xl border px-3 py-2" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
 
-</header>
-
-<div class="heading">
-   <h3>shopping cart</h3>
-   <p><a href="home.html">Home </a> <span> / Cart</span></p>
-</div>
-
-<section class="products">
-
-   <h1 class="title">Your Cart</h1>
-
-   <div class="cart-total">
-      <p>grand total : <span>$9/-</span></p>
-      <a href="checkout.html" class="btn">Checkout Orders</a>
+    <!-- Mobile nav -->
+    <div id="mnav" class="mx-auto hidden max-w-7xl px-6 pb-4 md:hidden">
+      <div class="grid gap-2 rounded-2xl border bg-white p-4 shadow-sm">
+        <a href="home.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Home</a>
+        <a href="menu.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Menu</a>
+        <a href="orders.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Orders</a>
+        <a href="contact.html" class="rounded-lg px-3 py-2 hover:bg-gray-50">Contact</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="search.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</a>
+          <a href="cart.html" class="rounded-lg px-3 py-2 hover:bg-gray-50"><i class="fa-solid fa-cart-shopping mr-2"></i>Cart</a>
+          <a href="login.html" class="ml-auto rounded-xl bg-brand-500 px-4 py-2 font-semibold text-white shadow-glow hover:bg-brand-600">Login</a>
+        </div>
       </div>
-   </div>
+    </div>
+  </header>
 
-   <div class="box-container">
-<!-- slected items-->
-      <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/burger-1.png" alt="burger">
-         <div class="name">delicious Burger 01</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
-         </div>
-         <div class="sub-total">sub total : <span>$3</span></div>
+  <!-- Page Heading -->
+  <section class="mx-auto max-w-7xl px-6 pt-4 lg:px-8">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Your Cart</h1>
+        <p class="mt-1 text-gray-600">Review your items, apply coupons, and check out in seconds.</p>
+      </div>
+      <a href="menu.html" class="hidden md:inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-semibold hover:border-brand-300 hover:text-brand-700">
+        <i class="fa-solid fa-utensils"></i> Continue Shopping
+      </a>
+    </div>
+
+    <!-- Free delivery progress -->
+    <div id="freeBar" class="mt-6 rounded-2xl border bg-white/70 p-4 backdrop-blur">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-truck-fast text-brand-600 text-xl"></i>
+        <p class="text-sm text-gray-700" id="freeText">Spend <span class="font-semibold">$40.00</span> more for free delivery.</p>
+      </div>
+      <div class="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-gray-100">
+        <div id="freeProgress" class="progress-track h-2.5 w-0 rounded-full transition-all duration-500"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart grid -->
+  <main class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <!-- Items -->
+      <section class="lg:col-span-8">
+        <div id="cartList" class="space-y-4">
+          <!-- Item -->
+          <article class="group relative overflow-hidden rounded-2xl border bg-white p-4 shadow-sm" data-id="1" data-price="9.00">
+            <div class="grid grid-cols-[96px,1fr,120px] items-center gap-4 sm:grid-cols-[120px,1fr,180px]">
+              <img src="uploaded_img/burger-1.png" alt="Delicious Burger 01" class="h-24 w-24 rounded-xl object-cover ring-1 ring-gray-100 sm:h-28 sm:w-28" />
+              <div>
+                <h3 class="font-semibold">Delicious Burger 01</h3>
+                <p class="text-sm text-gray-600">Beef • Cheddar • House sauce</p>
+                <div class="mt-2 flex items-center gap-3 text-sm">
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800 save-btn" title="Save for later">
+                    <i class="fa-regular fa-bookmark"></i> Save
+                  </button>
+                  <span class="text-gray-300">|</span>
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-brand-700 remove-btn" title="Remove">
+                    <i class="fa-regular fa-trash-can"></i> Remove
+                  </button>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-gray-500">Price</div>
+                <div class="text-lg font-bold">$<span class="unit-price">9.00</span></div>
+
+                <div class="mt-3 inline-flex items-center rounded-xl border">
+                  <button class="decrement-btn px-2 py-1 text-gray-600 hover:bg-gray-50">−</button>
+                  <input class="qty-input w-12 border-x px-2 py-1 text-center outline-none" type="number" min="1" max="99" value="1" />
+                  <button class="increment-btn px-2 py-1 text-gray-600 hover:bg-gray-50">+</button>
+                </div>
+
+                <div class="mt-3 text-sm text-gray-500">Subtotal</div>
+                <div class="text-lg font-extrabold">$<span class="line-subtotal">9.00</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item -->
+          <article class="group relative overflow-hidden rounded-2xl border bg-white p-4 shadow-sm" data-id="2" data-price="12.00">
+            <div class="grid grid-cols-[96px,1fr,120px] items-center gap-4 sm:grid-cols-[120px,1fr,180px]">
+              <img src="uploaded_img/chickealfredopizza.png" alt="Ratanak Pizza" class="h-24 w-24 rounded-xl object-cover ring-1 ring-gray-100 sm:h-28 sm:w-28" />
+              <div>
+                <h3 class="font-semibold">Ratanak Pizza</h3>
+                <p class="text-sm text-gray-600">12” • Alfredo • Grilled chicken</p>
+                <div class="mt-2 flex items-center gap-3 text-sm">
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800 save-btn" title="Save for later">
+                    <i class="fa-regular fa-bookmark"></i> Save
+                  </button>
+                  <span class="text-gray-300">|</span>
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-brand-700 remove-btn" title="Remove">
+                    <i class="fa-regular fa-trash-can"></i> Remove
+                  </button>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-gray-500">Price</div>
+                <div class="text-lg font-bold">$<span class="unit-price">12.00</span></div>
+
+                <div class="mt-3 inline-flex items-center rounded-xl border">
+                  <button class="decrement-btn px-2 py-1 text-gray-600 hover:bg-gray-50">−</button>
+                  <input class="qty-input w-12 border-x px-2 py-1 text-center outline-none" type="number" min="1" max="99" value="1" />
+                  <button class="increment-btn px-2 py-1 text-gray-600 hover:bg-gray-50">+</button>
+                </div>
+
+                <div class="mt-3 text-sm text-gray-500">Subtotal</div>
+                <div class="text-lg font-extrabold">$<span class="line-subtotal">12.00</span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item -->
+          <article class="group relative overflow-hidden rounded-2xl border bg-white p-4 shadow-sm" data-id="3" data-price="3.00">
+            <div class="grid grid-cols-[96px,1fr,120px] items-center gap-4 sm:grid-cols-[120px,1fr,180px]">
+              <img src="uploaded_img/cooldrinks1.png" alt="Cool Drink 0.4" class="h-24 w-24 rounded-xl object-cover ring-1 ring-gray-100 sm:h-28 sm:w-28" />
+              <div>
+                <h3 class="font-semibold">Cool Drink 0.4</h3>
+                <p class="text-sm text-gray-600">Chilled • 500ml</p>
+                <div class="mt-2 flex items-center gap-3 text-sm">
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800 save-btn" title="Save for later">
+                    <i class="fa-regular fa-bookmark"></i> Save
+                  </button>
+                  <span class="text-gray-300">|</span>
+                  <button class="inline-flex items-center gap-1 text-gray-500 hover:text-brand-700 remove-btn" title="Remove">
+                    <i class="fa-regular fa-trash-can"></i> Remove
+                  </button>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-gray-500">Price</div>
+                <div class="text-lg font-bold">$<span class="unit-price">3.00</span></div>
+
+                <div class="mt-3 inline-flex items-center rounded-xl border">
+                  <button class="decrement-btn px-2 py-1 text-gray-600 hover:bg-gray-50">−</button>
+                  <input class="qty-input w-12 border-x px-2 py-1 text-center outline-none" type="number" min="1" max="99" value="1" />
+                  <button class="increment-btn px-2 py-1 text-gray-600 hover:bg-gray-50">+</button>
+                </div>
+
+                <div class="mt-3 text-sm text-gray-500">Subtotal</div>
+                <div class="text-lg font-extrabold">$<span class="line-subtotal">3.00</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="menu.html" class="inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-semibold hover:border-brand-300 hover:text-brand-700">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+          </a>
+          <button id="clearCart" class="inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-semibold text-gray-700 hover:border-red-300 hover:text-red-600">
+            <i class="fa-regular fa-trash-can"></i> Clear Cart
+          </button>
+        </div>
+
+        <!-- You may also like -->
+        <div class="mt-12">
+          <h2 class="text-xl font-extrabold">You may also like</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="menu.html" class="group overflow-hidden rounded-2xl border bg-white transition hover:shadow-lg">
+              <img src="uploaded_img/steak1.jpg" class="h-44 w-full object-cover transition duration-300 group-hover:scale-105" alt="Steak 0.1"/>
+              <div class="p-4">
+                <div class="font-semibold">Steak 0.1</div>
+                <div class="text-sm text-gray-600">$11.00</div>
+              </div>
+            </a>
+            <a href="menu.html" class="group overflow-hidden rounded-2xl border bg-white transition hover:shadow-lg">
+              <img src="uploaded_img/pudding.png" class="h-44 w-full object-cover transition duration-300 group-hover:scale-105" alt="Chocolate Pudding"/>
+              <div class="p-4">
+                <div class="font-semibold">Chocolate Pudding</div>
+                <div class="text-sm text-gray-600">$4.00</div>
+              </div>
+            </a>
+            <a href="menu.html" class="group overflow-hidden rounded-2xl border bg-white transition hover:shadow-lg">
+              <img src="uploaded_img/Mexicansubwayrice.PNG" class="h-44 w-full object-cover transition duration-300 group-hover:scale-105" alt="Mexican Fried Rice"/>
+              <div class="p-4">
+                <div class="font-semibold">Mexican Fried Rice</div>
+                <div class="text-sm text-gray-600">$8.00</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary -->
+      <aside class="lg:col-span-4">
+        <div class="sticky top-6 space-y-4">
+          <!-- Coupon -->
+          <div class="rounded-2xl border bg-white p-4 shadow-sm">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-ticket text-brand-600"></i>
+              <h3 class="font-semibold">Have a coupon?</h3>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <input id="couponInput" type="text" placeholder="Enter code (e.g. FOOD10)" class="w-full rounded-xl border px-3 py-2 outline-none focus:border-brand-400" />
+              <button id="applyCoupon" class="rounded-xl bg-gray-900 px-4 py-2 font-semibold text-white hover:bg-gray-800">Apply</button>
+            </div>
+            <p id="couponMsg" class="mt-2 text-sm text-gray-600"></p>
+          </div>
+
+          <!-- Delivery method -->
+          <div class="rounded-2xl border bg-white p-4 shadow-sm">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-truck-fast text-amber-600"></i>
+              <h3 class="font-semibold">Delivery method</h3>
+            </div>
+            <div class="mt-3 grid gap-2 text-sm">
+              <label class="flex items-center gap-2 rounded-xl border p-3 hover:border-brand-300">
+                <input type="radio" name="ship" value="delivery" class="ship-radio" checked />
+                <span>Home delivery <span class="text-gray-500">(Base $3.00 · free over $40)</span></span>
+              </label>
+              <label class="flex items-center gap-2 rounded-xl border p-3 hover:border-brand-300">
+                <input type="radio" name="ship" value="pickup" class="ship-radio" />
+                <span>Pickup <span class="text-gray-500">(Free)</span></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Summary card -->
+          <div class="rounded-2xl border bg-white p-5 shadow-sm">
+            <h3 class="text-lg font-extrabold">Order Summary</h3>
+            <div class="mt-4 space-y-2 text-sm">
+              <div class="flex justify-between"><span>Items Subtotal</span><span>$<span id="sumSubtotal">24.00</span></span></div>
+              <div class="flex justify-between"><span>Discount</span><span class="text-brand-600">−$<span id="sumDiscount">0.00</span></span></div>
+              <div class="flex justify-between"><span>Shipping</span><span>$<span id="sumShipping">3.00</span></span></div>
+              <div class="flex justify-between"><span>Tax (5%)</span><span>$<span id="sumTax">1.20</span></span></div>
+              <div class="border-t pt-3 text-base font-extrabold flex justify-between">
+                <span>Total</span><span>$<span id="sumTotal">28.20</span></span>
+              </div>
+            </div>
+            <a href="checkout.html" id="checkoutBtn" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white shadow-glow hover:bg-brand-600">
+              <i class="fa-solid fa-credit-card"></i> Checkout
+            </a>
+            <p class="mt-2 text-center text-xs text-gray-500">Secured payments · 256-bit encryption</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Empty state (hidden by default) -->
+    <section id="emptyState" class="hidden">
+      <div class="mt-10 overflow-hidden rounded-3xl border bg-white p-10 text-center shadow-sm">
+        <div class="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-100 text-brand-600">
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+        </div>
+        <h3 class="mt-4 text-2xl font-extrabold">Your cart is empty</h3>
+        <p class="mt-2 text-gray-600">Hungry? Explore our fresh menu and add your favorites.</p>
+        <a href="menu.html" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-gray-900 px-5 py-3 font-semibold text-white hover:bg-gray-800">
+          Browse Menu <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t">
+    <div class="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div>
+        <a href="home.html" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white"><i class="fa-solid fa-bowl-food"></i></span>
+          <span class="text-lg font-extrabold">Food Mins</span>
+        </a>
+        <p class="mt-3 text-sm text-gray-600">Sylhet, Bangladesh</p>
+        <p class="mt-1 text-sm"><a class="hover:text-brand-600" href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a></p>
+        <p class="text-sm"><a class="hover:text-brand-600" href="tel:+8801746462491">+880 174646-2491</a></p>
       </div>
 
-      <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/chickealfredopizza.png" alt="pizza">
-         <div class="name">Razanak Pizza</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
-         </div>
-         <div class="sub-total">subtotal : <span>$3</span></div>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a class="hover:text-brand-600" href="about.html">About</a></li>
+          <li><a class="hover:text-brand-600" href="menu.html">Menu</a></li>
+          <li><a class="hover:text-brand-600" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand-600" href="contact.html">Contact</a></li>
+        </ul>
       </div>
 
-      <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/cooldrinks1.png" alt="drinks">
-         <div class="name">Drinks 0.4</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
-         </div>
-         <div class="sub-total">Subtotal : <span>$3</span></div>
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Hours</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li>Sun–Thu: 10:00–22:00</li>
+          <li>Fri–Sat: 10:00–23:00</li>
+        </ul>
       </div>
 
-   </div>
-
-   <div class="more-btn">
-      <a href="menu.html" class="delete-btn" onclick="return confirm('Do you want to delete all from cart?');">Delete all</a>
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-700">Follow</h4>
+        <div class="mt-3 flex gap-3 text-gray-600">
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="rounded-lg border p-2 hover:text-brand-600 hover:border-brand-300" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
       </div>
+    </div>
+    <div class="border-t py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> Food Mins — All rights reserved.
+    </div>
+  </footer>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
-      </div>
+  <!-- Interactivity -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
-      </div>
+    // Cart logic
+    const FREE_SHIP_THRESHOLD = 40;
+    const BASE_SHIP_DELIVERY = 3.00;
+    const TAX_RATE = 0.05;
+    let coupon = { code: null, discountRate: 0, freeship: false };
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
-      </div>
+    const els = {
+      list: document.getElementById('cartList'),
+      badge: document.getElementById('cartBadge'),
+      empty: document.getElementById('emptyState'),
+      subtotal: document.getElementById('sumSubtotal'),
+      discount: document.getElementById('sumDiscount'),
+      shipping: document.getElementById('sumShipping'),
+      tax: document.getElementById('sumTax'),
+      total: document.getElementById('sumTotal'),
+      couponInput: document.getElementById('couponInput'),
+      couponMsg: document.getElementById('couponMsg'),
+      applyCoupon: document.getElementById('applyCoupon'),
+      radios: Array.from(document.querySelectorAll('.ship-radio')),
+      freeText: document.getElementById('freeText'),
+      freeProgress: document.getElementById('freeProgress'),
+      clear: document.getElementById('clearCart'),
+    };
 
-   </section>
+    function currency(n){ return n.toFixed(2); }
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+    function updateBadge() {
+      const count = els.list.querySelectorAll('article[data-id]').length;
+      if (els.badge) els.badge.textContent = count;
+    }
 
-</footer>
+    function calc() {
+      const rows = Array.from(els.list.querySelectorAll('article[data-id]'));
+      let subtotal = 0;
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="siteloading">
-</div>
+      rows.forEach(row => {
+        const price = parseFloat(row.dataset.price);
+        const qtyInput = row.querySelector('.qty-input');
+        const qty = Math.max(1, Math.min(99, parseInt(qtyInput.value || '1', 10)));
+        qtyInput.value = qty;
+        const line = price * qty;
+        row.querySelector('.line-subtotal').textContent = currency(line);
+        subtotal += line;
+      });
 
-<script src="js/script.js"></script>
+      // Discount from coupon
+      let discount = 0;
+      if (coupon.code) {
+        discount = subtotal * coupon.discountRate;
+        // Additional rule: WELCOME15 requires $30+
+        if (coupon.code === 'WELCOME15' && subtotal < 30) discount = 0;
+      }
 
+      // Shipping
+      const shipMethod = els.radios.find(r => r.checked)?.value || 'delivery';
+      let shipping = 0;
+      if (shipMethod === 'delivery') {
+        shipping = BASE_SHIP_DELIVERY;
+        if (coupon.freeship || subtotal >= FREE_SHIP_THRESHOLD) shipping = 0;
+      }
+
+      // Tax on (subtotal - discount)
+      const taxable = Math.max(0, subtotal - discount);
+      const tax = taxable * TAX_RATE;
+
+      const total = taxable + shipping + tax;
+
+      els.subtotal.textContent = currency(subtotal);
+      els.discount.textContent = currency(discount);
+      els.shipping.textContent = currency(shipping);
+      els.tax.textContent = currency(tax);
+      els.total.textContent = currency(total);
+
+      // Free shipping bar
+      if (subtotal >= FREE_SHIP_THRESHOLD) {
+        els.freeText.innerHTML = `🎉 You unlocked <span class="font-semibold">FREE delivery</span>!`;
+        els.freeProgress.style.width = '100%';
+      } else {
+        const remain = FREE_SHIP_THRESHOLD - subtotal;
+        els.freeText.innerHTML = `Spend <span class="font-semibold">$${currency(remain)}</span> more for free delivery.`;
+        const pct = Math.min(100, (subtotal / FREE_SHIP_THRESHOLD) * 100);
+        els.freeProgress.style.width = pct + '%';
+      }
+
+      // Empty state
+      if (rows.length === 0) {
+        document.querySelector('aside').classList.add('hidden');
+        els.empty.classList.remove('hidden');
+        els.freeText.innerHTML = `Add items to unlock rewards and free delivery.`;
+        els.freeProgress.style.width = '0%';
+      } else {
+        document.querySelector('aside').classList.remove('hidden');
+        els.empty.classList.add('hidden');
+      }
+
+      updateBadge();
+    }
+
+    function bindRow(row) {
+      const minus = row.querySelector('.decrement-btn');
+      const plus = row.querySelector('.increment-btn');
+      const qty = row.querySelector('.qty-input');
+      const remove = row.querySelector('.remove-btn');
+
+      minus.addEventListener('click', () => { qty.value = Math.max(1, parseInt(qty.value||'1',10)-1); calc(); });
+      plus.addEventListener('click', () => { qty.value = Math.min(99, parseInt(qty.value||'1',10)+1); calc(); });
+      qty.addEventListener('input', calc);
+      remove.addEventListener('click', () => { row.remove(); calc(); });
+    }
+
+    // Initial bind
+    Array.from(els.list.querySelectorAll('article[data-id]')).forEach(bindRow);
+
+    // Shipping change
+    els.radios.forEach(r => r.addEventListener('change', calc));
+
+    // Clear cart
+    els.clear.addEventListener('click', () => {
+      if(confirm('Do you want to remove all items from cart?')){
+        els.list.innerHTML = '';
+        calc();
+      }
+    });
+
+    // Coupon
+    els.applyCoupon.addEventListener('click', () => {
+      const code = (els.couponInput.value || '').trim().toUpperCase();
+      coupon = { code: null, discountRate: 0, freeship: false };
+      let msg = '';
+
+      if (!code) {
+        msg = 'Enter a coupon code.';
+      } else if (code === 'FOOD10') {
+        coupon = { code, discountRate: 0.10, freeship: false };
+        msg = 'Applied 10% off.';
+      } else if (code === 'WELCOME15') {
+        coupon = { code, discountRate: 0.15, freeship: false };
+        msg = 'Applied 15% off on orders $30+.';
+      } else if (code === 'FREESHIP') {
+        coupon = { code, discountRate: 0, freeship: true };
+        msg = 'Free delivery applied.';
+      } else {
+        msg = 'Invalid code. Try FOOD10, WELCOME15, or FREESHIP.';
+      }
+
+      els.couponMsg.textContent = msg;
+      calc();
+    });
+
+    // Kick off
+    calc();
+  </script>
 </body>
 </html>

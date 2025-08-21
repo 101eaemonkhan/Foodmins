@@ -1,0 +1,62 @@
+<!-- Register: Firebase Auth + Realtime DB (safe) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDtFp4t1xcL5cLTHj3xw6tMMSspB1le0sE",
+    authDomain: "foodmins-17a94.firebaseapp.com",
+    databaseURL: "https://foodmins-17a94-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "foodmins-17a94",
+    storageBucket: "foodmins-17a94.appspot.com",
+    messagingSenderId: "36445179297",
+    appId: "1:36445179297:web:cb32e305541f8b2f4a8fe0",
+    measurementId: "G-W8RQQCSMDM"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+
+  const form = document.getElementById('myForm');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name     = document.getElementById('name').value.trim();
+    const number   = document.getElementById('number').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm  = document.getElementById('passwords').value;
+
+    if (password !== confirm) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      // 1) Create account securely (Firebase hashes & stores the password)
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+
+      // 2) Optional: set display name
+      await updateProfile(cred.user, { displayName: name });
+
+      // 3) Store public profile data (NO passwords) under uid
+      await set(ref(db, `users/${cred.user.uid}`), {
+        name,
+        number,
+        email,
+        createdAt: Date.now()
+      });
+
+      // 4) Optional: verify email
+      await sendEmailVerification(cred.user);
+
+      alert("Registration successful! Please verify your email.");
+      window.location.href = "login.html";
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Registration failed");
+    }
+  });
+</script>

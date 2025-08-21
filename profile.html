@@ -1,134 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>my profile</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Profile • Food Mins</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors:{
+            brand:{50:"#FFF7F2",100:"#FFE9DD",200:"#FFD0B8",300:"#FFB08A",400:"#FF8E5F",500:"#FF6A3D",600:"#E94F25",700:"#C83D1A",800:"#9F3015",900:"#7F2613"}
+          },
+          boxShadow:{glow:"0 10px 30px -5px rgba(255,106,61,.35), 0 6px 16px -8px rgba(255,106,61,.45)"},
+          keyframes:{
+            floaty:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-6px)'}},
+            shine:{'0%':{transform:'translateX(-100%)'},'100%':{transform:'translateX(100%)'}}
+          },
+          animation:{floaty:'floaty 6s ease-in-out infinite',shine:'shine 1.2s linear infinite'}
+        }
+      }
+    }
+  </script>
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
+  <style>
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8e5f,#ff6a3d);border-radius:999px}
+    .tab-active{background:linear-gradient(90deg,#ff6a3d,#ef4444);color:white;border-color:transparent;box-shadow:0 10px 20px -10px rgba(239,68,68,.7)}
+  </style>
 </head>
-<body>
-   
-<header class="header">
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-amber-50 to-orange-50 text-slate-800">
+  <!-- soft blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-orange-300/40 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-rose-300/30 blur-3xl"></div>
+    <div class="absolute top-1/2 left-10 h-40 w-40 rounded-full bg-amber-200/50 blur-2xl"></div>
+  </div>
 
-   <section class="flex">
-
-      <a href="home.html" class="logo">Food Mins 🍽</a>
-
-      <nav class="navbar">
-         <a href="home.html">Home</a>
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/70 backdrop-blur border-b border-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="home.html" class="inline-flex items-center gap-2">
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-brand-500 to-rose-500 bg-clip-text text-transparent">Food Mins 🍽</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html">Home</a>
+         <a href="home.html">Food Features</a>
+         <a href="fastfoodcategory.html">Fast Food</a>
+         <a href="fooddetails.html">Food Details</a>
          <a href="about.html">About</a>
          <a href="menu.html">Menu</a>
          <a href="orders.html">Orders</a>
          <a href="contact.html">Contact</a>
+         <a href="profile.html">Profile</a>
       </nav>
+      <div class="flex items-center gap-3">
+        <a href="search.html" class="hidden sm:inline-flex p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="relative inline-flex items-center p-2 rounded-xl bg-white/70 border border-slate-200 hover:bg-white">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cartCount" class="absolute -top-2 -right-2 text-xs px-1.5 py-0.5 rounded-full bg-brand-600 text-white">3</span>
+        </a>
+        <a href="login.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl border border-slate-200 bg-white/70 hover:bg-white text-sm font-semibold">Logout</a>
+      </div>
+    </div>
+  </header>
 
-      <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
+  <!-- Hero / Cover -->
+  <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="relative overflow-hidden rounded-3xl border border-white/60 bg-white/60 backdrop-blur p-0 shadow-xl">
+        <div class="h-36 sm:h-48 bg-gradient-to-r from-brand-500 to-rose-500 relative">
+          <div class="absolute inset-y-0 -left-1/3 w-1/3 bg-white/25 skew-x-12 animate-shine"></div>
+        </div>
+
+        <!-- Header row -->
+        <div class="p-5 sm:p-8 -mt-14 sm:-mt-16">
+          <div class="flex flex-col sm:flex-row sm:items-end gap-5">
+            <div class="relative">
+              <img id="avatarImg" src="images/emonahmed.png" onerror="this.src='https://i.pravatar.cc/200?img=67'" alt="Profile"
+                   class="h-28 w-28 sm:h-36 sm:w-36 rounded-3xl border-4 border-white object-cover shadow-xl bg-white"/>
+              <label for="avatarFile" class="absolute bottom-2 right-2 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/90 border border-slate-200 text-xs font-semibold shadow cursor-pointer hover:bg-white">
+                <i class="fa-solid fa-camera"></i> Change
+              </label>
+              <input id="avatarFile" type="file" accept="image/*" class="hidden"/>
+            </div>
+
+            <div class="flex-1">
+              <nav class="text-sm text-slate-600 mb-2">
+                <a class="hover:text-brand-600" href="home.html">Home</a>
+                <span class="mx-2 opacity-60">/</span>
+                <span class="font-semibold text-slate-800">Profile</span>
+              </nav>
+              <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                Emon Ahmed
+              </h1>
+              <p class="mt-1 text-slate-600 flex flex-wrap items-center gap-3">
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-envelope text-slate-400"></i> eaemonkhan720@gmail.com</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-phone text-slate-400"></i> +880174646-2491</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-location-dot text-slate-400"></i> Sylhet, Bangladesh</span>
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <button id="editToggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white"><i class="fa-regular fa-pen-to-square"></i> Edit Profile</button>
+                <a href="orders.html" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg"><i class="fa-solid fa-box"></i> View Orders</a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 sm:w-80">
+              <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-4 text-center">
+                <p class="text-xs text-slate-500">Orders</p>
+                <p class="text-2xl font-extrabold">12</p>
+              </div>
+              <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-4 text-center">
+                <p class="text-xs text-slate-500">Favorites</p>
+                <p class="text-2xl font-extrabold">7</p>
+              </div>
+              <div class="rounded-2xl border border-white/60 bg-white/70 backdrop-blur p-4 text-center">
+                <p class="text-xs text-slate-500">Points</p>
+                <p class="text-2xl font-extrabold text-emerald-600">420</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="mt-8">
+            <div class="flex flex-wrap gap-2">
+              <button data-tab="overview" class="tab-btn tab-active px-4 py-2 rounded-xl border border-slate-200 bg-white/80 text-sm font-semibold">Overview</button>
+              <button data-tab="addresses" class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white/80 text-sm font-semibold hover:bg-white">Addresses</button>
+              <button data-tab="payment" class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white/80 text-sm font-semibold hover:bg-white">Payment Methods</button>
+              <button data-tab="security" class="tab-btn px-4 py-2 rounded-xl border border-slate-200 bg-white/80 text-sm font-semibold hover:bg-white">Security</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
+    <!-- Overview -->
+    <div id="tab-overview" class="grid lg:grid-cols-3 gap-6">
+      <!-- Profile form -->
+      <div class="lg:col-span-2 rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+        <h3 class="text-lg font-extrabold">Profile details</h3>
+        <p class="text-sm text-slate-600">Keep your information up to date for seamless delivery.</p>
+
+        <form class="mt-5 grid sm:grid-cols-2 gap-4" id="profileForm">
+          <div>
+            <label class="text-sm font-medium text-slate-700">Full name</label>
+            <input class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" value="Emon Ahmed" disabled>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Phone</label>
+            <input class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" value="+880174646-2491" disabled>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="text-sm font-medium text-slate-700">Email</label>
+            <input type="email" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" value="eaemonkhan720@gmail.com" disabled>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">City</label>
+            <input class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" value="Sylhet" disabled>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-700">Country</label>
+            <input class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" value="Bangladesh" disabled>
+          </div>
+
+          <div class="sm:col-span-2 flex items-center gap-3 mt-2">
+            <button type="button" id="saveProfile" class="rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg disabled:opacity-50" disabled>
+              <i class="fa-solid fa-floppy-disk mr-1"></i> Save changes
+            </button>
+            <button type="button" id="cancelEdit" class="rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white hidden">Cancel</button>
+          </div>
+        </form>
       </div>
 
-      <div class="profile">
-         <p class="name">Emon Ahmed</p>
-         <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
-            <a href="login.html" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+      <!-- Preferences -->
+      <div class="rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+        <h3 class="text-lg font-extrabold">Preferences</h3>
+        <div class="mt-4 space-y-3 text-sm">
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-200" checked>
+            Email me order updates
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-200" checked>
+            Promotional offers & coupons
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-200">
+            SMS alerts
+          </label>
+        </div>
+
+        <div class="mt-6">
+          <a href="orders.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white"><i class="fa-regular fa-clock"></i> View recent orders</a>
+        </div>
       </div>
+    </div>
 
-   </section>
+    <!-- Addresses -->
+    <div id="tab-addresses" class="hidden">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-extrabold">Saved addresses</h3>
+            <button id="addAddressBtn" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg"><i class="fa-solid fa-plus"></i> Add new</button>
+          </div>
 
-</header>
+          <div class="mt-5 grid sm:grid-cols-2 gap-4" id="addressList">
+            <!-- Address Card -->
+            <div class="rounded-2xl border border-slate-100 bg-white/80 p-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700"><i class="fa-solid fa-star"></i> Default</span>
+                <div class="flex items-center gap-2">
+                  <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-600"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-rose-600"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              </div>
+              <p class="mt-2 font-semibold">Home</p>
+              <p class="text-sm text-slate-600">Sylhet, Bangladesh, 3100</p>
+              <p class="text-sm text-slate-600">+880174646-2491</p>
+            </div>
 
-<div class="heading">
-   <h3>my profile</h3>
-   <p><a href="home.html">home </a> <span> / profile</span></p>
-</div>
+            <div class="rounded-2xl border border-slate-100 bg-white/80 p-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-location-dot"></i> Secondary</span>
+                <div class="flex items-center gap-2">
+                  <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-600"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-rose-600"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              </div>
+              <p class="mt-2 font-semibold">Office</p>
+              <p class="text-sm text-slate-600">Zindabazar, Sylhet</p>
+              <p class="text-sm text-slate-600">+8801XXXXXXXXX</p>
+            </div>
+          </div>
+        </div>
 
-<section class="user-details">
-
-   <div class="user">
-      <img src="images/emonahmed.png" alt="emon ahmed">
-      <p><i class="fas fa-user"></i> <span>Emon Ahmed</span></p>
-      <p><i class="fas fa-phone"></i> <span>+880174646-2491</span></p>
-      <p><i class="fas fa-envelope"></i> <span>eaemonkhan720@gmail.com</span></p>
-      <a href="update_profile.html" class="btn">update profile</a>
-      <p class="address"><i class="fas fa-map-marker-alt"></i> <span>Syleht, Bangladesh</span></p>
-      <a href="update_address.html" class="btn">update address</a>
-   </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3 > Email</h3>
-         <a href="mailto:eaemonkhan720@gmail.com">eaemonkhan720@gmail.com</a>
- 
+        <div class="rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <h3 class="text-lg font-extrabold">Delivery notes</h3>
+          <textarea class="mt-3 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" rows="6" placeholder="e.g., Call on arrival, leave at door, gate code…"></textarea>
+          <button class="mt-3 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white">Save notes</button>
+        </div>
       </div>
+    </div>
 
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3 >Opening Hours Time</h3>
-         <p>00:010am to 00:12pm </p>
+    <!-- Payment -->
+    <div id="tab-payment" class="hidden">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-extrabold">Payment methods</h3>
+            <button class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-3.5 py-2 font-semibold shadow hover:shadow-lg"><i class="fa-solid fa-plus"></i> Add card</button>
+          </div>
+
+          <div class="mt-5 grid gap-4">
+            <div class="rounded-2xl border border-slate-100 bg-white/80 p-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="h-10 w-16 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-black grid place-items-center">VISA</span>
+                <div>
+                  <p class="font-semibold">**** **** **** 4242</p>
+                  <p class="text-xs text-slate-600">Expires 08/27 • Default</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-600"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button class="p-2 rounded-lg border border-slate-200 hover:bg-white text-rose-600"><i class="fa-regular fa-trash-can"></i></button>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-slate-100 bg-white/60 p-4 flex items-center justify-between opacity-70">
+              <div class="flex items-center gap-3">
+                <span class="h-10 w-16 rounded-xl bg-gradient-to-r from-slate-800 to-slate-600 text-white font-black grid place-items-center">MC</span>
+                <div>
+                  <p class="font-semibold">**** **** **** 1122</p>
+                  <p class="text-xs text-slate-600">Expires 03/26</p>
+                </div>
+              </div>
+              <button class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-white text-sm">Set default</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <h3 class="text-lg font-extrabold">Billing address</h3>
+          <p class="mt-2 text-sm text-slate-600">Use your delivery address as billing by default.</p>
+          <label class="mt-3 flex items-center gap-3 text-sm">
+            <input type="checkbox" checked class="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-200">
+            Same as default delivery address
+          </label>
+          <button class="mt-4 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white">Save</button>
+        </div>
       </div>
+    </div>
 
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3 >Address</h3>
-         <a href="https://www.google.com/maps/place/EASPN+SPORTS/@24.828936,91.8154968,16.53z">Sylhet Bangladesh</a>
+    <!-- Security -->
+    <div id="tab-security" class="hidden">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <h3 class="text-lg font-extrabold">Change password</h3>
+          <form class="mt-4 grid sm:grid-cols-2 gap-4" id="pwForm">
+            <div class="sm:col-span-2">
+              <label class="text-sm font-medium text-slate-700">Current password</label>
+              <input type="password" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" placeholder="••••••••">
+            </div>
+            <div>
+              <label class="text-sm font-medium text-slate-700">New password</label>
+              <input id="newPw" type="password" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" placeholder="At least 8 characters">
+              <div class="mt-2 h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                <div id="pwBar" class="h-full w-1/6 bg-rose-400"></div>
+              </div>
+              <p id="pwHint" class="mt-1 text-xs text-slate-500">Strength: weak</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-slate-700">Confirm new password</label>
+              <input id="confirmPw" type="password" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" placeholder="Repeat new password">
+            </div>
+            <div class="sm:col-span-2">
+              <button class="rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg">Update password</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="rounded-3xl border border-white/60 bg-white/70 backdrop-blur p-6 shadow">
+          <h3 class="text-lg font-extrabold">Two-factor authentication</h3>
+          <p class="mt-2 text-sm text-slate-600">Enhance account security with an extra step at sign in.</p>
+          <label class="mt-4 inline-flex items-center cursor-pointer">
+            <input id="twoFA" type="checkbox" class="peer sr-only">
+            <div class="peer-checked:bg-emerald-500 peer-checked:border-emerald-500 w-12 h-7 bg-slate-200 border border-slate-300 rounded-full relative transition">
+              <span class="absolute top-1 left-1 h-5 w-5 rounded-full bg-white shadow transition peer-checked:translate-x-5"></span>
+            </div>
+            <span class="ml-3 text-sm font-semibold" id="faLabel">Disabled</span>
+          </label>
+          <button class="mt-4 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white">Configure app</button>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="box">
-         <img src="images/phone-icon.png" alt="Mobile Number">
-         <h3 >Number</h3>
-         <a href="tel:+8801746462491">+880174646-2491</a>
+  <!-- Add Address Modal -->
+  <div id="addressModal" class="fixed inset-0 z-40 hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/40" onclick="toggleAddressModal(false)"></div>
+    <div class="relative z-10 mx-4 max-w-xl w-full rounded-3xl bg-white/90 backdrop-blur border border-white/60 shadow-2xl p-6">
+      <button class="absolute top-3 right-3 p-2 rounded-full bg-white/80 border border-slate-200 hover:bg-white" onclick="toggleAddressModal(false)" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 class="text-2xl font-extrabold">Add new address</h3>
+      <form class="mt-4 grid sm:grid-cols-2 gap-4" id="addrForm">
+        <div class="sm:col-span-2">
+          <label class="text-sm font-medium text-slate-700">Label</label>
+          <input required class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" placeholder="Home / Office">
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">City</label>
+          <input required class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200">
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">Postal code</label>
+          <input required class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-sm font-medium text-slate-700">Country</label>
+          <input required value="Bangladesh" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-sm font-medium text-slate-700">Phone</label>
+          <input required class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-200" placeholder="+880...">
+        </div>
+        <div class="sm:col-span-2 flex items-center gap-3 mt-2">
+          <button class="rounded-xl bg-gradient-to-r from-brand-600 to-rose-500 text-white px-4 py-2 font-semibold shadow hover:shadow-lg" type="submit">Save address</button>
+          <button type="button" class="rounded-xl border border-slate-200 bg-white/80 px-4 py-2 font-semibold hover:bg-white" onclick="toggleAddressModal(false)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/60 bg-white/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-600 grid sm:grid-cols-2 gap-6">
+      <p>&copy; <span id="yr"></span> 2025 itoolapk Limited. All rights reserved.</p>
+      <div class="flex sm:justify-end items-center gap-4">
+        <a href="mailto:eaemonkhan720@gmail.com" class="hover:text-brand-600"><i class="fa-regular fa-envelope"></i> Email</a>
+        <a href="tel:+8801746462491" class="hover:text-brand-600"><i class="fa-solid fa-phone"></i> +880174646-2491</a>
+        <a href="contact.html" class="hover:text-brand-600"><i class="fa-solid fa-location-dot"></i> Sylhet, BD</a>
       </div>
+    </div>
+  </footer>
 
-   </section>
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden">
+    <div class="rounded-xl bg-slate-900 text-white/95 px-4 py-2 shadow-lg flex items-center gap-2">
+      <i class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span>Profile updated</span>
+    </div>
+  </div>
 
-   <div class="credit">&copy;Copyright 2023 by <span>Emon Ahmed</span> | All Rights Reserved</div>
+  <!-- Scripts -->
+  <script>
+    // footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-</footer>
+    // avatar preview
+    const fileEl = document.getElementById('avatarFile');
+    const imgEl  = document.getElementById('avatarImg');
+    fileEl?.addEventListener('change', e=>{
+      const f = e.target.files?.[0];
+      if(!f) return;
+      const url = URL.createObjectURL(f);
+      imgEl.src = url;
+      showToast("Photo updated");
+    });
 
-<div class="loader">
-   <img src="images/siteloading.gif" alt="">
-</div>
+    // tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabs = {
+      overview: document.getElementById('tab-overview'),
+      addresses: document.getElementById('tab-addresses'),
+      payment: document.getElementById('tab-payment'),
+      security: document.getElementById('tab-security'),
+    };
+    tabBtns.forEach(b=>b.addEventListener('click',()=>{
+      tabBtns.forEach(x=>x.classList.remove('tab-active'));
+      b.classList.add('tab-active');
+      Object.values(tabs).forEach(el=>el.classList.add('hidden'));
+      tabs[b.dataset.tab].classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }));
 
-<script src="js/script.js"></script>
+    // edit mode
+    const editToggle = document.getElementById('editToggle');
+    const profileForm = document.getElementById('profileForm');
+    const saveBtn = document.getElementById('saveProfile');
+    const cancelBtn = document.getElementById('cancelEdit');
+    let pristineValues = [];
+    function setEditable(edit){
+      [...profileForm.querySelectorAll('input')].forEach((inp,i)=>{
+        if(edit && pristineValues.length===0){ pristineValues[i]=inp.value; }
+        inp.disabled = !edit;
+      });
+      saveBtn.disabled = !edit;
+      cancelBtn.classList.toggle('hidden', !edit);
+      editToggle.classList.toggle('hidden', edit);
+    }
+    editToggle?.addEventListener('click', ()=> setEditable(true));
+    cancelBtn?.addEventListener('click', ()=>{
+      [...profileForm.querySelectorAll('input')].forEach((inp,i)=> inp.value = pristineValues[i]);
+      setEditable(false);
+    });
+    saveBtn?.addEventListener('click', ()=>{
+      setEditable(false);
+      showToast("Profile updated");
+    });
 
+    // toast
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.querySelector('span').textContent = msg || 'Saved';
+      t.classList.remove('hidden');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(()=>t.classList.add('hidden'), 1200);
+    }
+
+    // Add address modal
+    const addressModal = document.getElementById('addressModal');
+    document.getElementById('addAddressBtn')?.addEventListener('click', ()=>toggleAddressModal(true));
+    function toggleAddressModal(open){
+      addressModal.classList.toggle('hidden', !open);
+      addressModal.classList.toggle('flex', open);
+    }
+    document.getElementById('addrForm')?.addEventListener('submit', e=>{
+      e.preventDefault();
+      toggleAddressModal(false);
+      showToast("Address added");
+      // You could append to #addressList here
+    });
+
+    // 2FA label
+    const twoFA = document.getElementById('twoFA');
+    const faLabel = document.getElementById('faLabel');
+    twoFA?.addEventListener('change', ()=>{
+      faLabel.textContent = twoFA.checked ? 'Enabled' : 'Disabled';
+      showToast('Two-factor ' + (twoFA.checked?'enabled':'disabled'));
+    });
+
+    // password strength
+    const newPw = document.getElementById('newPw');
+    const confirmPw = document.getElementById('confirmPw');
+    const pwBar = document.getElementById('pwBar');
+    const pwHint = document.getElementById('pwHint');
+    newPw?.addEventListener('input', ()=>{
+      const v = newPw.value;
+      const score = (v.length>=8) + (/[A-Z]/.test(v)) + (/[a-z]/.test(v)) + (/\d/.test(v)) + (/[^A-Za-z0-9]/.test(v));
+      const widths = ['16%','32%','48%','72%','100%'];
+      const colors = ['#f87171','#fb923c','#facc15','#34d399','#10b981'];
+      pwBar.style.width = widths[Math.max(0,score-1)];
+      pwBar.style.background = colors[Math.max(0,score-1)];
+      const labels = ['weak','weak','fair','good','strong'];
+      pwHint.textContent = 'Strength: ' + labels[Math.max(0,score-1)];
+      if(confirmPw.value) confirmPw.dispatchEvent(new Event('input'));
+    });
+    confirmPw?.addEventListener('input', ()=>{
+      confirmPw.style.borderColor = confirmPw.value && newPw.value===confirmPw.value ? '#34d399' : '#f87171';
+    });
+  </script>
 </body>
 </html>
